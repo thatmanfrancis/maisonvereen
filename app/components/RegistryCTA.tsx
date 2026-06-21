@@ -23,7 +23,7 @@ export default function RegistryCTA({ onOpenApply }: RegistryCTAProps) {
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold-dark/40" />
 
           {/* Subtitle tag */}
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-gold-dark font-medium block">
+          <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-gold-dark font-medium block">
             Exclusive Ingress
           </span>
 
@@ -51,7 +51,7 @@ export default function RegistryCTA({ onOpenApply }: RegistryCTAProps) {
             >
               Begin Your Application
             </button>
-            <span className="block text-[9px] text-zinc-500 font-light tracking-wide mt-3">
+            <span className="block text-xs text-zinc-500 font-light tracking-wide mt-3">
               Application does not guarantee allocation. All positions are subject to review.
             </span>
           </div>

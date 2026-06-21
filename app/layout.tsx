@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Maison Vereen | A New Chapter in African Luxury",
   description:
     "Maison Vereen is a fragrance house born from culture, crafted with intention, and created to endure. Edition I — 250 bottles. The Founding Expression.",
-  icons: { icon: "/favicon.ico" },
+  icons: { icon: "/favicon.png" },
 };
 
 export default function RootLayout({
@@ -32,7 +32,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${cormorantGaramond.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#0A0A0A] text-[#E8E2D9] antialiased">
+      <body className="min-h-full flex flex-col bg-charcoal text-[#E8E2D9] antialiased">
         {children}
       </body>
     </html>

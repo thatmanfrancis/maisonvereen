@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Header from "../components/Header";
@@ -83,10 +83,10 @@ export default function TheHousePage() {
                     Built on Heritage.<br />
                     <em className="text-gold not-italic">Guided by Vision.</em>
                   </h1>
-                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
+                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "16px" }}>
                     Maison Vereen is an African luxury fragrance house reimagining fragrance as a symbol of identity, excellence, and timeless sophistication.
                   </p>
-                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
+                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "16px" }}>
                     We do not create exceptional scents, but cultural legacies.
                   </p>
                   <Link href="/philosophy" className="link-gold">
@@ -126,10 +126,10 @@ export default function TheHousePage() {
                 >
                   <div className="text-gold/50 group-hover:text-gold transition-colors duration-400">{v.icon}</div>
                   <div className="w-4 h-px bg-gold/25 group-hover:w-8 group-hover:bg-gold/50 transition-all duration-500" />
-                  <span className="uppercase tracking-[0.22em] text-[#8A8178] group-hover:text-[#C8C0B4] transition-colors duration-300 font-medium" style={{ fontSize: "9px" }}>
+                  <span className="uppercase tracking-[0.22em] text-[#8A8178] group-hover:text-[#C8C0B4] transition-colors duration-300 font-medium" style={{ fontSize: "16px" }}>
                     {v.title}
                   </span>
-                  <p className="text-[#4A4440] font-light leading-[1.7]" style={{ fontSize: "11px" }}>{v.body}</p>
+                  <p className="text-[#4A4440] font-light leading-[1.7]" style={{ fontSize: "16px" }}>{v.body}</p>
                 </div>
               ))}
             </div>
@@ -166,10 +166,10 @@ export default function TheHousePage() {
                     More Than<br />
                     <em className="text-gold not-italic">a Fragrance</em>
                   </h2>
-                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
+                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "16px" }}>
                     Every Maison Vereen fragrance is a story of place, people, and purpose — carefully composed to evoke emotion, presence, and lasting impact.
                   </p>
-                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
+                  <p className="text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "16px" }}>
                     This is a statement.
                   </p>
                   <Link href="/philosophy" className="link-gold">
@@ -198,9 +198,9 @@ export default function TheHousePage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04]">
               {principles.map((p, i) => (
                 <div key={i} className="bg-[#0D0D0D] px-8 py-10 space-y-4 hover:bg-white/[0.02] transition-colors duration-300">
-                  <span className="font-mono text-gold/40" style={{ fontSize: "9px" }}>{p.num}</span>
-                  <h3 className="font-serif font-light text-[#C8C0B4]" style={{ fontSize: "14px" }}>{p.title}</h3>
-                  <p className="text-[#5A5449] font-light leading-[1.7]" style={{ fontSize: "11px" }}>{p.body}</p>
+                  <span className="font-mono text-gold/40" style={{ fontSize: "16px" }}>{p.num}</span>
+                  <h3 className="font-serif font-light text-[#C8C0B4]" style={{ fontSize: "16px" }}>{p.title}</h3>
+                  <p className="text-[#5A5449] font-light leading-[1.7]" style={{ fontSize: "16px" }}>{p.body}</p>
                 </div>
               ))}
             </div>
@@ -214,7 +214,7 @@ export default function TheHousePage() {
               <h3 className="font-serif font-light text-[#E8E2D9]" style={{ fontSize: "clamp(1.2rem, 2vw, 1.6rem)" }}>
                 You will know if this is for you.
               </h3>
-              <p className="text-[#5A5449] font-light" style={{ fontSize: "12px" }}>
+              <p className="text-[#5A5449] font-light" style={{ fontSize: "16px" }}>
                 We do not have a customer profile. We have a character profile.
               </p>
             </div>
@@ -226,7 +226,7 @@ export default function TheHousePage() {
               <button
                 onClick={() => setIsApplyOpen(true)}
                 className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-7 py-3 text-[#E8E2D9] transition-all duration-500"
-                style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+                style={{ fontSize: "16px", letterSpacing: "0.26em" }}
               >
                 <span className="uppercase font-medium">Apply for Access</span>
               </button>

@@ -40,7 +40,7 @@ export default function TiersRegistry({ onOpenApply }: TiersRegistryProps) {
         
         {/* Header Block */}
         <div className="max-w-3xl space-y-6 text-center md:text-left mx-auto md:mx-0">
-          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block">
+          <span className="text-xs md:text-sm uppercase tracking-[0.25em] text-gold-dark font-medium block">
             Maison Vereen Registry
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-charcoal font-light leading-snug tracking-wide">
@@ -67,10 +67,10 @@ export default function TiersRegistry({ onOpenApply }: TiersRegistryProps) {
 
               <div className="space-y-6">
                 <div className="flex justify-between items-baseline border-b border-gold-dark/10 pb-4">
-                  <span className="text-[10px] font-mono text-gold-dark font-semibold">
+                  <span className="text-xs font-mono text-gold-dark font-semibold">
                     {tier.number}
                   </span>
-                  <span className="text-[9px] uppercase tracking-wider text-zinc-500 font-medium">
+                  <span className="text-xs uppercase tracking-wider text-zinc-500 font-medium">
                     {tier.eligibility}
                   </span>
                 </div>
@@ -87,7 +87,7 @@ export default function TiersRegistry({ onOpenApply }: TiersRegistryProps) {
               <div className="pt-4">
                 <button
                   onClick={onOpenApply}
-                  className="w-full py-3 border border-gold-dark/30 hover:border-gold-dark text-gold-dark text-[10px] tracking-widest uppercase font-semibold hover:bg-gold-dark hover:text-cream transition-all duration-500 ease-out"
+                  className="w-full py-3 border border-gold-dark/30 hover:border-gold-dark text-gold-dark text-xs tracking-widest uppercase font-semibold hover:bg-gold-dark hover:text-cream transition-all duration-500 ease-out"
                 >
                   Request Registration
                 </button>

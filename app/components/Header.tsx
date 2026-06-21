@@ -29,7 +29,9 @@ export default function Header({ onOpenApply }: HeaderProps) {
   }, []);
 
   // close drawer on route change
-  useEffect(() => { setIsOpen(false); }, [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   const isHome = pathname === "/";
 
@@ -38,25 +40,24 @@ export default function Header({ onOpenApply }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
           scrolled
-            ? "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/[0.06]"
+            ? "bg-black/95 backdrop-blur-md border-b border-white/6"
             : isHome
-            ? "bg-transparent"
-            : "bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/[0.06]"
+              ? "bg-transparent"
+              : "bg-black/95 backdrop-blur-md border-b border-white/6"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-8 md:px-14 h-[72px] flex items-center justify-between">
-
           {/* ── LOGO — left-aligned stacked two lines ── */}
           <Link
             href="/"
-            className="flex-shrink-0 group"
+            className="shrink-0 group"
             aria-label="Maison Vereen — Home"
           >
             <div className="leading-[1.15]">
-              <span className="block font-serif text-[10px] tracking-[0.45em] text-[#E8E2D9] font-light group-hover:text-gold transition-colors duration-500 uppercase">
+              <span className="block font-serif text-xs tracking-[0.45em] text-[#E8E2D9] font-light group-hover:text-gold transition-colors duration-500 uppercase">
                 Maison
               </span>
-              <span className="block font-serif text-[10px] tracking-[0.45em] text-[#E8E2D9] font-light group-hover:text-gold transition-colors duration-500 uppercase">
+              <span className="block font-serif text-xs tracking-[0.45em] text-[#E8E2D9] font-light group-hover:text-gold transition-colors duration-500 uppercase">
                 Vereen
               </span>
             </div>
@@ -73,10 +74,8 @@ export default function Header({ onOpenApply }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-[9.5px] tracking-[0.28em] uppercase font-medium transition-colors duration-300 ${
-                    active
-                      ? "text-gold"
-                      : "text-[#9A9189] hover:text-[#E8E2D9]"
+                  className={`text-xs tracking-[0.28em] uppercase font-medium transition-colors duration-300 ${
+                    active ? "text-gold" : "text-[#9A9189] hover:text-[#E8E2D9]"
                   }`}
                 >
                   {link.label}
@@ -86,10 +85,10 @@ export default function Header({ onOpenApply }: HeaderProps) {
           </nav>
 
           {/* ── RIGHT CTA + MOBILE TOGGLE ── */}
-          <div className="flex items-center gap-5 flex-shrink-0">
+          <div className="flex items-center gap-5 shrink-0">
             <button
               onClick={onOpenApply}
-              className="hidden md:block border border-[#C9A84C]/50 hover:border-[#C9A84C] hover:bg-[#C9A84C]/10 px-6 py-2.5 text-[9px] tracking-[0.28em] uppercase font-medium text-[#E8E2D9] transition-all duration-500"
+              className="hidden md:block border border-gold/50 hover:border-gold hover:bg-gold/10 px-6 py-2.5 text-xs tracking-[0.28em] uppercase font-medium text-[#E8E2D9] transition-all duration-500"
             >
               Apply for Access
             </button>
@@ -99,7 +98,11 @@ export default function Header({ onOpenApply }: HeaderProps) {
               className="md:hidden text-[#9A9189] hover:text-[#E8E2D9] transition-colors"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -107,8 +110,10 @@ export default function Header({ onOpenApply }: HeaderProps) {
 
       {/* ── MOBILE DRAWER ── */}
       <div
-        className={`fixed inset-0 z-40 bg-[#0A0A0A] flex flex-col justify-center items-center transition-all duration-500 md:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-40 bg-charcoal flex flex-col justify-center items-center transition-all duration-500 md:hidden ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         {/* Close btn top-right */}
@@ -122,8 +127,12 @@ export default function Header({ onOpenApply }: HeaderProps) {
 
         {/* Logo in drawer */}
         <div className="absolute top-6 left-8 leading-[1.15]">
-          <span className="block font-serif text-[10px] tracking-[0.45em] text-[#E8E2D9] font-light uppercase">Maison</span>
-          <span className="block font-serif text-[10px] tracking-[0.45em] text-[#E8E2D9] font-light uppercase">Vereen</span>
+          <span className="block font-serif text-xs tracking-[0.45em] text-[#E8E2D9] font-light uppercase">
+            Maison
+          </span>
+          <span className="block font-serif text-xs tracking-[0.45em] text-[#E8E2D9] font-light uppercase">
+            Vereen
+          </span>
         </div>
 
         <nav className="flex flex-col items-center gap-7">
@@ -138,8 +147,11 @@ export default function Header({ onOpenApply }: HeaderProps) {
             </Link>
           ))}
           <button
-            onClick={() => { setIsOpen(false); onOpenApply(); }}
-            className="mt-4 border border-[#C9A84C]/50 px-8 py-3 text-[9px] tracking-[0.28em] uppercase font-medium text-[#E8E2D9] hover:bg-[#C9A84C]/10 transition-all duration-300"
+            onClick={() => {
+              setIsOpen(false);
+              onOpenApply();
+            }}
+            className="mt-4 border border-gold/50 px-8 py-3 text-xs tracking-[0.28em] uppercase font-medium text-[#E8E2D9] hover:bg-gold/10 transition-all duration-300"
           >
             Apply for Access
           </button>

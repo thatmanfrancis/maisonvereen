@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 
@@ -6,10 +6,34 @@ const pillars = [
   {
     icon: (
       /* Globe/roots icon */
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="0.9" />
-        <ellipse cx="12" cy="12" rx="4" ry="10" stroke="currentColor" strokeWidth="0.9" />
-        <path d="M2 12h20M4.5 6.5C6.8 8 9.3 9 12 9s5.2-1 7.5-2.5M4.5 17.5C6.8 16 9.3 15 12 15s5.2 1 7.5 2.5" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" />
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="0.9"
+        />
+        <ellipse
+          cx="12"
+          cy="12"
+          rx="4"
+          ry="10"
+          stroke="currentColor"
+          strokeWidth="0.9"
+        />
+        <path
+          d="M2 12h20M4.5 6.5C6.8 8 9.3 9 12 9s5.2-1 7.5-2.5M4.5 17.5C6.8 16 9.3 15 12 15s5.2 1 7.5 2.5"
+          stroke="currentColor"
+          strokeWidth="0.9"
+          strokeLinecap="round"
+        />
       </svg>
     ),
     title: "African by Roots",
@@ -18,8 +42,19 @@ const pillars = [
   {
     icon: (
       /* Star / craftsmanship icon */
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z" stroke="currentColor" strokeWidth="0.9" strokeLinejoin="round" />
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"
+          stroke="currentColor"
+          strokeWidth="0.9"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     title: "Crafted with Intention",
@@ -28,9 +63,26 @@ const pillars = [
   {
     icon: (
       /* Diamond/endure icon */
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M12 3L3 9l9 12 9-12-9-6z" stroke="currentColor" strokeWidth="0.9" strokeLinejoin="round" />
-        <path d="M3 9h18M8 9L12 3l4 6" stroke="currentColor" strokeWidth="0.9" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 3L3 9l9 12 9-12-9-6z"
+          stroke="currentColor"
+          strokeWidth="0.9"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M3 9h18M8 9L12 3l4 6"
+          stroke="currentColor"
+          strokeWidth="0.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     title: "Made to Endure",
@@ -55,12 +107,15 @@ export default function ThreePillars() {
               </div>
 
               {/* Thin gold rule */}
-              <div className="w-6 h-px bg-[#C9A84C]/50 group-hover:w-10 group-hover:bg-[#C9A84C] transition-all duration-500" />
+              <div className="w-6 h-px bg-gold/50 group-hover:w-10 group-hover:bg-gold transition-all duration-500" />
 
               {/* Title — dark, small caps tracking */}
               <h3
                 className="uppercase tracking-[0.22em] text-[#1A1814] font-medium"
-                style={{ fontSize: "10px", fontFamily: "var(--font-geist-sans)" }}
+                style={{
+                  fontSize: "16px",
+                  fontFamily: "var(--font-geist-sans)",
+                }}
               >
                 {p.title}
               </h3>
@@ -68,7 +123,7 @@ export default function ThreePillars() {
               {/* Body — muted dark */}
               <p
                 className="text-[#6A6258] font-light leading-[1.75]"
-                style={{ fontSize: "12px" }}
+                style={{ fontSize: "16px" }}
               >
                 {p.body}
               </p>
