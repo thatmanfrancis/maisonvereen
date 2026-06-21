@@ -2,8 +2,7 @@
 // NOTE: datasource url is NOT set here in Prisma 7 — it lives in prisma.config.ts
 
 generator client {
-  provider = "prisma-client"
-  output   = "../prisma/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {

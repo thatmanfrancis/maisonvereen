@@ -1,6 +1,6 @@
 // Prisma 7 — requires @prisma/adapter-pg driver adapter for PostgreSQL
-import { PrismaClient } from "@/prisma/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client/extension";
 
 function createPrismaClient() {
   const adapter = new PrismaPg({
