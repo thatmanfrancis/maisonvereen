@@ -1,6 +1,5 @@
-"use client";
+﻿"use client";
 
-import React from "react";
 import Link from "next/link";
 
 // Exact pillars from document — Page 1 Home, Philosophy section
@@ -79,14 +78,15 @@ export default function Philosophy() {
           ))}
         </div>
 
-        {/* Closing */}
-        <div className="border-t border-white/[0.05] pt-12 text-center">
-          <p className="font-serif font-light italic text-[#4A4540] tracking-[0.1em] uppercase"
-            style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.2rem)" }}>
+        {/* ── CLOSING QUOTE ── */}
+        <div className="border-t border-white/5 pt-14 text-center">
+          <p
+            className="font-serif font-light italic text-[#4A4540] tracking-[0.12em] uppercase"
+            style={{ fontSize: "clamp(1rem, 1.6vw, 1.4rem)" }}
+          >
             &ldquo;We create scents. You create history.&rdquo;
           </p>
         </div>
-
       </div>
     </section>
   );

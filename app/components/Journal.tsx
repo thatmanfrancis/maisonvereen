@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -34,9 +34,8 @@ const articles = [
 
 export default function Journal() {
   return (
-    <section id="journal" className="bg-[#0A0A0A] border-t border-white/[0.05]">
+    <section id="journal" className="bg-charcoal border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32 space-y-14">
-
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-5">
@@ -61,7 +60,7 @@ export default function Journal() {
           {articles.map((a, idx) => (
             <article
               key={a.tag}
-              className="group bg-[#0A0A0A] cursor-pointer hover:bg-white/[0.015] transition-colors duration-500"
+              className="group bg-charcoal cursor-pointer hover:bg-white/15 transition-colors duration-500"
             >
               {/* Each card has its own distinct image */}
               <div className="relative h-52 overflow-hidden bg-[#080808]">
@@ -91,27 +90,31 @@ export default function Journal() {
               <div className="px-7 pt-6 pb-8 space-y-3">
                 <h3
                   className="font-serif font-light text-[#C8C0B4] leading-snug group-hover:text-[#E8E2D9] transition-colors duration-300"
-                  style={{ fontSize: "15px" }}
+                  style={{ fontSize: "16px" }}
                 >
                   {a.title}
                 </h3>
-                <p className="text-[#5A5449] font-light leading-[1.7]" style={{ fontSize: "11px" }}>
+                <p
+                  className="text-[#5A5449] font-light leading-[1.7]"
+                  style={{ fontSize: "16px" }}
+                >
                   {a.excerpt}
                 </p>
                 <div className="pt-3 flex items-center justify-between">
                   <span
-                    className="uppercase tracking-[0.22em] font-medium group-hover:text-[#C9A84C] transition-colors duration-300"
-                    style={{ fontSize: "9px", color: "rgba(201,168,76,0.45)" }}
+                    className="uppercase tracking-[0.22em] font-medium group-hover:text-gold transition-colors duration-300"
+                    style={{ fontSize: "16px", color: "rgba(201,168,76,0.5)" }}
                   >
                     Read →
                   </span>
-                  <span style={{ fontSize: "9px", color: "#3A3530" }}>{a.date}</span>
+                  <span style={{ fontSize: "16px", color: "#3A3530" }}>
+                    {a.date}
+                  </span>
                 </div>
               </div>
             </article>
           ))}
         </div>
-
       </div>
     </section>
   );

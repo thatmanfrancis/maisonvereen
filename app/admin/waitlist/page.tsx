@@ -27,13 +27,13 @@ export default async function WaitlistPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/[0.06] bg-[#0D0D0D]">
-                <th className="text-left px-5 py-3 text-[9px] uppercase tracking-[0.18em] text-[#4A4438] font-medium">
+                <th className="text-left px-5 py-3 text-xs uppercase tracking-[0.18em] text-[#4A4438] font-medium">
                   #
                 </th>
-                <th className="text-left px-5 py-3 text-[9px] uppercase tracking-[0.18em] text-[#4A4438] font-medium">
+                <th className="text-left px-5 py-3 text-xs uppercase tracking-[0.18em] text-[#4A4438] font-medium">
                   Email Address
                 </th>
-                <th className="text-left px-5 py-3 text-[9px] uppercase tracking-[0.18em] text-[#4A4438] font-medium">
+                <th className="text-left px-5 py-3 text-xs uppercase tracking-[0.18em] text-[#4A4438] font-medium">
                   Joined
                 </th>
               </tr>
@@ -46,15 +46,15 @@ export default async function WaitlistPage() {
                   </td>
                 </tr>
               ) : (
-                entries.map((entry, idx) => (
+                entries.map((entry: any, idx: any) => (
                   <tr key={entry.id} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="px-5 py-3.5 text-[11px] text-[#3A3530] font-mono">
+                    <td className="px-5 py-3.5 text-xs text-[#3A3530] font-mono">
                       {String(idx + 1).padStart(3, "0")}
                     </td>
-                    <td className="px-5 py-3.5 text-[13px] text-[#8A8178]">
+                    <td className="px-5 py-3.5 text-sm text-[#8A8178]">
                       {entry.email}
                     </td>
-                    <td className="px-5 py-3.5 text-[11px] text-[#3A3530]">
+                    <td className="px-5 py-3.5 text-xs text-[#3A3530]">
                       {new Date(entry.createdAt).toLocaleDateString("en-GB", {
                         day: "2-digit", month: "short", year: "numeric",
                       })}
@@ -70,7 +70,7 @@ export default async function WaitlistPage() {
           <div className="flex justify-end">
             <a
               href="/api/waitlist/export"
-              className="text-[10px] uppercase tracking-widest text-[#C9A84C] hover:text-[#E8E2D9] transition-colors"
+              className="text-xs uppercase tracking-widest text-gold hover:text-[#E8E2D9] transition-colors"
             >
               Export CSV →
             </a>

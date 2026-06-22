@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -17,7 +17,9 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
   }, []);
 
   const scrollDown = () => {
-    document.getElementById("pillars")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById("pillars")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (

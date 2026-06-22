@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Header from "../components/Header";
@@ -264,7 +264,7 @@ export default function TheHousePage() {
               <button
                 onClick={() => setIsApplyOpen(true)}
                 className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-7 py-3 text-[#E8E2D9] transition-all duration-500"
-                style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+                style={{ fontSize: "16px", letterSpacing: "0.26em" }}
               >
                 <span className="uppercase font-medium">Apply for Access</span>
               </button>

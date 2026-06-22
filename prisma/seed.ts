@@ -1,9 +1,9 @@
 // Run: npx prisma db seed
 // Or:  node -r dotenv/config -r ts-node/register prisma/seed.ts
 import "dotenv/config";
-import { PrismaClient } from "./generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
+import { PrismaClient } from "@prisma/client";
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,

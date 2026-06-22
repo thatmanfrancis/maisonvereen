@@ -3,7 +3,7 @@ import { getAdminSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import AdminShell from "../components/AdminShell";
 import ApplicationsTable from "../components/ApplicationsTable";
-import { ApplicationStatus } from "@/prisma/generated/prisma/client";
+import { ApplicationStatus } from "@prisma/client";
 
 interface SearchParams {
   page?: string;

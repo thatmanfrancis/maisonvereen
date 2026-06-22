@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Header from "../components/Header";
@@ -68,51 +68,62 @@ export default function AccessPage() {
 
       <main className="bg-[#0A0A0A]">
 
-        {/* ── HERO — full bleed dark, text left + wax seal right ── */}
-        <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-[#060606] pt-[72px] border-b border-white/[0.05]">
-          {/* Full background — dark envelope/luxury photo */}
-          <div className="absolute inset-0 z-0">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: "url(/images/wax-seal.jpg)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                opacity: 0.30,
-                filter: "brightness(0.45) saturate(0.5)",
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#060606]/97 via-[#060606]/80 to-[#060606]/35" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/90 via-transparent to-[#060606]/50" />
-          </div>
+        {/* ── HERO ── */}
+        <section className="border-b border-white/[0.05] pt-[72px]">
+          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32 w-full">
-            <div className="max-w-[620px] space-y-8">
-              <span className="section-tag">Access</span>
-              {/* Design image 5 exact headline */}
-              <h1
-                className="font-serif font-light text-[#E8E2D9] leading-[1.0]"
-                style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}
-              >
-                Access is not purchased.
-                <br />
-                <em className="not-italic" style={{ color: "#C9A84C" }}>It is earned.</em>
-              </h1>
-              <div className="space-y-3 text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
-                <p>Maison Vereen is a house of rare creation.</p>
-                <p>Edition I is limited to 250 bottles worldwide. Access is by application only.</p>
-                <p>We select not for quantity, but for alignment.</p>
+              {/* Left */}
+              <div className="space-y-8">
+                <span className="section-tag">Access</span>
+                <h1
+                  className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
+                  style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
+                >
+                  Access is not purchased.<br />
+                  <em className="text-gold not-italic">It is earned.</em>
+                </h1>
+                <div className="space-y-3 text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "16px" }}>
+                  <p>Maison Vereen is a house of rare creation.</p>
+                  <p>Edition I is limited to 250 bottles.</p>
+                  <p>Access is by application only.</p>
+                  <p>Join the waitlist or apply below to become part of the founding circle.</p>
+                </div>
+                <button
+                  onClick={() => setIsApplyOpen(true)}
+                  className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-8 py-3.5 text-[#E8E2D9] transition-all duration-500"
+                  style={{ fontSize: "16px", letterSpacing: "0.26em" }}
+                >
+                  <span className="uppercase font-medium">Apply for Access</span>
+                </button>
+                <p className="text-[#3A3530] font-light" style={{ fontSize: "16px" }}>
+                  By submitting, you agree to our Privacy Policy.
+                </p>
               </div>
-              <button
-                onClick={() => setIsApplyOpen(true)}
-                className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-8 py-3.5 text-[#E8E2D9] transition-all duration-500"
-                style={{ fontSize: "10px", letterSpacing: "0.26em" }}
-              >
-                <span className="uppercase font-medium">Apply for Access</span>
-              </button>
-              <p className="text-[#3A3530] font-light" style={{ fontSize: "10px" }}>
-                By submitting, you agree to our Privacy Policy.
-              </p>
+
+              {/* Right — Real wax seal photo */}
+              <div className="flex justify-center lg:justify-end">
+                <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden rounded-full" style={{ border: "1px solid rgba(201,168,76,0.12)" }}>
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: "url(/images/wax-seal.jpg)",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      opacity: 0.75,
+                      filter: "brightness(0.6) saturate(0.75) sepia(0.1)",
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A]/20 via-transparent to-[#0A0A0A]/50" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center space-y-1.5">
+                      <span className="block font-serif font-light tracking-[0.35em]" style={{ fontSize: "24px", color: "rgba(201,168,76,0.55)" }}>MV</span>
+                      <div className="w-8 h-px mx-auto" style={{ background: "rgba(201,168,76,0.2)" }} />
+                      <span className="block uppercase tracking-[0.2em]" style={{ fontSize: "16px", color: "rgba(201,168,76,0.3)" }}>Est. MMXXIV</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -125,8 +136,8 @@ export default function AccessPage() {
                 <div key={i} className="group px-7 py-10 space-y-4 hover:bg-white/[0.015] transition-colors duration-400">
                   <div className="text-gold/40 group-hover:text-gold/70 transition-colors duration-400">{b.icon}</div>
                   <div className="w-4 h-px bg-gold/20 group-hover:w-8 group-hover:bg-gold/40 transition-all duration-500" />
-                  <h3 className="uppercase tracking-[0.2em] text-[#8A8178] font-medium" style={{ fontSize: "9px" }}>{b.title}</h3>
-                  <p className="text-[#4A4440] font-light leading-[1.7]" style={{ fontSize: "11px" }}>{b.body}</p>
+                  <h3 className="uppercase tracking-[0.2em] text-[#8A8178] font-medium" style={{ fontSize: "16px" }}>{b.title}</h3>
+                  <p className="text-[#4A4440] font-light leading-[1.7]" style={{ fontSize: "16px" }}>{b.body}</p>
                 </div>
               ))}
             </div>
@@ -153,7 +164,7 @@ export default function AccessPage() {
                       >
                         <span
                           className="font-light text-[#C8C0B4] group-hover:text-[#E8E2D9] transition-colors duration-300"
-                          style={{ fontSize: "13px" }}
+                          style={{ fontSize: "16px" }}
                         >
                           {faq.q}
                         </span>
@@ -163,7 +174,7 @@ export default function AccessPage() {
                       </button>
                       {openFaq === i && (
                         <div className="pb-5">
-                          <p className="text-[#6A6258] font-light leading-[1.75]" style={{ fontSize: "12px" }}>
+                          <p className="text-[#6A6258] font-light leading-[1.75]" style={{ fontSize: "16px" }}>
                             {faq.a}
                           </p>
                         </div>
@@ -204,30 +215,30 @@ export default function AccessPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your email address"
-                      className="w-full bg-transparent border-b border-white/[0.1] py-3 text-[13px] text-[#E8E2D9] placeholder-[#3A3530] focus:outline-none focus:border-gold/50 transition-colors duration-300"
+                      className="w-full bg-transparent border-b border-white/[0.1] py-3 text-xs text-[#E8E2D9] placeholder-[#3A3530] focus:outline-none focus:border-gold/50 transition-colors duration-300"
                     />
                     <button
                       type="submit"
                       className="w-full border border-gold/50 hover:border-gold hover:bg-gold/10 py-3 text-[#E8E2D9] transition-all duration-500"
-                      style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+                      style={{ fontSize: "16px", letterSpacing: "0.26em" }}
                     >
                       <span className="uppercase font-medium">→</span>
                     </button>
                   </form>
                 ) : (
                   <div className="py-4 space-y-2">
-                    <p className="text-gold" style={{ fontSize: "12px" }}>You&apos;re on the list.</p>
-                    <p className="text-[#5A5449] font-light" style={{ fontSize: "11px" }}>
+                    <p className="text-gold" style={{ fontSize: "16px" }}>You&apos;re on the list.</p>
+                    <p className="text-[#5A5449] font-light" style={{ fontSize: "16px" }}>
                       We&apos;ll be in touch when access opens.
                     </p>
                   </div>
                 )}
-                <p className="text-[#3A3530] font-light" style={{ fontSize: "10px" }}>
+                <p className="text-[#3A3530] font-light" style={{ fontSize: "16px" }}>
                   By joining, you agree to our Privacy Policy.
                 </p>
                 {/* Social icons */}
                 <div className="flex items-center gap-4 pt-2 border-t border-white/[0.05]">
-                  <span className="text-[#3A3530] uppercase tracking-widest" style={{ fontSize: "8px" }}>Follow</span>
+                  <span className="text-[#3A3530] uppercase tracking-widest" style={{ fontSize: "16px" }}>Follow</span>
                   {[
                     { label: "IG", href: "https://instagram.com" },
                     { label: "FB", href: "https://facebook.com" },
@@ -239,7 +250,7 @@ export default function AccessPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#5A5449] hover:text-gold transition-colors duration-300 font-mono"
-                      style={{ fontSize: "9px" }}
+                      style={{ fontSize: "16px" }}
                     >
                       {s.label}
                     </a>

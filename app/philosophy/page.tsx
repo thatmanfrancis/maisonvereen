@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Header from "../components/Header";
@@ -86,7 +86,7 @@ export default function PhilosophyPage() {
         </section>
 
         {/* ── FOUR PILLARS ── */}
-        <section className="bg-[#0D0D0D] border-b border-white/[0.05]">
+        <section className="bg-charcoal border-b border-white/5">
           <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
             <span className="section-tag">The Pillars</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/[0.04]">
@@ -156,17 +156,19 @@ export default function PhilosophyPage() {
               <button
                 onClick={() => setIsApplyOpen(true)}
                 className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-7 py-3 text-[#E8E2D9] transition-all duration-500"
-                style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+                style={{ fontSize: "16px", letterSpacing: "0.26em" }}
               >
                 <span className="uppercase font-medium">Apply for Access</span>
               </button>
             </div>
           </div>
         </section>
-
       </main>
       <Footer />
-      <ApplicationForm isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
+      <ApplicationForm
+        isOpen={isApplyOpen}
+        onClose={() => setIsApplyOpen(false)}
+      />
     </>
   );
 }

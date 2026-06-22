@@ -1,6 +1,5 @@
-"use client";
+﻿"use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,9 +7,11 @@ interface CollectionPreviewProps {
   onOpenApply: () => void;
 }
 
-export default function CollectionPreview({ onOpenApply }: CollectionPreviewProps) {
+export default function CollectionPreview({
+  onOpenApply,
+}: CollectionPreviewProps) {
   return (
-    <section id="edition-i" className="bg-[#0A0A0A] border-t border-white/[0.05]">
+    <section id="edition-i" className="bg-charcoal border-t border-white/5">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
 

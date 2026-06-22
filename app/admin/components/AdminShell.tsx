@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -14,9 +14,9 @@ import {
 } from "lucide-react";
 
 const NAV = [
-  { href: "/admin",              icon: LayoutDashboard, label: "Dashboard"    },
-  { href: "/admin/applications", icon: Users,           label: "Applications" },
-  { href: "/admin/waitlist",     icon: ListChecks,      label: "Waitlist"     },
+  { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
+  { href: "/admin/applications", icon: Users, label: "Applications" },
+  { href: "/admin/waitlist", icon: ListChecks, label: "Waitlist" },
 ];
 
 export default function AdminShell({
@@ -26,18 +26,22 @@ export default function AdminShell({
   children: React.ReactNode;
   adminName: string;
 }) {
-  const pathname     = usePathname();
-  const router       = useRouter();
+  const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [logging, setLogging] = useState(false);
 
   // Close drawer on route change
-  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   // Prevent body scroll when mobile drawer is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   async function handleLogout() {
@@ -48,24 +52,31 @@ export default function AdminShell({
   }
 
   const isActive = (href: string) =>
-    href === "/admin"
-      ? pathname === "/admin"
-      : pathname.startsWith(href);
+    href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
   /* ── Sidebar content (shared between desktop + mobile) ── */
   const SidebarInner = (
     <div className="flex flex-col h-full">
-
       {/* Logo */}
-      <div className="px-6 pt-7 pb-6 border-b border-white/[0.05]">
+      <div className="px-6 pt-7 pb-6 border-b border-white/5">
         <Link href="/admin" className="block w-fit group">
           <div className="leading-[1.3]">
-            <span className="block font-serif tracking-[0.45em] text-[#E8E2D9] uppercase group-hover:text-gold transition-colors duration-500"
-              style={{ fontSize: "10px" }}>Maison</span>
-            <span className="block font-serif tracking-[0.45em] text-[#E8E2D9] uppercase group-hover:text-gold transition-colors duration-500"
-              style={{ fontSize: "10px" }}>Vereen</span>
+            <span
+              className="block font-serif tracking-[0.45em] text-[#E8E2D9] uppercase group-hover:text-gold transition-colors duration-500"
+              style={{ fontSize: "16px" }}
+            >
+              Maison
+            </span>
+            <span
+              className="block font-serif tracking-[0.45em] text-[#E8E2D9] uppercase group-hover:text-gold transition-colors duration-500"
+              style={{ fontSize: "16px" }}
+            >
+              Vereen
+            </span>
           </div>
-          <span className="block text-[8px] uppercase tracking-[0.25em] text-[#2A2420] mt-1.5">Admin Portal</span>
+          <span className="block text-xs uppercase tracking-[0.25em] text-[#2A2420] mt-1.5">
+            Admin Portal
+          </span>
         </Link>
       </div>
 
@@ -80,9 +91,10 @@ export default function AdminShell({
               className={`
                 flex items-center gap-3 px-3 py-2.5 rounded-sm
                 transition-all duration-200 group relative overflow-hidden
-                ${active
-                  ? "bg-gold/[0.08] text-gold"
-                  : "text-[#5A5449] hover:text-[#C8C0B4] hover:bg-white/[0.03]"
+                ${
+                  active
+                    ? "bg-gold/8 text-gold"
+                    : "text-[#5A5449] hover:text-[#C8C0B4] hover:bg-white/3"
                 }
               `}
             >
@@ -90,10 +102,10 @@ export default function AdminShell({
               {active && (
                 <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-gold rounded-r anim-fade-in" />
               )}
-              <Icon className="w-[15px] h-[15px] flex-shrink-0" />
+              <Icon className="w-[15px] h-[15px] shrink-0" />
               <span
                 className="font-medium"
-                style={{ fontSize: "11px", letterSpacing: "0.07em" }}
+                style={{ fontSize: "16px", letterSpacing: "0.07em" }}
               >
                 {label}
               </span>
@@ -103,11 +115,13 @@ export default function AdminShell({
       </nav>
 
       {/* Footer */}
-      <div className="px-4 pb-5 pt-4 border-t border-white/[0.05] space-y-2">
+      <div className="px-4 pb-5 pt-4 border-t border-white/5 space-y-2">
         {/* Admin info */}
         <div className="px-3 py-2 space-y-0.5 mb-1">
-          <p className="text-[8px] uppercase tracking-[0.22em] text-[#2A2420]">Signed in</p>
-          <p className="text-[12px] text-[#6A6258] truncate">{adminName}</p>
+          <p className="text-xs uppercase tracking-[0.22em] text-[#2A2420]">
+            Signed in
+          </p>
+          <p className="text-xs text-[#6A6258] truncate">{adminName}</p>
         </div>
 
         {/* View site */}
@@ -117,7 +131,10 @@ export default function AdminShell({
           className="flex items-center gap-2.5 px-3 py-2.5 rounded-sm text-[#3A3530] hover:text-[#5A5449] transition-colors duration-200"
         >
           <ExternalLink className="w-[14px] h-[14px]" />
-          <span style={{ fontSize: "11px", letterSpacing: "0.07em" }} className="font-medium">
+          <span
+            style={{ fontSize: "16px", letterSpacing: "0.07em" }}
+            className="font-medium"
+          >
             View site
           </span>
         </Link>
@@ -126,13 +143,17 @@ export default function AdminShell({
         <button
           onClick={handleLogout}
           disabled={logging}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-sm text-[#4A4438] hover:text-red-400 hover:bg-red-900/[0.08] transition-all duration-200 disabled:opacity-50"
+          className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-sm text-[#4A4438] hover:text-red-400 hover:bg-red-900/8 transition-all duration-200 disabled:opacity-50"
         >
-          {logging
-            ? <span className="spinner spinner-sm" />
-            : <LogOut className="w-[14px] h-[14px] flex-shrink-0" />
-          }
-          <span style={{ fontSize: "11px", letterSpacing: "0.07em" }} className="font-medium">
+          {logging ? (
+            <span className="spinner spinner-sm" />
+          ) : (
+            <LogOut className="w-[14px] h-[14px] shrink-0" />
+          )}
+          <span
+            style={{ fontSize: "16px", letterSpacing: "0.07em" }}
+            className="font-medium"
+          >
             {logging ? "Signing out…" : "Sign out"}
           </span>
         </button>
@@ -141,10 +162,9 @@ export default function AdminShell({
   );
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#080808]">
-
+    <div className="flex h-screen overflow-hidden bg-charcoal">
       {/* ── Desktop sidebar ── */}
-      <aside className="hidden md:flex flex-col w-[220px] lg:w-[240px] flex-shrink-0 bg-[#0A0A0A] border-r border-white/[0.05]">
+      <aside className="hidden md:flex flex-col w-[220px] lg:w-[240px] shrink-0 bg-charcoal border-r border-white/5">
         {SidebarInner}
       </aside>
 
@@ -158,7 +178,7 @@ export default function AdminShell({
             aria-label="Close menu"
           />
           {/* Drawer */}
-          <aside className="relative w-[240px] flex-shrink-0 bg-[#0A0A0A] border-r border-white/[0.06] flex flex-col admin-drawer">
+          <aside className="relative w-[240px] shrink-0 bg-charcoal border-r border-white/6 flex flex-col admin-drawer">
             {SidebarInner}
           </aside>
         </div>
@@ -166,9 +186,8 @@ export default function AdminShell({
 
       {/* ── Main ── */}
       <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-
         {/* Mobile topbar */}
-        <div className="md:hidden flex items-center justify-between px-4 py-3.5 border-b border-white/[0.05] bg-[#0A0A0A] flex-shrink-0">
+        <div className="md:hidden flex items-center justify-between px-4 py-3.5 border-b border-white/5 bg-charcoal shrink-0">
           <button
             onClick={() => setOpen(true)}
             className="text-[#5A5449] hover:text-[#E8E2D9] transition-colors p-1 -ml-1"
@@ -176,13 +195,14 @@ export default function AdminShell({
           >
             <Menu className="w-5 h-5" />
           </button>
-
           <div className="leading-[1.2] text-center">
-            <span className="block font-serif tracking-[0.4em] text-[#E8E2D9] uppercase" style={{ fontSize: "9px" }}>
+            <span
+              className="block font-serif tracking-[0.4em] text-[#E8E2D9] uppercase"
+              style={{ fontSize: "16px" }}
+            >
               Maison Vereen
             </span>
           </div>
-
           <div className="w-7" /> {/* spacer */}
         </div>
 

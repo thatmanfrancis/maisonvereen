@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     orderBy: { createdAt: "desc" },
   });
 
-  const rows = ["Email,Joined", ...entries.map((e) => `${e.email},${e.createdAt.toISOString()}`)];
+  const rows = ["Email,Joined", ...entries.map((e: any) => `${e.email},${e.createdAt.toISOString()}`)];
   const csv = rows.join("\n");
 
   return new NextResponse(csv, {
