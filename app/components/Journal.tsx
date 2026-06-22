@@ -1,28 +1,34 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
+// Each card gets its own distinct atmospheric image
+const CARD_IMAGES = [
+  { src: "/images/dark-stone.jpg",   pos: "30% center" },
+  { src: "/images/luxury-dark.jpg",  pos: "60% center" },
+  { src: "/images/dark-architecture.jpg", pos: "40% center" },
+];
+
+// Titles drawn from document themes — Our Story / Journal pages
 const articles = [
   {
-    tag: "Culture",
-    title: "The New Identity of African Luxury",
-    excerpt: "A generation of creators is redefining what luxury means on the continent — not as aspiration, but as expression.",
+    tag: "Origin",
+    title: "It started with a question no one was asking.",
+    excerpt: "Not 'what fragrance do people want to wear?' The question that started Maison Vereen was harder. More personal.",
     date: "June 2024",
-    pos: "20%",
+  },
+  {
+    tag: "Vision",
+    title: "Africa's first. The world's next.",
+    excerpt: "The vision was never modest. Africa's first serious luxury fragrance house — built to the standard of the world's greatest houses.",
+    date: "May 2024",
   },
   {
     tag: "Craft",
-    title: "The Art of Craftsmanship",
-    excerpt: "True craftsmanship is not about perfection. It is about the intention behind every decision, every material, every detail.",
-    date: "May 2024",
-    pos: "50%",
-  },
-  {
-    tag: "Legacy",
-    title: "Legacy Is Built in Silence",
-    excerpt: "The things that endure are rarely announced. They are built carefully, consistently, over decades — without applause.",
+    title: "Three years. One edition. No shortcuts.",
+    excerpt: "The fragrance was developed with a master perfumer. The bottle was designed to be a sculpture before it is a vessel.",
     date: "April 2024",
-    pos: "80%",
   },
 ];
 
@@ -37,43 +43,44 @@ export default function Journal() {
             <span className="section-tag">Journal</span>
             <h2
               className="font-serif font-light text-[#E8E2D9] leading-[1.1]"
-              style={{ fontSize: "clamp(2rem, 3.5vw, 3rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
             >
               Thoughts on Culture,<br />
-              <em className="not-italic" style={{ color: "#C9A84C" }}>Excellence &amp; Legacy.</em>
+              <em className="not-italic" style={{ color: "#C9A84C" }}>
+                Excellence &amp; Legacy.
+              </em>
             </h2>
           </div>
-          <button className="flex-shrink-0 link-gold self-end">
+          <Link href="/journal" className="link-gold self-end flex-shrink-0">
             <span>Read Journal</span>
-            <span style={{ color: "#C9A84C" }}>→</span>
-          </button>
+            <span className="text-gold">→</span>
+          </Link>
         </div>
 
-        {/* Article Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.04]">
-          {articles.map((a) => (
+          {articles.map((a, idx) => (
             <article
               key={a.tag}
               className="group bg-[#0A0A0A] cursor-pointer hover:bg-white/[0.015] transition-colors duration-500"
             >
-              {/* Image */}
+              {/* Each card has its own distinct image */}
               <div className="relative h-52 overflow-hidden bg-[#080808]">
                 <div
                   className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.04]"
                   style={{
-                    backgroundImage: "url(/images/journal-dark.jpg)",
+                    backgroundImage: `url(${CARD_IMAGES[idx].src})`,
                     backgroundSize: "cover",
-                    backgroundPosition: `${a.pos} center`,
-                    opacity: 0.6,
-                    filter: "brightness(0.7) saturate(0.75)",
+                    backgroundPosition: CARD_IMAGES[idx].pos,
+                    opacity: 0.50,
+                    filter: "brightness(0.55) saturate(0.5) sepia(0.1)",
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/90 via-[#0A0A0A]/30 to-transparent" />
-                <div className="absolute inset-0 bg-[#0A0600]/20" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/92 via-[#0A0A0A]/25 to-transparent" />
+                <div className="absolute inset-0 bg-[#08060A]/15" />
                 <div className="absolute bottom-5 left-5 z-10">
                   <span
                     className="uppercase tracking-[0.2em] border px-2 py-1"
-                    style={{ fontSize: "8px", color: "rgba(201,168,76,0.7)", borderColor: "rgba(201,168,76,0.2)" }}
+                    style={{ fontSize: "8px", color: "rgba(201,168,76,0.75)", borderColor: "rgba(201,168,76,0.25)" }}
                   >
                     {a.tag}
                   </span>
@@ -94,7 +101,7 @@ export default function Journal() {
                 <div className="pt-3 flex items-center justify-between">
                   <span
                     className="uppercase tracking-[0.22em] font-medium group-hover:text-[#C9A84C] transition-colors duration-300"
-                    style={{ fontSize: "9px", color: "rgba(201,168,76,0.5)" }}
+                    style={{ fontSize: "9px", color: "rgba(201,168,76,0.45)" }}
                   >
                     Read →
                   </span>

@@ -6,26 +6,27 @@ import Footer from "../components/Footer";
 import ApplicationForm from "../components/ApplicationForm";
 import Link from "next/link";
 
+// Exact pillars from document — Page 1, Home (Philosophy section)
 const pillars = [
   {
-    num: "01",
-    title: "Intention",
-    body: "Everything we create begins with deliberate purpose. No detail is incidental. No material is chosen without reason. Intention is the first filter through which every decision passes.",
+    num: "I",
+    title: "Authority",
+    body: "The house was built for individuals who lead — in their industries, their families, their communities. Not because they were given authority. Because they earned it, or claimed it, or simply were it.",
   },
   {
-    num: "02",
-    title: "Craftsmanship",
-    body: "We hold a standard of excellence that refuses to compromise. Genuine craft is not a feature — it is the foundation. The difference between a product and a house is the refusal to accept good enough.",
-  },
-  {
-    num: "03",
-    title: "Rarity",
-    body: "We do not manufacture scarcity. 250 bottles is a commitment to permanence, not a marketing strategy. What is rare because it is genuinely limited carries a different weight than what is rare by design.",
-  },
-  {
-    num: "04",
+    num: "II",
     title: "Presence",
-    body: "There are people who walk into rooms and shift them. Not through volume. Through weight. Maison Vereen was built for the weight-carriers. The fragrance was made to recognize that quality, not create it.",
+    body: "There are people who walk into rooms and shift them. Not through volume. Through weight. Maison Vereen was built for the weight-carriers.",
+  },
+  {
+    num: "III",
+    title: "Legacy",
+    body: "We build for people who think in decades. The founding edition of this house will be owned by people who understand what it means to be early to something that will matter.",
+  },
+  {
+    num: "IV",
+    title: "Distinction",
+    body: "Not performance. Not image. Not carefully constructed impression. The real thing. The unmanufactured version. The self that exists before the room fills.",
   },
 ];
 
@@ -35,47 +36,51 @@ export default function PhilosophyPage() {
   return (
     <>
       <Header onOpenApply={() => setIsApplyOpen(true)} />
-
       <main className="bg-[#0A0A0A]">
 
-        {/* ── PAGE HERO — with dark stone background ── */}
-        <section className="relative border-b border-white/[0.05] pt-[72px] overflow-hidden">
-          {/* Background */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: "url(/images/dark-stone.jpg)",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: 0.18,
-              filter: "brightness(0.5) saturate(0.4)",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/95 via-[#0A0A0A]/80 to-[#0A0A0A]/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-transparent to-[#0A0A0A]/40" />
-
-          <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32">
-            <div className="space-y-6 max-w-[680px]">
-              <span className="section-tag">Our Philosophy</span>
-              <h1
-                className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
-                style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
-              >
-                We don&apos;t follow trends.<br />
-                <em className="not-italic" style={{ color: "#C9A84C" }}>We create timelessness.</em>
-              </h1>
-              <p
-                className="text-[#7A7268] font-light leading-[1.85] max-w-[520px]"
-                style={{ fontSize: "14px" }}
-              >
-                True luxury is not loud. It is intentional. It is restrained. It is a standard of excellence that speaks for itself.
-              </p>
-              <button className="link-gold mt-2"
-                style={{ display: "inline-flex" }}
-              >
-                <span>The Maison Manifesto</span>
-                <span className="text-gold">→</span>
-              </button>
+        {/* ── HERO — with craft/luxury dark image split ── */}
+        <section className="border-b border-white/[0.05] pt-[72px]">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[65vh]">
+              {/* Left — text */}
+              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+                <div className="space-y-6 max-w-[520px]">
+                  <span className="section-tag">The House Philosophy</span>
+                  {/* Exact headline from document */}
+                  <h1
+                    className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
+                    style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}
+                  >
+                    The fragrance is not the luxury.{" "}
+                    <em className="not-italic" style={{ color: "#C9A84C" }}>You are.</em>
+                  </h1>
+                  {/* Exact subheadline from document */}
+                  <p className="font-serif font-light text-[#C8BFB2]" style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.15rem)" }}>
+                    Maison Vereen does not create distinction. It celebrates it.
+                  </p>
+                  <p className="text-[#7A7068] font-light leading-[1.85] max-w-[480px]" style={{ fontSize: "13px" }}>
+                    We do not believe in selling people an identity. We believe in recognizing the
+                    identity they already carry. Our fragrance is not designed to make you feel like
+                    someone else. It is designed to make you smell like exactly who you already are —
+                    amplified, clarified, and impossible to forget.
+                  </p>
+                </div>
+              </div>
+              {/* Right — dark craft/luxury image */}
+              <div className="relative min-h-[360px] lg:min-h-0 overflow-hidden bg-[#060608]">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: "url(/images/luxury-dark.jpg)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.55,
+                    filter: "brightness(0.6) saturate(0.55)",
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-[#0A0A0A]/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/75 via-transparent to-[#060608]/25" />
+              </div>
             </div>
           </div>
         </section>
@@ -83,27 +88,24 @@ export default function PhilosophyPage() {
         {/* ── FOUR PILLARS ── */}
         <section className="bg-[#0D0D0D] border-b border-white/[0.05]">
           <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
-            <span className="section-tag">The Four Pillars</span>
+            <span className="section-tag">The Pillars</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/[0.04]">
               {pillars.map((p, i) => (
                 <div
                   key={i}
-                  className="group bg-[#0D0D0D] px-10 py-12 space-y-6 hover:bg-white/[0.015] transition-colors duration-500 relative"
+                  className="group bg-[#0D0D0D] px-10 py-12 space-y-5 hover:bg-white/[0.015] transition-colors duration-500 relative"
                 >
                   <div className="absolute top-0 left-0 w-full h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  <div className="flex items-start justify-between">
+                  <div className="flex items-start justify-between gap-4">
                     <h3
                       className="font-serif font-light text-[#E8E2D9]"
-                      style={{ fontSize: "clamp(1.3rem, 2vw, 1.7rem)" }}
+                      style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)" }}
                     >
                       {p.title}
                     </h3>
-                    <span className="font-mono text-gold/40 text-[9px] mt-1 flex-shrink-0">{p.num}</span>
+                    <span className="font-serif text-gold/40 flex-shrink-0 mt-1" style={{ fontSize: "11px" }}>{p.num}</span>
                   </div>
-                  <p
-                    className="text-[#6A6258] font-light leading-[1.8]"
-                    style={{ fontSize: "13px" }}
-                  >
+                  <p className="text-[#6A6258] font-light leading-[1.8]" style={{ fontSize: "13px" }}>
                     {p.body}
                   </p>
                 </div>
@@ -112,27 +114,22 @@ export default function PhilosophyPage() {
           </div>
         </section>
 
-        {/* ── CLOSING STATEMENT ── */}
+        {/* ── CLOSING QUOTE ── */}
         <section className="border-b border-white/[0.05]">
           <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
-            <div className="max-w-[760px] mx-auto text-center space-y-8">
+            <div className="max-w-[700px] mx-auto text-center space-y-8">
               <div className="gold-rule mx-auto" />
               <p
-                className="font-serif font-light italic text-[#8A8178] leading-[1.5] tracking-[0.04em]"
-                style={{ fontSize: "clamp(1.2rem, 2vw, 1.8rem)" }}
+                className="font-serif font-light italic text-[#8A8178] leading-[1.55] tracking-[0.03em]"
+                style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}
               >
-                &ldquo;We do not believe in selling people an identity. We believe in recognizing the identity they already carry.&rdquo;
-              </p>
-              <p
-                className="font-serif font-light text-[#C8C0B4] leading-[1.75] max-w-[540px] mx-auto"
-                style={{ fontSize: "clamp(1rem, 1.5vw, 1.4rem)" }}
-              >
-                Our fragrance is not designed to make you feel like someone else. It is designed to make you smell like exactly who you already are — amplified, clarified, and impossible to forget.
+                &ldquo;We do not believe in selling people an identity. We believe in
+                recognizing the identity they already carry.&rdquo;
               </p>
               <div className="gold-rule mx-auto" />
               <p
-                className="font-serif font-light italic text-[#6A6258] tracking-[0.12em] uppercase"
-                style={{ fontSize: "14px" }}
+                className="font-serif font-light italic text-[#5A5449] tracking-[0.1em] uppercase"
+                style={{ fontSize: "13px" }}
               >
                 We create scents. You create history.
               </p>
@@ -143,13 +140,15 @@ export default function PhilosophyPage() {
         {/* ── CTA ── */}
         <section>
           <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <h3
-              className="font-serif font-light text-[#E8E2D9]"
-              style={{ fontSize: "clamp(1.2rem, 2vw, 1.6rem)" }}
-            >
-              Ready to apply?
-            </h3>
-            <div className="flex gap-6 flex-shrink-0">
+            <div className="space-y-2">
+              <h3 className="font-serif font-light text-[#E8E2D9]" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.5rem)" }}>
+                Ready to apply?
+              </h3>
+              <p className="text-[#5A5449] font-light" style={{ fontSize: "12px" }}>
+                250 positions. Individually numbered. Not available to everyone.
+              </p>
+            </div>
+            <div className="flex items-center gap-5 flex-shrink-0">
               <Link href="/edition-i" className="link-gold">
                 <span>Edition I</span>
                 <span className="text-gold">→</span>
@@ -166,7 +165,6 @@ export default function PhilosophyPage() {
         </section>
 
       </main>
-
       <Footer />
       <ApplicationForm isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
     </>

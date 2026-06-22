@@ -68,62 +68,51 @@ export default function AccessPage() {
 
       <main className="bg-[#0A0A0A]">
 
-        {/* ── HERO ── */}
-        <section className="border-b border-white/[0.05] pt-[72px]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* ── HERO — full bleed dark, text left + wax seal right ── */}
+        <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-[#060606] pt-[72px] border-b border-white/[0.05]">
+          {/* Full background — dark envelope/luxury photo */}
+          <div className="absolute inset-0 z-0">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: "url(/images/wax-seal.jpg)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                opacity: 0.30,
+                filter: "brightness(0.45) saturate(0.5)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#060606]/97 via-[#060606]/80 to-[#060606]/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/90 via-transparent to-[#060606]/50" />
+          </div>
 
-              {/* Left */}
-              <div className="space-y-8">
-                <span className="section-tag">Access</span>
-                <h1
-                  className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
-                  style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.5rem)" }}
-                >
-                  Access is not purchased.<br />
-                  <em className="text-gold not-italic">It is earned.</em>
-                </h1>
-                <div className="space-y-3 text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
-                  <p>Maison Vereen is a house of rare creation.</p>
-                  <p>Edition I is limited to 250 bottles.</p>
-                  <p>Access is by application only.</p>
-                  <p>Join the waitlist or apply below to become part of the founding circle.</p>
-                </div>
-                <button
-                  onClick={() => setIsApplyOpen(true)}
-                  className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-8 py-3.5 text-[#E8E2D9] transition-all duration-500"
-                  style={{ fontSize: "10px", letterSpacing: "0.26em" }}
-                >
-                  <span className="uppercase font-medium">Apply for Access</span>
-                </button>
-                <p className="text-[#3A3530] font-light" style={{ fontSize: "10px" }}>
-                  By submitting, you agree to our Privacy Policy.
-                </p>
+          <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32 w-full">
+            <div className="max-w-[620px] space-y-8">
+              <span className="section-tag">Access</span>
+              {/* Design image 5 exact headline */}
+              <h1
+                className="font-serif font-light text-[#E8E2D9] leading-[1.0]"
+                style={{ fontSize: "clamp(2.4rem, 5.5vw, 4.8rem)" }}
+              >
+                Access is not purchased.
+                <br />
+                <em className="not-italic" style={{ color: "#C9A84C" }}>It is earned.</em>
+              </h1>
+              <div className="space-y-3 text-[#7A7268] font-light leading-[1.85]" style={{ fontSize: "13px" }}>
+                <p>Maison Vereen is a house of rare creation.</p>
+                <p>Edition I is limited to 250 bottles worldwide. Access is by application only.</p>
+                <p>We select not for quantity, but for alignment.</p>
               </div>
-
-              {/* Right — Real wax seal photo */}
-              <div className="flex justify-center lg:justify-end">
-                <div className="relative w-72 h-72 md:w-96 md:h-96 overflow-hidden rounded-full" style={{ border: "1px solid rgba(201,168,76,0.12)" }}>
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      backgroundImage: "url(/images/wax-seal.jpg)",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      opacity: 0.75,
-                      filter: "brightness(0.6) saturate(0.75) sepia(0.1)",
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0A0A0A]/20 via-transparent to-[#0A0A0A]/50" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center space-y-1.5">
-                      <span className="block font-serif font-light tracking-[0.35em]" style={{ fontSize: "24px", color: "rgba(201,168,76,0.55)" }}>MV</span>
-                      <div className="w-8 h-px mx-auto" style={{ background: "rgba(201,168,76,0.2)" }} />
-                      <span className="block uppercase tracking-[0.2em]" style={{ fontSize: "7px", color: "rgba(201,168,76,0.3)" }}>Est. MMXXIV</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <button
+                onClick={() => setIsApplyOpen(true)}
+                className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-8 py-3.5 text-[#E8E2D9] transition-all duration-500"
+                style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+              >
+                <span className="uppercase font-medium">Apply for Access</span>
+              </button>
+              <p className="text-[#3A3530] font-light" style={{ fontSize: "10px" }}>
+                By submitting, you agree to our Privacy Policy.
+              </p>
             </div>
           </div>
         </section>
