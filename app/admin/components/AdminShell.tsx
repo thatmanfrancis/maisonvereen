@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -11,12 +11,14 @@ import {
   Menu,
   X,
   ExternalLink,
+  Key,
 } from "lucide-react";
 
 const NAV = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/applications", icon: Users, label: "Applications" },
   { href: "/admin/waitlist", icon: ListChecks, label: "Waitlist" },
+  { href: "/admin/settings", icon: Key, label: "Security" },
 ];
 
 export default function AdminShell({
@@ -30,6 +32,7 @@ export default function AdminShell({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [logging, setLogging] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   // Close drawer on route change
   useEffect(() => {
@@ -141,20 +144,16 @@ export default function AdminShell({
 
         {/* Logout */}
         <button
-          onClick={handleLogout}
+          onClick={() => setShowLogoutConfirm(true)}
           disabled={logging}
           className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-sm text-[#4A4438] hover:text-red-400 hover:bg-red-900/8 transition-all duration-200 disabled:opacity-50"
         >
-          {logging ? (
-            <span className="spinner spinner-sm" />
-          ) : (
-            <LogOut className="w-[14px] h-[14px] shrink-0" />
-          )}
+          <LogOut className="w-[14px] h-[14px] shrink-0" />
           <span
             style={{ fontSize: "16px", letterSpacing: "0.07em" }}
             className="font-medium"
           >
-            {logging ? "Signing out…" : "Sign out"}
+            Sign out
           </span>
         </button>
       </div>
@@ -213,6 +212,48 @@ export default function AdminShell({
           </div>
         </main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-70 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div
+            className="w-full max-w-[400px] bg-charcoal border border-white/8 p-6 space-y-6 shadow-2xl anim-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="space-y-2">
+              <span className="section-tag block">Sign Out</span>
+              <h3 className="font-serif font-light text-[#E8E2D9] text-xl">
+                Leave the House?
+              </h3>
+              <p className="text-xs text-[#7A7068] leading-relaxed">
+                Are you sure you want to end your session and sign out of the Maison Vereen admin portal?
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 pt-2">
+              <button
+                type="button"
+                onClick={() => setShowLogoutConfirm(false)}
+                className="py-3 border border-white/8 hover:border-white/20 text-[#5A5449] hover:text-[#E8E2D9] transition-all duration-300 font-medium text-xs uppercase tracking-widest"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  setShowLogoutConfirm(false);
+                  await handleLogout();
+                }}
+                disabled={logging}
+                className="py-3 border border-red-900/50 hover:border-red-600 bg-red-950/10 hover:bg-red-950/20 text-red-400 hover:text-red-300 transition-all duration-300 font-medium text-xs uppercase tracking-widest flex items-center justify-center gap-2"
+              >
+                {logging && <span className="spinner spinner-sm" />}
+                <span>{logging ? "Signing out…" : "Sign Out"}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

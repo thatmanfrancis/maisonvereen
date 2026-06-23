@@ -106,7 +106,7 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@maisonvereen.com"
-                className="w-full bg-transparent border-b border-white/[0.08] py-3 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/50 transition-colors duration-300"
+                className="w-full bg-transparent border-b border-white/8 py-3 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/50 transition-colors duration-300"
               />
             </div>
 
@@ -122,7 +122,7 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPass(e.target.value)}
                 placeholder="••••••••••"
-                className="w-full bg-transparent border-b border-white/[0.08] py-3 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/50 transition-colors duration-300"
+                className="w-full bg-transparent border-b border-white/8 py-3 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/50 transition-colors duration-300"
               />
             </div>
 
@@ -130,7 +130,7 @@ function LoginForm() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 border border-gold/40 hover:border-gold hover:bg-gold/[0.08] text-[#E8E2D9] transition-all duration-400 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3 mt-2"
+              className="w-full py-3.5 border border-gold/40 hover:border-gold hover:bg-gold/8 text-[#E8E2D9] transition-all duration-400 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3 mt-2"
               style={{ fontSize: "16px", letterSpacing: "0.28em" }}
             >
               {loading && <span className="spinner spinner-sm" />}

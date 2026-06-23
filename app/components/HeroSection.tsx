@@ -39,9 +39,9 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
           style={{ opacity: 0.62 }}
         />
         {/* Left panel very dark so text is fully legible */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060506]/96 via-[#060506]/72 to-[#060506]/15" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#060506]/96 via-[#060506]/72 to-[#060506]/15" />
         {/* Top and bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060506]/85 via-transparent to-[#060506]/50" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#060506]/85 via-transparent to-[#060506]/50" />
         {/* Warm amber tone — matches golden hour */}
         <div className="absolute inset-0 bg-[#1C0E04]/12" />
       </div>
@@ -49,7 +49,6 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-14 pt-[72px]">
         <div className="max-w-[700px] py-28 md:py-36 space-y-8">
-
           {/* Headline — exact from document */}
           <h1
             className="font-serif font-light text-[#EDE7DC] leading-[1.08] anim-fade-up"
@@ -72,26 +71,31 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
           {/* Supporting copy */}
           <p
             className="text-[#8A8070] font-light leading-[1.85] max-w-[500px] anim-fade-up-d2"
-            style={{ fontSize: "13px", letterSpacing: "0.02em" }}
+            style={{ fontSize: "15px", letterSpacing: "0.02em" }}
           >
-            A House of Distinction. Africa&apos;s first. Not a perfume company. Not a brand.
-            A house — built around the belief that the individuals who shape the world deserve
-            something shaped for them. Something rare. Something permanent. Something worthy
-            of their presence.
+            A House of Distinction. Africa&apos;s first. Not a perfume company.
+            Not a brand. A house — built around the belief that the individuals
+            who shape the world deserve something shaped for them. Something
+            rare. Something permanent. Something worthy of their presence.
           </p>
 
           {/* CTA — appears after 3 seconds, subtle fade-in, never urgent */}
           <div
             className="pt-2 transition-all duration-1000 ease-out"
-            style={{ opacity: showCTA ? 1 : 0, transform: showCTA ? "translateY(0)" : "translateY(8px)" }}
+            style={{
+              opacity: showCTA ? 1 : 0,
+              transform: showCTA ? "translateY(0)" : "translateY(8px)",
+            }}
           >
             <button
               onClick={onOpenApply}
-              className="border border-[#E8E2D9]/40 hover:border-[#C9A84C] hover:text-[#C9A84C] px-7 py-3 text-[#E8E2D9] transition-all duration-500 pointer-events-auto"
-              style={{ fontSize: "9px", letterSpacing: "0.3em" }}
+              className="border border-[#E8E2D9]/40 hover:border-gold hover:text-gold px-7 py-3 text-[#E8E2D9] transition-all duration-500 pointer-events-auto"
+              style={{ fontSize: "10px", letterSpacing: "0.3em" }}
               aria-label="Join the Ownership Registry"
             >
-              <span className="uppercase font-medium">Join the Ownership Registry</span>
+              <span className="uppercase font-medium">
+                Join the Ownership Registry
+              </span>
             </button>
           </div>
         </div>
@@ -103,11 +107,21 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
         aria-label="Scroll down"
         className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 group"
       >
-        <div className="w-8 h-8 rounded-full border border-[#2A2420] group-hover:border-[#C9A84C]/50 flex items-center justify-center transition-all duration-300">
-          <svg width="9" height="9" viewBox="0 0 10 10" fill="none"
-            className="text-[#3A3028] group-hover:text-[#C9A84C] transition-colors duration-300">
-            <path d="M5 1v8M1 5l4 4 4-4" stroke="currentColor" strokeWidth="1.2"
-              strokeLinecap="round" strokeLinejoin="round" />
+        <div className="w-8 h-8 rounded-full border border-[#2A2420] group-hover:border-gold/50 flex items-center justify-center transition-all duration-300">
+          <svg
+            width="9"
+            height="9"
+            viewBox="0 0 10 10"
+            fill="none"
+            className="text-[#3A3028] group-hover:text-gold transition-colors duration-300"
+          >
+            <path
+              d="M5 1v8M1 5l4 4 4-4"
+              stroke="currentColor"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         </div>
       </button>

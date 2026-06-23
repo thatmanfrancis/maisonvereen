@@ -13,10 +13,10 @@ const NAV_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#080808] border-t border-white/[0.06] pt-16 md:pt-20 pb-8">
+    <footer className="relative bg-[#080808] border-t border-white/6 pt-16 md:pt-20 pb-8">
       <div className="max-w-[1400px] mx-auto px-8 md:px-14">
         {/* ── MAIN GRID ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 pb-14 border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-6 pb-14 border-b border-white/6">
           {/* Col 1 — Logo + tagline */}
           <div className="space-y-5">
             <Link href="/" className="group block w-fit">

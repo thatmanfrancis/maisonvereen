@@ -38,7 +38,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
     where: { id },
     data: {
       ...(status !== undefined ? { status } : {}),
-      ...(notes  !== undefined ? { notes  } : {}),
+      ...(notes !== undefined ? { notes } : {}),
     },
   });
   return NextResponse.json(updated);

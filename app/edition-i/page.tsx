@@ -68,9 +68,11 @@ export default function EditionIPage() {
                   <button
                     onClick={() => setIsApplyOpen(true)}
                     className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-7 py-3 text-[#E8E2D9] transition-all duration-500"
-                    style={{ fontSize: "10px", letterSpacing: "0.26em" }}
+                    style={{ fontSize: "15px", letterSpacing: "0.26em" }}
                   >
-                    <span className="uppercase font-medium">Discover Collection One</span>
+                    <span className="uppercase font-medium">
+                      Discover Collection One
+                    </span>
                   </button>
                 </div>
               </div>
@@ -78,8 +80,12 @@ export default function EditionIPage() {
               {/* Right — bottle: SILHOUETTE ONLY — anticipation not unveiling */}
               <div className="relative min-h-[420px] lg:min-h-0 bg-[#060608] overflow-hidden">
                 {/* Very low opacity + heavy blur = suggestion only */}
-                <Image src="/images/hero-bottle.png" alt="Maison Vereen Edition I bottle"
-                  fill priority sizes="(max-width:1024px) 100vw, 50vw"
+                <Image
+                  src="/images/hero-bottle.png"
+                  alt="Maison Vereen Edition I bottle"
+                  fill
+                  priority
+                  sizes="(max-width:1024px) 100vw, 50vw"
                   className="object-cover object-center"
                   style={{ opacity: 0.8 }}
                 />
@@ -141,8 +147,10 @@ export default function EditionIPage() {
           <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 space-y-12">
             <div className="space-y-4">
               <span className="section-tag">Scent Profile</span>
-              <h2 className="font-serif font-light text-[#E8E2D9]"
-                style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}>
+              <h2
+                className="font-serif font-light text-[#E8E2D9]"
+                style={{ fontSize: "clamp(1.4rem, 2.2vw, 2rem)" }}
+              >
                 A composition of permanence.
               </h2>
             </div>

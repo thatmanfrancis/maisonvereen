@@ -341,7 +341,7 @@ export default function ApplicationForm({
         </div>
 
         {/* ── RIGHT — dark panel, bottle silhouette barely visible ── */}
-        <div className="hidden md:block relative bg-[#060606] overflow-hidden border-l border-white/[0.04]">
+        <div className="hidden md:block relative bg-[#060606] overflow-hidden border-l border-white/4">
           {/* Bottle — silhouette only, very dark, heavy blur = anticipation */}
           <Image
             src="/images/hero-bottle.png"
@@ -349,24 +349,34 @@ export default function ApplicationForm({
             fill
             sizes="420px"
             className="object-cover object-center"
-            style={{ opacity: 0.15, filter: "blur(10px) brightness(0.3) saturate(0.15)" }}
+            style={{
+              opacity: 0.15,
+              filter: "blur(10px) brightness(0.3) saturate(0.15)",
+            }}
           />
           {/* Single warm light source at top-centre — from document: "A single light source" */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: "radial-gradient(ellipse 50% 40% at 50% 30%, rgba(160,110,30,0.12) 0%, transparent 70%)",
+              background:
+                "radial-gradient(ellipse 50% 40% at 50% 30%, rgba(160,110,30,0.12) 0%, transparent 70%)",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060606]/95 via-[#060606]/50 to-[#060606]/10" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#060606]/30 via-transparent to-[#060606]/80" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#060606]/95 via-[#060606]/50 to-[#060606]/10" />
+          <div className="absolute inset-0 bg-linear-to-b from-[#060606]/30 via-transparent to-[#060606]/80" />
           {/* Label */}
           <div className="absolute bottom-10 left-8 space-y-2">
-            <div className="w-5 h-px bg-[#C9A84C]/30" />
-            <span className="block font-serif font-light text-[#5A5048] tracking-[0.3em] uppercase" style={{ fontSize: "9px" }}>
+            <div className="w-5 h-px bg-gold/30" />
+            <span
+              className="block font-serif font-light text-[#5A5048] tracking-[0.3em] uppercase"
+              style={{ fontSize: "9px" }}
+            >
               Edition I
             </span>
-            <span className="block text-[#3A3028] font-mono tracking-widest uppercase" style={{ fontSize: "8px" }}>
+            <span
+              className="block text-[#3A3028] font-mono tracking-widest uppercase"
+              style={{ fontSize: "8px" }}
+            >
               250 Bottles · The Founding Expression
             </span>
           </div>

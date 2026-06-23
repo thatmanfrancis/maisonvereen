@@ -48,6 +48,14 @@ model Admin {
   createdAt DateTime @default(now())
 }
 
+// ── Notification Emails — custom recipients managed by admins ───────────────
+model NotificationEmail {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+}
+
 enum ApplicationStatus {
   PENDING
   REVIEWING

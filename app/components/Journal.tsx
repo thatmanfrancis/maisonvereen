@@ -5,8 +5,8 @@ import Link from "next/link";
 
 // Each card gets its own distinct atmospheric image
 const CARD_IMAGES = [
-  { src: "/images/dark-stone.jpg",   pos: "30% center" },
-  { src: "/images/luxury-dark.jpg",  pos: "60% center" },
+  { src: "/images/dark-stone.jpg", pos: "30% center" },
+  { src: "/images/luxury-dark.jpg", pos: "60% center" },
   { src: "/images/dark-architecture.jpg", pos: "40% center" },
 ];
 
@@ -15,19 +15,22 @@ const articles = [
   {
     tag: "Origin",
     title: "It started with a question no one was asking.",
-    excerpt: "Not 'what fragrance do people want to wear?' The question that started Maison Vereen was harder. More personal.",
+    excerpt:
+      "Not 'what fragrance do people want to wear?' The question that started Maison Vereen was harder. More personal.",
     date: "June 2024",
   },
   {
     tag: "Vision",
     title: "Africa's first. The world's next.",
-    excerpt: "The vision was never modest. Africa's first serious luxury fragrance house — built to the standard of the world's greatest houses.",
+    excerpt:
+      "The vision was never modest. Africa's first serious luxury fragrance house — built to the standard of the world's greatest houses.",
     date: "May 2024",
   },
   {
     tag: "Craft",
     title: "Three years. One edition. No shortcuts.",
-    excerpt: "The fragrance was developed with a master perfumer. The bottle was designed to be a sculpture before it is a vessel.",
+    excerpt:
+      "The fragrance was developed with a master perfumer. The bottle was designed to be a sculpture before it is a vessel.",
     date: "April 2024",
   },
 ];
@@ -44,19 +47,20 @@ export default function Journal() {
               className="font-serif font-light text-[#E8E2D9] leading-[1.1]"
               style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
             >
-              Thoughts on Culture,<br />
+              Thoughts on Culture,
+              <br />
               <em className="not-italic" style={{ color: "#C9A84C" }}>
                 Excellence &amp; Legacy.
               </em>
             </h2>
           </div>
-          <Link href="/journal" className="link-gold self-end flex-shrink-0">
+          <Link href="/journal" className="link-gold self-end shrink-0">
             <span>Read Journal</span>
             <span className="text-gold">→</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/[0.04]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/4">
           {articles.map((a, idx) => (
             <article
               key={a.tag}
@@ -70,16 +74,20 @@ export default function Journal() {
                     backgroundImage: `url(${CARD_IMAGES[idx].src})`,
                     backgroundSize: "cover",
                     backgroundPosition: CARD_IMAGES[idx].pos,
-                    opacity: 0.50,
+                    opacity: 0.5,
                     filter: "brightness(0.55) saturate(0.5) sepia(0.1)",
                   }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/92 via-[#0A0A0A]/25 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-charcoal/92 via-charcoal/25 to-transparent" />
                 <div className="absolute inset-0 bg-[#08060A]/15" />
                 <div className="absolute bottom-5 left-5 z-10">
                   <span
                     className="uppercase tracking-[0.2em] border px-2 py-1"
-                    style={{ fontSize: "8px", color: "rgba(201,168,76,0.75)", borderColor: "rgba(201,168,76,0.25)" }}
+                    style={{
+                      fontSize: "8px",
+                      color: "rgba(201,168,76,0.75)",
+                      borderColor: "rgba(201,168,76,0.25)",
+                    }}
                   >
                     {a.tag}
                   </span>

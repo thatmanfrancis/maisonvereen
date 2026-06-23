@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getAdminFromRequest } from "@/lib/auth";
+import { SendZeptomail } from "@/lib/zeptomail";
+import { applicationReceivedEmail, adminNotificationEmail } from "@/lib/emailTemplates";
+
+
 
 // ── POST — public form submission ─────────────────────────────────────────────
 export async function POST(req: NextRequest) {
@@ -43,6 +47,94 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    // 1. Send confirmation email to the applicant
+    try {
+      await SendZeptomail({
+        toEmail: email,
+        toName: name,
+        subject: "Your Application — Maison Vereen Edition I",
+        htmlBody: applicationReceivedEmail(name),
+      });
+    } catch (mailErr) {
+      console.error("[POST /api/applications] Failed to send applicant confirmation email:", mailErr);
+    }
+
+    // 2. Fetch all notification recipients (Admin table + custom NotificationEmail table)
+    try {
+      const [dbAdmins, customRecipients] = await Promise.all([
+        prisma.admin.findMany({
+          select: {
+            email: true,
+            name: true,
+          },
+        }),
+        prisma.notificationEmail.findMany({
+          select: {
+            email: true,
+            name: true,
+          },
+        }),
+      ]);
+
+      // Build unique list based on email addresses
+      const adminMap = new Map<string, { email: string; name: string }>();
+
+      // Load custom notification emails first
+      customRecipients.forEach((adm) => {
+        if (adm.email?.trim()) {
+          adminMap.set(adm.email.toLowerCase().trim(), {
+            email: adm.email.trim(),
+            name: adm.name || "Recipient",
+          });
+        }
+      });
+
+      // Merge database admins (overwrites if duplicate, otherwise adds them)
+      dbAdmins.forEach((adm) => {
+        if (adm.email?.trim()) {
+          adminMap.set(adm.email.toLowerCase().trim(), {
+            email: adm.email.trim(),
+            name: adm.name || "Admin",
+          });
+        }
+      });
+
+      const allAdmins = Array.from(adminMap.values());
+
+      if (allAdmins.length > 0) {
+        const adminEmailHtml = adminNotificationEmail({
+          name: name.trim(),
+          email: emailLower,
+          country: country.trim(),
+          occupation: occupation.trim(),
+          drives: drives.trim(),
+          legacy: legacy.trim(),
+          howHeard: howHeard ?? "Not specified",
+        });
+
+        // Send to each administrator in parallel
+        const emailPromises = allAdmins.map((admin) =>
+          SendZeptomail({
+            toEmail: admin.email,
+            toName: admin.name,
+            subject: `New Application: ${name.trim()} — Maison Vereen`,
+            htmlBody: adminEmailHtml,
+          })
+        );
+
+        const results = await Promise.allSettled(emailPromises);
+        results.forEach((result, index) => {
+          if (result.status === "rejected") {
+            console.error(`[POST /api/applications] Failed to notify admin ${allAdmins[index].email}:`, result.reason);
+          }
+        });
+      } else {
+        console.warn("[POST /api/applications] No administrators found in database or hardcoded config.");
+      }
+    } catch (adminMailErr) {
+      console.error("[POST /api/applications] Failed to process administrator notification emails:", adminMailErr);
+    }
+
     return NextResponse.json({ ok: true, id: application.id }, { status: 201 });
   } catch (err) {
     console.error("[POST /api/applications]", err);
@@ -58,19 +150,19 @@ export async function GET(req: NextRequest) {
   }
 
   const { searchParams } = new URL(req.url);
-  const page   = Math.max(1, Number(searchParams.get("page")  ?? 1));
-  const limit  = Math.min(100, Number(searchParams.get("limit") ?? 20));
+  const page = Math.max(1, Number(searchParams.get("page") ?? 1));
+  const limit = Math.min(100, Number(searchParams.get("limit") ?? 20));
   const status = searchParams.get("status") ?? undefined;
   const search = searchParams.get("search")?.trim() ?? "";
-  const skip   = (page - 1) * limit;
+  const skip = (page - 1) * limit;
 
   const where = {
     ...(status ? { status: status as "PENDING" | "REVIEWING" | "APPROVED" | "REJECTED" } : {}),
     ...(search ? {
       OR: [
-        { name:       { contains: search, mode: "insensitive" as const } },
-        { email:      { contains: search, mode: "insensitive" as const } },
-        { country:    { contains: search, mode: "insensitive" as const } },
+        { name: { contains: search, mode: "insensitive" as const } },
+        { email: { contains: search, mode: "insensitive" as const } },
+        { country: { contains: search, mode: "insensitive" as const } },
         { occupation: { contains: search, mode: "insensitive" as const } },
       ],
     } : {}),

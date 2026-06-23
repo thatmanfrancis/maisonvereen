@@ -21,7 +21,7 @@ export default function HomePage() {
     <>
       <Header onOpenApply={openApply} />
 
-      <main className="flex-1 bg-[#0A0A0A]">
+      <main className="flex-1 bg-charcoal">
         <HeroSection onOpenApply={openApply} />
         <ThreePillars />
         <WhyExists />
@@ -33,7 +33,10 @@ export default function HomePage() {
       </main>
 
       <Footer />
-      <ApplicationForm isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
+      <ApplicationForm
+        isOpen={isApplyOpen}
+        onClose={() => setIsApplyOpen(false)}
+      />
     </>
   );
 }

@@ -93,7 +93,7 @@ const pillars = [
 export default function ThreePillars() {
   return (
     /* Design: CREAM/light background with dark text and gold icons */
-    <section id="pillars" className="bg-[#F5F0E8] border-y border-[#E8E0D0]">
+    <section id="pillars" className="bg-[#e2bb7b] border-y border-[#E8E0D0]">
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#E0D8C8]">
           {pillars.map((p, i) => (
