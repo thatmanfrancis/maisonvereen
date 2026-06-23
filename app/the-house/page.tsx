@@ -174,6 +174,8 @@ export default function TheHousePage() {
           </div>
         </section>
 
+        {/* This could be it */}
+
         {/* ── MORE THAN A FRAGRANCE — dark split section from design ── */}
         <section className="border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
