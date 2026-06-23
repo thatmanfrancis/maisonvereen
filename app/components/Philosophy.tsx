@@ -44,13 +44,13 @@ export default function Philosophy() {
           </h2>
           <p
             className="font-serif font-light text-[#C8BFB2]"
-            style={{ fontSize: "20px" }}
+            style={{ fontSize: "22px" }}
           >
             Maison Vereen does not create distinction. It celebrates it.
           </p>
           <p
             className="text-[#7A7068] font-light leading-[1.85]"
-            style={{ fontSize: "15px" }}
+            style={{ fontSize: "17px" }}
           >
             We do not believe in selling people an identity. We believe in
             recognizing the identity they already carry. Our fragrance is not
@@ -88,7 +88,7 @@ export default function Philosophy() {
               </div>
               <p
                 className="text-[#5A5449] font-light leading-[1.7]"
-                style={{ fontSize: "15px" }}
+                style={{ fontSize: "16px" }}
               >
                 {p.body}
               </p>

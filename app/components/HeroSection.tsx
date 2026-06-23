@@ -63,7 +63,7 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
           {/* Subheadline */}
           <p
             className="font-serif font-light text-[#C8BFB2] tracking-wide anim-fade-up-d1"
-            style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.2rem)" }}
+            style={{ fontSize: "24px" }}
           >
             Maison Vereen was built for them.
           </p>
@@ -71,7 +71,7 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
           {/* Supporting copy */}
           <p
             className="text-[#8A8070] font-light leading-[1.85] max-w-[500px] anim-fade-up-d2"
-            style={{ fontSize: "15px", letterSpacing: "0.02em" }}
+            style={{ fontSize: "17px", letterSpacing: "0.02em" }}
           >
             A House of Distinction. Africa&apos;s first. Not a perfume company.
             Not a brand. A house — built around the belief that the individuals

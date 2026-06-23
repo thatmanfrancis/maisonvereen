@@ -4,7 +4,7 @@ import React from "react";
 
 export default function BottlesBanner() {
   return (
-    <section className="bg-[#060606] border-y border-white/[0.05] overflow-hidden py-16 md:py-20">
+    <section className="bg-[#060606] border-y border-white/5 overflow-hidden py-16 md:py-20">
       {/* Subtle centre glow */}
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"

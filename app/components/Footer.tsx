@@ -8,10 +8,15 @@ const NAV_LINKS = [
   { label: "Philosophy", href: "/philosophy" },
   { label: "Edition I", href: "/edition-i" },
   { label: "Journal", href: "/journal" },
+  { label: "Our Story", href: "/our-story" },
   { label: "Access", href: "/access" },
+  { label: "Registry", href: "/registry" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
+
+  const year = new Date().getFullYear();
   return (
     <footer className="relative bg-[#080808] border-t border-white/6 pt-16 md:pt-20 pb-8">
       <div className="max-w-[1400px] mx-auto px-8 md:px-14">
@@ -136,7 +141,7 @@ export default function Footer() {
         {/* ── BOTTOM BAR ── */}
         <div className="flex flex-col md:flex-row items-center justify-between pt-6 gap-4">
           <span className="text-xs uppercase tracking-[0.2em] text-[#3A3530] font-light">
-            © 2024 Maison Vereen. All Rights Reserved.
+            © {`${year}`} Maison Vereen. All Rights Reserved.
           </span>
           <div className="flex items-center gap-5 text-xs uppercase tracking-[0.2em] text-[#4A4540] font-medium">
             <a

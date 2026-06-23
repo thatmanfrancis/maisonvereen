@@ -25,7 +25,7 @@ export default function CollectionPreview({
               className="object-cover object-center"
               style={{
                 opacity: 0.18,
-                filter: "blur(6px) brightness(0.4) saturate(0.3)",
+                filter: "blur(2px) brightness(0.7) saturate(0.3)",
               }}
             />
             {/* Deep atmospheric layering */}
@@ -43,13 +43,13 @@ export default function CollectionPreview({
               <div className="w-5 h-px bg-gold/40" />
               <span
                 className="block font-mono text-[#4A4438] uppercase tracking-widest"
-                style={{ fontSize: "8px" }}
+                style={{ fontSize: "13px" }}
               >
                 No. 001 — 250 · Edition I
               </span>
               <span
                 className="block text-[#3A3028] font-light"
-                style={{ fontSize: "9px" }}
+                style={{ fontSize: "13px" }}
               >
                 Coming.
               </span>
@@ -69,14 +69,14 @@ export default function CollectionPreview({
                 Collection One.
                 <span
                   className="block font-serif font-light text-[#C8BFB2] mt-2"
-                  style={{ fontSize: "clamp(1rem, 1.8vw, 1.5rem)" }}
+                  style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}
                 >
                   250 numbered bottles.
                 </span>
                 <span
                   className="block font-serif font-light mt-1"
                   style={{
-                    fontSize: "clamp(1rem, 1.8vw, 1.5rem)",
+                    fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)",
                     color: "#C9A84C",
                   }}
                 >
@@ -87,14 +87,14 @@ export default function CollectionPreview({
               {/* Exact body copy from document */}
               <p
                 className="text-[#7A7068] font-light leading-[1.85]"
-                style={{ fontSize: "15px" }}
+                style={{ fontSize: "17px" }}
               >
                 Edition I of Maison Vereen is not a product launch. It is the
                 opening of a house.
               </p>
               <p
                 className="text-[#7A7068] font-light leading-[1.85]"
-                style={{ fontSize: "15px" }}
+                style={{ fontSize: "17px" }}
               >
                 250 bottles will exist — in the world, total, forever. Each one
                 individually numbered. Each one authenticated. Each one owned by

@@ -87,20 +87,28 @@ const benefits = [
 
 const faqs = [
   {
-    q: "Who can apply for access?",
-    a: "Any individual who resonates with the values of Maison Vereen may apply. We do not have a demographic profile — we have a character profile.",
+    q: "Why should I reserve early?",
+    a: "Because Edition I is a finite event. When 250 owners have been confirmed, the allocation is closed — permanently. There is no second production run. There is no 'coming back to it later.' If your name is not in the founding record, it will not be there. Early reservation is not urgency created by marketing. It is urgency created by mathematics.",
   },
   {
     q: "How will Edition I be allocated?",
-    a: "Edition I is limited to 250 bottles. Applications are reviewed by the house. Not every application is accepted. This is not a purchase — it is an introduction.",
+    a: "Edition I is limited to 250 bottles. Applications are reviewed by the house. Not every application is accepted. This is not a purchase — it is an introduction. If your application is successful, you will receive a personal communication within 48 hours with your allocation details.",
   },
   {
     q: "How will I know if I am allocated?",
-    a: "All applicants will receive a direct communication from Maison Vereen within 5 business days of application submission.",
+    a: "All applicants will receive a direct communication from Maison Vereen within 48 hours of application submission. Applications are reviewed personally. Not every application is accepted.",
   },
   {
     q: "Is a waiting list available?",
-    a: "Yes. You may join the waiting list for priority notification. Joining does not guarantee allocation.",
+    a: "Yes. You may join the waiting list for priority notification. Joining does not guarantee allocation. If Edition I fills before your application is processed, your name will be placed on the Edition II priority register automatically.",
+  },
+  {
+    q: "Who is Maison Vereen for?",
+    a: "The honest answer: you will know. The house was built for people who build things, lead without permission, and carry a presence that rooms feel before they enter. If that language resonates immediately, Maison Vereen was built for you. If you are still deciding whether you qualify, it probably was not.",
+  },
+  {
+    q: "How does the Registry work?",
+    a: "The Registry is the permanent membership record of Maison Vereen. Joining places your name in the house's founding documentation, grants access to the private portal and journal content, and ensures you receive all future announcements — including edition openings — before the public. Registry membership is free.",
   },
 ];
 
@@ -287,9 +295,9 @@ export default function AccessPage() {
                 </div>
               </div>
 
-              {/* Right — Join the waitlist */}
+              {/* Right — Join the journey */}
               <div className="space-y-7 border border-white/6 p-8 md:p-10 self-start">
-                <span className="section-tag">Join the Waitlist</span>
+                <span className="section-tag">Join the Journey</span>
                 <h3
                   className="font-serif font-light text-[#E8E2D9] leading-[1.1]"
                   style={{ fontSize: "clamp(1.4rem, 2vw, 1.9rem)" }}

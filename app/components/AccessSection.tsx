@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import React from "react";
-
+// Section 9 of Page 1 — "Waiting List CTA"
+// Exact copy from document Page 1, final section
 interface AccessSectionProps {
   onOpenApply: () => void;
 }
@@ -9,115 +9,72 @@ interface AccessSectionProps {
 export default function AccessSection({ onOpenApply }: AccessSectionProps) {
   return (
     <section
-      id="access"
+      id="apply"
       className="relative bg-[#0D0D0D] border-t border-white/5 overflow-hidden"
     >
-      {/* Radial amber glow */}
+      {/* Radial amber glow — single light source, subtle */}
       <div
-        className="absolute pointer-events-none rounded-full"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         style={{
-          left: "20%",
-          top: "50%",
-          transform: "translate(-50%,-50%)",
-          width: 700,
-          height: 700,
+          width: 800,
+          height: 500,
           background:
-            "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 65%)",
         }}
       />
 
-      <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-36">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          {/* Left — Text */}
-          <div className="lg:col-span-7 space-y-9">
-            <span className="section-tag">Access</span>
+      <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 py-28 md:py-40">
+        <div className="max-w-[680px] mx-auto text-center space-y-10">
+          <div className="w-8 h-px bg-gold/40 mx-auto" />
 
-            {/* Exact headline from document */}
-            <h2
-              className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)" }}
+          <span className="section-tag block">Ownership Application</span>
+
+          {/* Exact headline from document Page 1 — Waiting List CTA */}
+          <h2
+            className="font-serif font-light text-[#E8E2D9] leading-[1.05]"
+            style={{ fontSize: "clamp(2rem, 4vw, 3.6rem)" }}
+          >
+            The Ownership Application is open.
+          </h2>
+
+          {/* Exact subheadline from document Page 1 */}
+          <p
+            className="font-serif font-light text-[#C8BFB2]"
+            style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}
+          >
+            250 positions. Individually numbered. Not available to everyone.
+          </p>
+
+          {/* Exact body copy from document Page 1 */}
+          <p
+            className="text-[#7A7068] font-light leading-[1.85] max-w-[520px] mx-auto"
+            style={{ fontSize: "17px" }}
+          >
+            If you are reading this, you have found Maison Vereen before most
+            people will. The Ownership Application for Edition I is currently
+            open to a limited number of individuals. Applications are reviewed.
+            Not every application is accepted. This is not a purchase form. It
+            is an introduction.
+          </p>
+
+          <div className="w-8 h-px bg-gold/40 mx-auto" />
+
+          {/* Single CTA — doc: "Begin Your Application" */}
+          <div className="space-y-3">
+            <button
+              onClick={onOpenApply}
+              className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-12 py-4 text-[#E8E2D9] transition-all duration-500"
+              style={{ fontSize: "9px", letterSpacing: "0.3em" }}
             >
-              Access is not purchased.
-              <br />
-              <em className="not-italic" style={{ color: "#C9A84C" }}>
-                It is earned.
-              </em>
-            </h2>
-
-            {/* Exact subheadline */}
+              <span className="uppercase font-medium">Begin Your Application</span>
+            </button>
+            {/* Exact small-type disclaimer from document */}
             <p
-              className="text-[#7A7268] font-light leading-[1.85] max-w-[480px]"
-              style={{ fontSize: "16px" }}
+              className="text-[#3A3530] font-light"
+              style={{ fontSize: "14px", letterSpacing: "0.12em" }}
             >
-              Maison Vereen is a house of rare creation. Edition I is limited to
-              250 bottles. Access is by application only.
+              Application does not guarantee allocation. All positions are subject to review.
             </p>
-
-            <div className="space-y-3 pt-1">
-              <button
-                onClick={onOpenApply}
-                className="border hover:bg-white/5 px-8 py-3.5 text-[#E8E2D9] transition-all duration-500"
-                style={{
-                  fontSize: "16px",
-                  letterSpacing: "0.26em",
-                  borderColor: "rgba(201,168,76,0.5)",
-                }}
-              >
-                <span className="uppercase font-medium">Begin Your Application</span>
-              </button>
-              <p
-                className="text-[#3A3530] font-light"
-                style={{ fontSize: "16px" }}
-              >
-                Application does not guarantee allocation. All positions subject
-                to review.
-              </p>
-            </div>
-          </div>
-
-          {/* Right — wax seal */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div
-              className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border"
-              style={{ borderColor: "rgba(201,168,76,0.12)" }}
-            >
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: "url(/images/wax-seal.jpg)",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  opacity: 0.7,
-                  filter: "brightness(0.6) saturate(0.8) sepia(0.15)",
-                }}
-              />
-              <div className="absolute inset-0 bg-linear-to-br from-[#0D0D0D]/30 via-transparent to-[#0D0D0D]/50" />
-              {/* MV text overlay */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-1.5">
-                  <span
-                    className="block font-serif font-light tracking-[0.35em]"
-                    style={{ fontSize: "26px", color: "rgba(201,168,76,0.55)" }}
-                  >
-                    MV
-                  </span>
-                  <div
-                    className="w-8 h-px mx-auto"
-                    style={{ background: "rgba(201,168,76,0.25)" }}
-                  />
-                  <span
-                    className="block uppercase tracking-[0.2em]"
-                    style={{
-                      fontSize: "16px",
-                      color: "rgba(201,168,76,0.3)",
-                      fontFamily: "monospace",
-                    }}
-                  >
-                    Est. MMXXIV
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
