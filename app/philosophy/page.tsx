@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ApplicationForm from "../components/ApplicationForm";
@@ -58,9 +59,17 @@ export default function PhilosophyPage() {
                 </div>
               </div>
               <div className="relative min-h-[360px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/luxury-dark.jpg)", backgroundSize: "cover", backgroundPosition: "center", opacity: 0.55, filter: "brightness(0.6) saturate(0.55)" }} />
+                <Image
+                  src="/images/philosophy-hero.png"
+                  alt="Maison Vereen — The House Philosophy"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  style={{ opacity: 0.9 }}
+                />
                 <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-charcoal/50" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/75 via-transparent to-[#060608]/25" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/65 via-transparent to-transparent" />
               </div>
             </div>
           </div>

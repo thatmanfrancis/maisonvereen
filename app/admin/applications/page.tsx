@@ -3,7 +3,8 @@ import { getAdminSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import AdminShell from "../components/AdminShell";
 import ApplicationsTable from "../components/ApplicationsTable";
-import { ApplicationStatus } from "@prisma/client";
+
+type ApplicationStatus = "PENDING" | "REVIEWING" | "APPROVED" | "REJECTED";
 
 interface SearchParams {
   page?: string;
@@ -34,7 +35,7 @@ export default async function ApplicationsPage({
         { name:       { contains: search, mode: "insensitive" as const } },
         { email:      { contains: search, mode: "insensitive" as const } },
         { country:    { contains: search, mode: "insensitive" as const } },
-        { occupation: { contains: search, mode: "insensitive" as const } },
+        { whatYouDo:  { contains: search, mode: "insensitive" as const } },
       ],
     } : {}),
   };

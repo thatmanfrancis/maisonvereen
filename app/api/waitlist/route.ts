@@ -5,7 +5,7 @@ import { getAdminFromRequest } from "@/lib/auth";
 // ── POST — public waitlist sign-up ────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
+    const { email, name, country } = await req.json();
 
     if (!email?.trim()) {
       return NextResponse.json({ error: "Email is required." }, { status: 400 });
@@ -18,8 +18,15 @@ export async function POST(req: NextRequest) {
 
     await prisma.waitlistEntry.upsert({
       where: { email: emailLower },
-      update: {},        // already on list — silent success
-      create: { email: emailLower },
+      update: {
+        ...(name?.trim() ? { name: name.trim() } : {}),
+        ...(country?.trim() ? { country: country.trim() } : {}),
+      },
+      create: {
+        email: emailLower,
+        name: name?.trim() || null,
+        country: country?.trim() || null,
+      },
     });
 
     return NextResponse.json({ ok: true }, { status: 201 });

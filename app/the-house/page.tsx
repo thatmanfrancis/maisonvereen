@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ApplicationForm from "../components/ApplicationForm";
@@ -72,28 +73,17 @@ export default function TheHousePage() {
                 </div>
               </div>
               <div className="relative min-h-[400px] lg:min-h-0 bg-[#060608] overflow-hidden">
-                {/* Bottle — partial reveal, cropped from top, the cap/neck only — never the full form */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: "url(/images/hero-bottle.png)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center 15%",
-                    opacity: 0.55,
-                    filter: "brightness(0.6) saturate(0.4)",
-                  }}
+                <Image
+                  src="/images/the-house-hero.png"
+                  alt="Maison Vereen — The House"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  style={{ opacity: 0.9 }}
                 />
-                {/* Heavy gradient — bottle never fully revealed */}
-                <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-charcoal/55" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/90 via-[#060608]/30 to-[#060608]/15" />
-                {/* Warm amber glow — single light source */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse 50% 60% at 55% 30%, rgba(180,130,40,0.09) 0%, transparent 65%)",
-                  }}
-                />
+                <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-charcoal/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/65 via-transparent to-transparent" />
               </div>
             </div>
           </div>
@@ -174,12 +164,18 @@ export default function TheHousePage() {
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
-              {/* Bottle left — alternates from hero */}
+              {/* Image left */}
               <div className="relative min-h-[320px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/hero-bottle.png)", backgroundSize: "cover", backgroundPosition: "center 40%", opacity: 0.46, filter: "brightness(0.56) saturate(0.36)" }} />
-                <div className="absolute inset-0 bg-linear-to-r from-transparent to-[#0D0D0D]/58" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/88 via-[#060608]/20 to-transparent" />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 48% at 48% 42%, rgba(180,130,40,0.07) 0%, transparent 62%)" }} />
+                <Image
+                  src="/images/the-house-belonging.png"
+                  alt="What it means to belong to Maison Vereen"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  style={{ opacity: 0.9 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-transparent to-[#0D0D0D]/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/65 via-transparent to-transparent" />
               </div>
               <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
@@ -255,12 +251,18 @@ export default function TheHousePage() {
                   </button>
                 </div>
               </div>
-              {/* Bottle — lower body crop */}
+              {/* Image right */}
               <div className="relative min-h-[320px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/hero-bottle.png)", backgroundSize: "cover", backgroundPosition: "center 75%", opacity: 0.47, filter: "brightness(0.57) saturate(0.36)" }} />
-                <div className="absolute inset-0 bg-linear-to-l from-transparent to-[#0D0D0D]/55" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/90 via-[#060608]/22 to-transparent" />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 50% at 52% 68%, rgba(180,130,40,0.07) 0%, transparent 62%)" }} />
+                <Image
+                  src="/images/the-house-last.png"
+                  alt="The person Maison Vereen was built for"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  style={{ opacity: 0.9 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-l from-transparent to-[#0D0D0D]/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/65 via-transparent to-transparent" />
               </div>
             </div>
           </div>

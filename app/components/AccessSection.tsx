@@ -60,7 +60,7 @@ export default function AccessSection({ onOpenApply }: AccessSectionProps) {
           <div className="w-8 h-px bg-gold/40 mx-auto" />
 
           {/* Single CTA — doc: "Begin Your Application" */}
-          <div className="space-y-3">
+          <div className="space-y-4">
             <button
               onClick={onOpenApply}
               className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-12 py-4 text-[#E8E2D9] transition-all duration-500"
@@ -74,6 +74,12 @@ export default function AccessSection({ onOpenApply }: AccessSectionProps) {
               style={{ fontSize: "14px", letterSpacing: "0.12em" }}
             >
               Application does not guarantee allocation. All positions are subject to review.
+            </p>
+            <p className="text-[#3A3530] font-light" style={{ fontSize: "14px" }}>
+              Not ready to apply?{" "}
+              <a href="/waitlist" className="text-gold/50 hover:text-gold transition-colors">
+                Join the waiting list →
+              </a>
             </p>
           </div>
         </div>

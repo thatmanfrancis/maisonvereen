@@ -41,7 +41,7 @@ export default async function AdminDashboard() {
           name: true,
           email: true,
           country: true,
-          occupation: true,
+          whatYouDo: true,
           status: true,
           createdAt: true,
         },

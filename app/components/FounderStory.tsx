@@ -97,8 +97,8 @@ export default function FounderStory() {
                 house&apos;s covenant.
               </p>
 
-              <Link href="/the-house" className="link-gold w-fit">
-                <span>The House</span>
+              <Link href="/the-founder" className="link-gold w-fit">
+                <span>The Founder</span>
                 <span className="text-gold">→</span>
               </Link>
             </div>

@@ -9,11 +9,14 @@ interface Application {
   id: string;
   name: string;
   email: string;
+  phone?: string | null;
   country: string;
-  occupation: string;
-  drives: string;
-  legacy: string;
+  whatYouDo: string;
   howHeard: string;
+  referredBy?: string | null;
+  whatMadeApply: string;
+  earlyThing?: string | null;
+  anythingElse?: string | null;
   consent: boolean;
   status: string;
   notes: string | null;
@@ -252,7 +255,7 @@ export default function ApplicationsTable({
                         {app.country}
                       </td>
                       <td className="px-5 py-3.5 text-xs text-[#5A5449] max-w-[160px] truncate">
-                        {app.occupation}
+                        {app.whatYouDo}
                       </td>
                       <td className="px-5 py-3.5">
                         <StatusBadge status={app.status} />
@@ -309,7 +312,7 @@ export default function ApplicationsTable({
                           {app.email}
                         </p>
                         <p className="text-xs text-[#2A2420] mt-0.5">
-                          {app.country} · {app.occupation}
+                          {app.country} · {app.whatYouDo}
                         </p>
                       </div>
                     </div>

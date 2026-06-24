@@ -373,80 +373,53 @@ export function adminNotificationEmail(app: {
   name: string;
   email: string;
   country: string;
-  occupation: string;
-  drives: string;
-  legacy: string;
+  whatYouDo: string;
   howHeard: string;
+  referredBy?: string | null;
+  whatMadeApply: string;
+  earlyThing?: string | null;
+  anythingElse?: string | null;
 }): string {
+  function row(label: string, value: string, last = false): string {
+    return `<tr>
+      <td style="padding:12px 0;${last ? "" : `border-bottom:1px solid ${T.border};`}" valign="top">
+        <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">${label}</p>
+        <p style="margin:0;font-family:${T.fontSans};font-size:13px;line-height:1.6;color:${T.cream};">${value}</p>
+      </td>
+    </tr>`;
+  }
+
   const content = `
   ${header()}
 
-  <!-- Hero — notification warning look, gray/border accent -->
   <tr>
     <td style="background-color:#080808;padding:40px 48px;border-left:2px solid ${T.gold};">
       ${sectionTag("Admin Notification")}
-      ${headline("New Registry", "Submission")}
-      ${para(`A new application has been submitted for Maison Vereen Edition I. Details are provided below for review.`)}
+      ${headline("New Application", "Received")}
+      ${para(`A new ownership application has been submitted for Maison Vereen Edition I. Details are provided below for review.`)}
     </td>
   </tr>
 
-  <!-- Body -->
   <tr>
     <td style="padding:40px 48px;">
-      <!-- Table of details -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid ${T.border};background-color:#0D0D0D;margin-bottom:28px;">
         <tr>
           <td style="padding:20px 24px;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
-              <!-- Name -->
               <tr>
                 <td style="padding-bottom:12px;border-bottom:1px solid ${T.border};" valign="top">
                   <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Applicant Name</p>
                   <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};font-weight:500;">${app.name}</p>
                 </td>
               </tr>
-              <!-- Email -->
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid ${T.border};" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Email Address</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${app.email}</p>
-                </td>
-              </tr>
-              <!-- Location -->
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid ${T.border};" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Location</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${app.country}</p>
-                </td>
-              </tr>
-              <!-- Occupation -->
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid ${T.border};" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Occupation</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${app.occupation}</p>
-                </td>
-              </tr>
-              <!-- How Heard -->
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid ${T.border};" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">How Heard</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${app.howHeard}</p>
-                </td>
-              </tr>
-              <!-- Drives -->
-              <tr>
-                <td style="padding:12px 0;border-bottom:1px solid ${T.border};" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">What Drives Them</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;line-height:1.6;color:${T.cream};">${app.drives}</p>
-                </td>
-              </tr>
-              <!-- Legacy -->
-              <tr>
-                <td style="padding-top:12px;" valign="top">
-                  <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">What Legacy Means</p>
-                  <p style="margin:0;font-family:${T.fontSans};font-size:13px;line-height:1.6;color:${T.cream};">${app.legacy}</p>
-                </td>
-              </tr>
+              ${row("Email Address", app.email)}
+              ${row("City & Country", app.country)}
+              ${row("What They Do", app.whatYouDo)}
+              ${row("How They Found Maison Vereen", app.howHeard)}
+              ${app.referredBy ? row("Referred By", app.referredBy) : ""}
+              ${row("What Made Them Apply", app.whatMadeApply)}
+              ${app.earlyThing ? row("A Time They Were Early To Something", app.earlyThing) : ""}
+              ${app.anythingElse ? row("Anything Else", app.anythingElse, true) : ""}
             </table>
           </td>
         </tr>

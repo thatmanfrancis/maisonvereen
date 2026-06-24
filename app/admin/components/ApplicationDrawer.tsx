@@ -9,11 +9,14 @@ interface Application {
   id: string;
   name: string;
   email: string;
+  phone?: string | null;
   country: string;
-  occupation: string;
-  drives: string;
-  legacy: string;
+  whatYouDo: string;
   howHeard: string;
+  referredBy?: string | null;
+  whatMadeApply: string;
+  earlyThing?: string | null;
+  anythingElse?: string | null;
   status: string;
   notes: string | null;
   createdAt: string;
@@ -235,9 +238,11 @@ export default function ApplicationDrawer({
               Details
             </p>
             <div className="grid grid-cols-2 gap-x-6 gap-y-4">
-              <Field label="Country" value={application.country} />
-              <Field label="Occupation" value={application.occupation} />
-              <Field label="How heard" value={application.howHeard} />
+              <Field label="City & Country" value={application.country} />
+              <Field label="What They Do" value={application.whatYouDo} />
+              <Field label="How they found MV" value={application.howHeard} />
+              {application.referredBy && <Field label="Referred By" value={application.referredBy} />}
+              {application.phone && <Field label="Phone" value={application.phone} />}
               <Field
                 label="Applied"
                 value={new Date(application.createdAt).toLocaleDateString(
@@ -249,11 +254,9 @@ export default function ApplicationDrawer({
           </div>
 
           {/* Long text fields */}
-          <LongField label="What drives you?" value={application.drives} />
-          <LongField
-            label="What does legacy mean to you?"
-            value={application.legacy}
-          />
+          <LongField label="What made you apply?" value={application.whatMadeApply} />
+          {application.earlyThing && <LongField label="A time they were early to something" value={application.earlyThing} />}
+          {application.anythingElse && <LongField label="Anything else" value={application.anythingElse} />}
 
           {/* Admin notes */}
           <div className="space-y-3">

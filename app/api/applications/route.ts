@@ -4,17 +4,26 @@ import { getAdminFromRequest } from "@/lib/auth";
 import { SendZeptomail } from "@/lib/zeptomail";
 import { applicationReceivedEmail, adminNotificationEmail } from "@/lib/emailTemplates";
 
-
-
 // ── POST — public form submission ─────────────────────────────────────────────
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, country, occupation, drives, legacy, howHeard } = body;
+    const {
+      name,
+      email,
+      phone,
+      country,
+      whatYouDo,
+      howHeard,
+      referredBy,
+      whatMadeApply,
+      earlyThing,
+      anythingElse,
+    } = body;
 
-    if (!name || !email || !country || !occupation || !drives || !legacy) {
+    if (!name || !email || !country || !whatYouDo || !whatMadeApply) {
       return NextResponse.json(
-        { error: "All fields are required." },
+        { error: "All required fields must be completed." },
         { status: 400 }
       );
     }
@@ -38,11 +47,14 @@ export async function POST(req: NextRequest) {
       data: {
         name: name.trim(),
         email: emailLower,
+        phone: phone?.trim() || null,
         country: country.trim(),
-        occupation: occupation.trim(),
-        drives: drives.trim(),
-        legacy: legacy.trim(),
-        howHeard: howHeard ?? "Not specified",
+        whatYouDo: whatYouDo.trim(),
+        howHeard: howHeard?.trim() || "Not specified",
+        referredBy: referredBy?.trim() || null,
+        whatMadeApply: whatMadeApply.trim(),
+        earlyThing: earlyThing?.trim() || null,
+        anythingElse: anythingElse?.trim() || null,
         consent: true,
       },
     });
@@ -59,77 +71,50 @@ export async function POST(req: NextRequest) {
       console.error("[POST /api/applications] Failed to send applicant confirmation email:", mailErr);
     }
 
-    // 2. Fetch all notification recipients (Admin table + custom NotificationEmail table)
+    // 2. Fetch all notification recipients
     try {
       const [dbAdmins, customRecipients] = await Promise.all([
-        prisma.admin.findMany({
-          select: {
-            email: true,
-            name: true,
-          },
-        }),
-        prisma.notificationEmail.findMany({
-          select: {
-            email: true,
-            name: true,
-          },
-        }),
+        prisma.admin.findMany({ select: { email: true, name: true } }),
+        prisma.notificationEmail.findMany({ select: { email: true, name: true } }),
       ]);
 
-      // Build unique list based on email addresses
       const adminMap = new Map<string, { email: string; name: string }>();
-
-      // Load custom notification emails first
-      customRecipients.forEach((adm) => {
-        if (adm.email?.trim()) {
-          adminMap.set(adm.email.toLowerCase().trim(), {
-            email: adm.email.trim(),
-            name: adm.name || "Recipient",
-          });
-        }
+      customRecipients.forEach((adm: { email: string; name: string | null }) => {
+        if (adm.email?.trim()) adminMap.set(adm.email.toLowerCase().trim(), { email: adm.email.trim(), name: adm.name || "Recipient" });
       });
-
-      // Merge database admins (overwrites if duplicate, otherwise adds them)
-      dbAdmins.forEach((adm) => {
-        if (adm.email?.trim()) {
-          adminMap.set(adm.email.toLowerCase().trim(), {
-            email: adm.email.trim(),
-            name: adm.name || "Admin",
-          });
-        }
+      dbAdmins.forEach((adm: { email: string; name: string }) => {
+        if (adm.email?.trim()) adminMap.set(adm.email.toLowerCase().trim(), { email: adm.email.trim(), name: adm.name || "Admin" });
       });
 
       const allAdmins = Array.from(adminMap.values());
-
       if (allAdmins.length > 0) {
         const adminEmailHtml = adminNotificationEmail({
           name: name.trim(),
           email: emailLower,
           country: country.trim(),
-          occupation: occupation.trim(),
-          drives: drives.trim(),
-          legacy: legacy.trim(),
-          howHeard: howHeard ?? "Not specified",
+          whatYouDo: whatYouDo.trim(),
+          howHeard: howHeard?.trim() || "Not specified",
+          referredBy: referredBy?.trim() || null,
+          whatMadeApply: whatMadeApply.trim(),
+          earlyThing: earlyThing?.trim() || null,
+          anythingElse: anythingElse?.trim() || null,
         });
 
-        // Send to each administrator in parallel
-        const emailPromises = allAdmins.map((admin) =>
-          SendZeptomail({
-            toEmail: admin.email,
-            toName: admin.name,
-            subject: `New Application: ${name.trim()} — Maison Vereen`,
-            htmlBody: adminEmailHtml,
-          })
+        const results = await Promise.allSettled(
+          allAdmins.map((admin) =>
+            SendZeptomail({
+              toEmail: admin.email,
+              toName: admin.name,
+              subject: `New Application: ${name.trim()} — Maison Vereen`,
+              htmlBody: adminEmailHtml,
+            })
+          )
         );
-
-        const results = await Promise.allSettled(emailPromises);
         results.forEach((result, index) => {
           if (result.status === "rejected") {
             console.error(`[POST /api/applications] Failed to notify admin ${allAdmins[index].email}:`, result.reason);
           }
         });
-      } else {
-        console.warn("[POST /api/applications] No administrators found in database or hardcoded config.");
       }
     } catch (adminMailErr) {
       console.error("[POST /api/applications] Failed to process administrator notification emails:", adminMailErr);
@@ -163,7 +148,7 @@ export async function GET(req: NextRequest) {
         { name: { contains: search, mode: "insensitive" as const } },
         { email: { contains: search, mode: "insensitive" as const } },
         { country: { contains: search, mode: "insensitive" as const } },
-        { occupation: { contains: search, mode: "insensitive" as const } },
+        { whatYouDo: { contains: search, mode: "insensitive" as const } },
       ],
     } : {}),
   };
@@ -176,7 +161,9 @@ export async function GET(req: NextRequest) {
       take: limit,
       select: {
         id: true, name: true, email: true, country: true,
-        occupation: true, status: true, createdAt: true, howHeard: true,
+        whatYouDo: true, status: true, createdAt: true, howHeard: true,
+        whatMadeApply: true, earlyThing: true, anythingElse: true,
+        referredBy: true, phone: true,
       },
     }),
     prisma.application.count({ where }),
