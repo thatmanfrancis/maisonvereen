@@ -17,7 +17,7 @@ export default function JournalPage() {
 
         {/* ── PAGE HEADER ── */}
         <section className="border-b border-white/5 pt-[72px]">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-20 lg:py-24 space-y-6">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-16 md:py-20 lg:py-24 space-y-6">
             <span className="section-tag">Journal</span>
             <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2rem, 4.5vw, 3.8rem)" }}>
               The Journal of Maison Vereen{" "}
@@ -90,7 +90,7 @@ export default function JournalPage() {
 
         {/* ── REGISTRY CTA ── */}
         <section className="border-t border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-14 md:py-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-14 md:py-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
             <p className="font-serif font-light italic text-[#4A4540] max-w-[500px]" style={{ fontSize: "clamp(1rem, 1.5vw, 1.2rem)" }}>
               &ldquo;Continue reading the house&apos;s story. Join the Registry.&rdquo;
             </p>

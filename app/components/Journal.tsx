@@ -10,7 +10,7 @@ const previewArticles = articles.slice(0, 3);
 export default function Journal() {
   return (
     <section id="journal" className="bg-charcoal border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-24 md:py-32 space-y-14">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-24 md:py-32 space-y-14">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-5">

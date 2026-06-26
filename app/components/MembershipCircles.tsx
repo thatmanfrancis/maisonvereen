@@ -51,7 +51,7 @@ const tiers = [
 export default function MembershipCircles({ onOpenApply }: MembershipCirclesProps) {
   return (
     <section id="registry" className="bg-charcoal border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32 space-y-16">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-20 md:py-28 lg:py-32 space-y-16">
         {/* Header — exact doc copy Page 1 + Page 7 */}
         <div className="space-y-6 max-w-[680px]">
           <span className="section-tag">Membership &amp; Registry</span>
@@ -81,7 +81,7 @@ export default function MembershipCircles({ onOpenApply }: MembershipCirclesProp
           {tiers.map((tier, i) => (
             <div
               key={i}
-              className="group bg-[#0D0D0D] px-8 py-10 space-y-7 hover:bg-white/2 transition-colors duration-500 relative flex flex-col"
+              className="group bg-[#0D0D0D] px-6 sm:px-8 py-10 space-y-7 hover:bg-white/2 transition-colors duration-500 relative flex flex-col"
             >
               <div className="absolute top-0 left-0 w-full h-px bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 

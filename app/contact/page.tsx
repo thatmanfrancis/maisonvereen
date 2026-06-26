@@ -52,7 +52,7 @@ export default function ContactPage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Contact</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
@@ -81,7 +81,7 @@ export default function ContactPage() {
 
         {/* ── CONTACT PATHWAYS ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-10">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-10">
             <span className="section-tag">Contact Pathways</span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/4">
               {contactPaths.map((path, i) => (

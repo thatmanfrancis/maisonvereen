@@ -147,12 +147,10 @@ export default function CollectionPreview({
               src="/images/the bottle.png"
               alt="Maison Vereen Edition I — The Founding Expression"
               fill
+              priority
               sizes="(max-width:1024px) 100vw, 50vw"
-              className="object-cover object-center"
-              style={{
-                // opacity: 0.18,
-                filter: "brightness(0.7) saturate(0.3)",
-              }}
+              className="object-contain object-center"
+              style={{ opacity: 0.9 }}
             />
             {/* Deep atmospheric layering */}
             <div className="absolute inset-0 bg-linear-to-t from-[#060608] via-[#060608]/60 to-[#060608]/20" />

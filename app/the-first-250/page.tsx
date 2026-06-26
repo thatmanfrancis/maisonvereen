@@ -29,7 +29,7 @@ export default function TheFirst250Page() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[65vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[540px] space-y-8">
                   <span className="section-tag">The First 250</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
@@ -60,7 +60,7 @@ export default function TheFirst250Page() {
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[52vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">The Numbered Bottles</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -94,7 +94,7 @@ export default function TheFirst250Page() {
         <section className="border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Historical Significance</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -131,7 +131,7 @@ export default function TheFirst250Page() {
                 <div className="absolute inset-0 bg-linear-to-t from-[#060608]/85 via-[#060608]/20 to-transparent" />
                 <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 42% 48% at 48% 45%, rgba(180,130,40,0.07) 0%, transparent 62%)" }} />
               </div>
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Collector Value</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -152,7 +152,7 @@ export default function TheFirst250Page() {
 
         {/* ── WHAT OWNERS RECEIVE ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <div className="space-y-4 max-w-[680px]">
               <span className="section-tag">What Owners Receive</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>

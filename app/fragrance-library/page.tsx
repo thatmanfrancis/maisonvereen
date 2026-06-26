@@ -20,7 +20,7 @@ export default function FragranceLibraryPage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Fragrance Library</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
@@ -45,7 +45,7 @@ export default function FragranceLibraryPage() {
 
         {/* ── CURRENT ENTRY — Edition I ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-8">
             <span className="section-tag">Current Entry</span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-white/4">
               <div className="bg-[#0D0D0D] px-10 py-12 space-y-6">
@@ -107,7 +107,7 @@ export default function FragranceLibraryPage() {
 
         {/* ── REGISTRY CTA ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <p className="text-[#7A7068] font-light leading-[1.85] max-w-[500px]" style={{ fontSize: "17px" }}>
               Registry members receive advance notice of all future editions before any public announcement.
             </p>

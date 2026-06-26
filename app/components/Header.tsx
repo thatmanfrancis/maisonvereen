@@ -47,7 +47,7 @@ export default function Header({ onOpenApply }: HeaderProps) {
               : "bg-black/95 backdrop-blur-md border-b border-white/6"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-14 h-[72px] flex items-center justify-between">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-6 sm:px-8 md:px-14 h-[72px] flex items-center justify-between">
           {/* ── LOGO — left-aligned stacked two lines ── */}
           <Link
             href="/"

@@ -21,7 +21,7 @@ export default function TheFounderPage() {
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
               {/* Left — text */}
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28 order-2 lg:order-1">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28 order-2 lg:order-1">
                 <div className="space-y-9 max-w-[520px]">
                   <span className="section-tag">The Founder</span>
                   {/* Opening statement — exact from document Page 4 */}
@@ -37,19 +37,17 @@ export default function TheFounderPage() {
                   </p>
                 </div>
               </div>
-              {/* Right — founder image: side profile, low light, looking away */}
               <div className="relative min-h-[500px] lg:min-h-0 overflow-hidden bg-[#060608] order-1 lg:order-2">
                 <Image
-                  src="/images/founder.png"
-                  alt="Founder of Maison Vereen — side profile"
-                  fill priority
+                  src="/founder-image-1.png"
+                  alt="Founder of Maison Vereen"
+                  fill
+                  priority
                   sizes="(max-width:1024px) 100vw, 50vw"
                   className="object-cover object-center"
-                  style={{ opacity: 0.75, filter: "brightness(0.62) saturate(0.5)" }}
+                  style={{ opacity: 0.9 }}
                 />
-                {/* Single light source — from document design note */}
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 45% 55% at 62% 32%, rgba(180,130,40,0.1) 0%, transparent 65%)" }} />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/85 via-[#060608]/25 to-[#060608]/20" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
                 <div className="absolute inset-0 bg-linear-to-r from-charcoal/50 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 space-y-1.5 z-10">
                   <div className="w-5 h-px bg-gold/30" />
@@ -64,7 +62,7 @@ export default function TheFounderPage() {
 
         {/* ── WHY SHE STARTED — Page 4 ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="max-w-[760px] space-y-8">
               <span className="section-tag">Why She Started</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -86,13 +84,18 @@ export default function TheFounderPage() {
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[52vh]">
               <div className="relative min-h-[340px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                {/* Bottle neck/cap — partial reveal from above, suggestion not disclosure */}
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/hero-bottle.png)", backgroundSize: "cover", backgroundPosition: "center 10%", opacity: 0.45, filter: "brightness(0.55) saturate(0.38)" }} />
-                <div className="absolute inset-0 bg-linear-to-r from-transparent to-charcoal/55" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/88 via-[#060608]/30 to-transparent" />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 50% at 50% 25%, rgba(180,130,40,0.08) 0%, transparent 65%)" }} />
+                <Image
+                  src="/founder-image-2.png"
+                  alt="The founder's philosophy — Maison Vereen"
+                  fill
+                  sizes="(max-width:1024px) 100vw, 50vw"
+                  className="object-cover object-center"
+                  style={{ opacity: 0.9 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-transparent to-charcoal/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
               </div>
-              <div className="flex items-center px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D]">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D]">
                 <div className="space-y-8 max-w-[480px]">
                   <span className="section-tag">Her Philosophy</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -115,7 +118,7 @@ export default function TheFounderPage() {
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">What Drives Her</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -132,10 +135,16 @@ export default function TheFounderPage() {
               </div>
               {/* Bottle — mid-body crop, angled light */}
               <div className="relative min-h-[320px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/hero-bottle.png)", backgroundSize: "cover", backgroundPosition: "center 50%", opacity: 0.46, filter: "brightness(0.58) saturate(0.36)" }} />
-                <div className="absolute inset-0 bg-linear-to-l from-transparent to-[#0D0D0D]/55" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/90 via-[#060608]/25 to-transparent" />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 42% 50% at 52% 45%, rgba(180,130,40,0.07) 0%, transparent 65%)" }} />
+                <Image
+                  src="/images/the bottle.png"
+                  alt="Maison Vereen Edition I"
+                  fill
+                  sizes="(max-width:1024px) 100vw, 50vw"
+                  className="object-contain object-center"
+                  style={{ opacity: 0.9 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-l from-transparent to-[#0D0D0D]/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
               </div>
             </div>
           </div>
@@ -147,12 +156,18 @@ export default function TheFounderPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
               {/* Bottle on left — varies rhythm */}
               <div className="relative min-h-[320px] lg:min-h-0 overflow-hidden bg-[#060608]">
-                <div className="absolute inset-0" style={{ backgroundImage: "url(/images/hero-bottle.png)", backgroundSize: "cover", backgroundPosition: "center 65%", opacity: 0.44, filter: "brightness(0.55) saturate(0.35)" }} />
-                <div className="absolute inset-0 bg-linear-to-r from-transparent to-charcoal/55" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/88 via-[#060608]/20 to-transparent" />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 48% at 48% 60%, rgba(180,130,40,0.07) 0%, transparent 62%)" }} />
+                <Image
+                  src="/images/the bottle.png"
+                  alt="Maison Vereen Edition I"
+                  fill
+                  sizes="(max-width:1024px) 100vw, 50vw"
+                  className="object-contain object-center"
+                  style={{ opacity: 0.9 }}
+                />
+                <div className="absolute inset-0 bg-linear-to-r from-transparent to-charcoal/50" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
               </div>
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Her View on Legacy</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>

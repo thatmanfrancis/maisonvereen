@@ -29,7 +29,7 @@ const pillars = [
 export default function Philosophy() {
   return (
     <section id="philosophy" className="bg-[#0D0D0D] border-t border-white/5">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-24 md:py-32 space-y-16">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-20 md:py-28 lg:py-32 space-y-16">
         {/* Header — exact doc copy */}
         <div className="space-y-6 max-w-[680px]">
           <span className="section-tag">The House Philosophy</span>
@@ -46,7 +46,7 @@ export default function Philosophy() {
             className="font-serif font-light text-[#C8BFB2]"
             style={{ fontSize: "22px" }}
           >
-            Maison Vereen does not create distinction. It celebrates it.
+            Maison Vereen does not create distinction. It recognizes it.
           </p>
           <p
             className="text-[#7A7068] font-light leading-[1.85]"

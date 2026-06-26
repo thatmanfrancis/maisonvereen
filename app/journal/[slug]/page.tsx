@@ -48,7 +48,7 @@ export default function ArticlePage() {
 
             {/* Tag + issue */}
             <div className="absolute bottom-0 left-0 right-0">
-              <div className="max-w-[860px] mx-auto px-6 sm:px-8 md:px-14 pb-10 md:pb-14 space-y-4">
+              <div className="max-w-[860px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 pb-10 md:pb-14 space-y-4">
                 <div className="flex items-center gap-4">
                   <span
                     className="uppercase tracking-[0.2em] border px-2.5 py-1"
@@ -82,7 +82,7 @@ export default function ArticlePage() {
 
         {/* ── ARTICLE BODY ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[860px] mx-auto px-6 sm:px-8 md:px-14 py-14 md:py-20">
+          <div className="max-w-[860px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-14 md:py-20">
 
             {/* Back link */}
             <Link
@@ -153,7 +153,7 @@ export default function ArticlePage() {
                 {prev && (
                   <Link
                     href={`/journal/${prev.slug}`}
-                    className="group flex flex-col gap-3 px-6 sm:px-8 md:px-14 py-10 hover:bg-white/2 transition-colors duration-300"
+                    className="group flex flex-col gap-3 px-6 sm:px-6 sm:px-8 md:px-14 py-10 hover:bg-white/2 transition-colors duration-300"
                   >
                     <span className="text-[#3A3530] uppercase tracking-[0.25em] font-medium flex items-center gap-2" style={{ fontSize: "10px" }}>
                       <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
@@ -172,7 +172,7 @@ export default function ArticlePage() {
                 {next && (
                   <Link
                     href={`/journal/${next.slug}`}
-                    className={`group flex flex-col gap-3 px-6 sm:px-8 md:px-14 py-10 hover:bg-white/2 transition-colors duration-300 ${prev ? "sm:items-end sm:text-right" : ""}`}
+                    className={`group flex flex-col gap-3 px-6 sm:px-6 sm:px-8 md:px-14 py-10 hover:bg-white/2 transition-colors duration-300 ${prev ? "sm:items-end sm:text-right" : ""}`}
                   >
                     <span className="text-[#3A3530] uppercase tracking-[0.25em] font-medium flex items-center gap-2" style={{ fontSize: "10px" }}>
                       Next
@@ -195,7 +195,7 @@ export default function ArticlePage() {
 
         {/* ── CTA ── */}
         <section className="bg-charcoal">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-16 md:py-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
             <p
               className="font-serif font-light italic text-[#4A4540] max-w-[500px]"
               style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.2rem)" }}

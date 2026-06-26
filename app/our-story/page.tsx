@@ -20,7 +20,7 @@ export default function OurStoryPage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[580px] space-y-8">
                   <span className="section-tag">Our Story</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
@@ -56,7 +56,7 @@ export default function OurStoryPage() {
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[55vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="space-y-8 max-w-[520px]">
                   <span className="section-tag">The Vision</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.08]" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>
@@ -86,7 +86,7 @@ export default function OurStoryPage() {
         <section className="border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[52vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">The Obsession with Excellence</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -130,7 +130,7 @@ export default function OurStoryPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-[#060608]/85 via-[#060608]/20 to-transparent" />
                 <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 45% at 48% 40%, rgba(180,130,40,0.07) 0%, transparent 65%)" }} />
               </div>
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28 order-1 lg:order-2">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28 order-1 lg:order-2">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Why Africa</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -153,7 +153,7 @@ export default function OurStoryPage() {
         <section className="border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">The Future Being Built</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>

@@ -48,7 +48,7 @@ export default function TheHousePage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[70vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="space-y-8 max-w-[520px]">
                   <span className="section-tag">The House</span>
                   <h1
@@ -128,7 +128,7 @@ export default function TheHousePage() {
 
         {/* ── WHY IT WAS CREATED — Page 2 ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-start">
               <div className="space-y-6">
                 <span className="section-tag">Why it was created</span>
@@ -177,7 +177,7 @@ export default function TheHousePage() {
                 <div className="absolute inset-0 bg-linear-to-r from-transparent to-[#0D0D0D]/50" />
                 <div className="absolute inset-0 bg-linear-to-t from-[#060608]/65 via-transparent to-transparent" />
               </div>
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">What it means to belong</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -198,7 +198,7 @@ export default function TheHousePage() {
 
         {/* ── FIVE PRINCIPLES — Page 2 ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <div className="space-y-4">
               <span className="section-tag">What we stand for</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -227,7 +227,7 @@ export default function TheHousePage() {
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[50vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <span className="section-tag">Who Maison Vereen serves</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>

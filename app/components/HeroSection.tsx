@@ -47,7 +47,7 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 md:px-14 pt-[72px]">
+      <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 pt-[72px]">
         <div className="max-w-[700px] py-28 md:py-36 space-y-8">
           {/* Headline — exact from document */}
           <h1
