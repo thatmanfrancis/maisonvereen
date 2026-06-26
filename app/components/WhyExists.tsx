@@ -10,7 +10,7 @@ export default function WhyExists() {
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[580px]">
 
           {/* Left — text panel */}
-          <div className="flex items-center px-6 sm:px-8 md:px-14 lg:px-16 py-16 md:py-24 lg:py-28">
+          <div className="flex items-center px-6 sm:px-6 sm:px-8 md:px-14 lg:px-16 py-16 md:py-24 lg:py-28">
             <div className="space-y-8 max-w-[520px]">
               <span className="section-tag">Why Maison Vereen Exists</span>
 

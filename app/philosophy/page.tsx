@@ -43,7 +43,7 @@ export default function PhilosophyPage() {
         <section className="border-b border-white/5 pt-[72px]">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[65vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="space-y-7 max-w-[520px]">
                   <span className="section-tag">The House Philosophy</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.05]" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)" }}>
@@ -51,7 +51,7 @@ export default function PhilosophyPage() {
                     <em className="not-italic" style={{ color: "#C9A84C" }}>You are.</em>
                   </h1>
                   <p className="font-serif font-light text-[#C8BFB2]" style={{ fontSize: "22px" }}>
-                    Maison Vereen does not create distinction. It celebrates it.
+                    Maison Vereen does not create distinction. It recognizes it.
                   </p>
                   <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
                     We do not believe in selling people an identity. We believe in recognizing the identity they already carry. Our fragrance is not designed to make you feel like someone else. It is designed to make you smell like exactly who you already are — amplified, clarified, and impossible to forget.
@@ -77,7 +77,7 @@ export default function PhilosophyPage() {
 
         {/* ── FOUR PILLARS ── */}
         <section className="bg-charcoal border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <span className="section-tag">The Pillars</span>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/4">
               {pillars.map((p, i) => (
@@ -98,7 +98,7 @@ export default function PhilosophyPage() {
 
         {/* ── CLOSING QUOTE ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="max-w-[700px] mx-auto text-center space-y-8">
               <div className="gold-rule mx-auto" />
               <p className="font-serif font-light italic text-[#8A8178] leading-[1.55] tracking-[0.03em]" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}>
@@ -151,7 +151,7 @@ export default function PhilosophyPage() {
 
         {/* ── CTA ── */}
         <section>
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="space-y-2">
               <p className="font-serif font-light text-[#E8E2D9]" style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
                 250 positions. Individually numbered. Not available to everyone.

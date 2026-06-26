@@ -23,7 +23,7 @@ export default function AccessSection({ onOpenApply }: AccessSectionProps) {
         }}
       />
 
-      <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 py-28 md:py-40">
+      <div className="relative max-w-[1400px] mx-auto px-6 sm:px-6 sm:px-8 md:px-14 py-20 md:py-28 lg:py-40">
         <div className="max-w-[680px] mx-auto text-center space-y-10">
           <div className="w-8 h-px bg-gold/40 mx-auto" />
 

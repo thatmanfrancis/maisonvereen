@@ -57,7 +57,7 @@ export default function FuturePage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[65vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[540px] space-y-8">
                   <span className="section-tag">The Future of the House</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}>
@@ -82,7 +82,7 @@ export default function FuturePage() {
 
         {/* ── WHAT IS COMING ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <div className="space-y-4 max-w-[680px]">
               <span className="section-tag">What Is Coming</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -123,7 +123,7 @@ export default function FuturePage() {
                 <div className="absolute inset-0 bg-linear-to-t from-[#060608]/88 via-[#060608]/20 to-transparent" />
                 <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 48% at 48% 58%, rgba(180,130,40,0.07) 0%, transparent 62%)" }} />
               </div>
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="max-w-[520px] space-y-8">
                   <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
                     The people who are part of Maison Vereen in its founding decade are not buying into what it is. They are buying into what it will be. And we are building to be worthy of that trust.

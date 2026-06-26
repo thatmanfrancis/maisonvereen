@@ -55,7 +55,7 @@ export default function FAQPage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-24">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-24">
                 <div className="max-w-[540px] space-y-6">
                   <span className="section-tag">Questions &amp; Answers</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)" }}>
@@ -80,7 +80,7 @@ export default function FAQPage() {
 
         {/* ── FAQ ACCORDION ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-12 md:py-20">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-12 md:py-20">
             <div className="max-w-[880px] space-y-0 border-t border-white/6">
               {faqs.map((faq, i) => (
                 <div key={i} className="border-b border-white/6">
@@ -116,7 +116,7 @@ export default function FAQPage() {
 
         {/* ── CTA ── */}
         <section className="bg-[#0D0D0D] border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-16 md:py-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="space-y-2">
               <p className="font-serif font-light text-[#E8E2D9]" style={{ fontSize: "clamp(1.1rem, 1.6vw, 1.3rem)" }}>
                 Still have questions?

@@ -161,7 +161,7 @@ export default function WaitlistPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[55vh]">
 
               {/* Left */}
-              <div className="flex flex-col justify-center px-6 sm:px-8 md:px-14 py-12 md:py-16 lg:py-24 space-y-6 md:space-y-8">
+              <div className="flex flex-col justify-center px-6 sm:px-6 sm:px-8 md:px-14 py-12 md:py-16 lg:py-24 space-y-6 md:space-y-8">
                 <span className="section-tag">Official Waiting List</span>
                 <h1
                   className="font-serif font-light text-[#E8E2D9] leading-[1.02] uppercase"
@@ -264,7 +264,7 @@ export default function WaitlistPage() {
               </div>
 
               {/* Right — Waitlist form */}
-              <div className="flex flex-col justify-center px-6 sm:px-8 md:px-14 py-12 md:py-16 lg:py-20 bg-charcoal lg:bg-charcoal lg:border-l lg:border-white/5">
+              <div className="flex flex-col justify-center px-6 sm:px-6 sm:px-8 md:px-14 py-12 md:py-16 lg:py-20 bg-charcoal lg:bg-charcoal lg:border-l lg:border-white/5">
                 {!joined ? (
                   <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-[440px]">
                     <div className="space-y-2 mb-8">

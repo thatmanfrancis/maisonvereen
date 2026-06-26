@@ -13,7 +13,7 @@ export default function BottlesBanner() {
           background: "radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 70%)",
         }}
       />
-      <div className="relative max-w-[1400px] mx-auto px-8 md:px-14 text-center space-y-5">
+      <div className="relative max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 text-center space-y-5">
         {/* Exact headline from document */}
         <p
           className="font-serif font-light text-[#E8E2D9] tracking-[0.22em] md:tracking-[0.3em] uppercase"

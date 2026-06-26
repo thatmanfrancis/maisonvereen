@@ -36,7 +36,7 @@ export default function EditionIPage() {
         <section className="pt-[72px] border-b border-white/5">
           <div className="max-w-[1400px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[75vh]">
-              <div className="flex items-center px-8 md:px-14 py-20 md:py-28">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-28">
                 <div className="space-y-8 max-w-[480px]">
                   <span className="section-tag">Collection One</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2rem, 3.8vw, 3.4rem)" }}>
@@ -104,7 +104,7 @@ export default function EditionIPage() {
 
         {/* ── INSPIRATION — Page 5 ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="max-w-[760px] space-y-8">
               <span className="section-tag">Inspiration</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -123,7 +123,7 @@ export default function EditionIPage() {
 
         {/* ── THE FRAGRANCE — Page 5 ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <div className="space-y-4 max-w-[760px]">
               <span className="section-tag">The Fragrance</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -158,7 +158,7 @@ export default function EditionIPage() {
 
         {/* ── CRAFTSMANSHIP — Page 5 ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="max-w-[760px] space-y-8">
               <span className="section-tag">Craftsmanship</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -189,7 +189,7 @@ export default function EditionIPage() {
                 <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
                 <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 40% 55% at 50% 45%, rgba(180,130,40,0.08) 0%, transparent 65%)" }} />
               </div>
-              <div className="flex items-center px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D]">
+              <div className="flex items-center px-6 sm:px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D]">
                 <div className="space-y-8 max-w-[480px]">
                   <span className="section-tag">Bottle Design</span>
                   <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -210,7 +210,7 @@ export default function EditionIPage() {
 
         {/* ── THE OWNERSHIP EXPERIENCE — Page 5 ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28 space-y-12">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28 space-y-12">
             <div className="space-y-4 max-w-[680px]">
               <span className="section-tag">The Ownership Experience</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>
@@ -235,7 +235,7 @@ export default function EditionIPage() {
 
         {/* ── WHO IT WAS CREATED FOR + PRICE + CTA — Page 5 ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
-          <div className="max-w-[1400px] mx-auto px-8 md:px-14 py-20 md:py-28">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
             <div className="max-w-[760px] space-y-8">
               <span className="section-tag">Who It Was Created For</span>
               <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(1.8rem, 2.8vw, 2.4rem)" }}>

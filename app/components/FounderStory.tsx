@@ -14,26 +14,15 @@ export default function FounderStory() {
           {/* Left — image: side profile, low light, looking away — from document design note */}
           <div className="relative min-h-[440px] lg:min-h-0 overflow-hidden bg-[#060608] order-2 lg:order-1">
             <Image
-              src="/images/founder.png"
+              src="/founder-image-1.png"
               alt="Founder of Maison Vereen — side profile"
               fill
               sizes="(max-width:1024px) 100vw, 50vw"
               className="object-cover object-center"
-              style={{
-                opacity: 0.72,
-                filter: "brightness(0.65) saturate(0.5)",
-              }}
+              style={{ opacity: 0.9 }}
             />
-            {/* Single light source from document: "A single light source. Deep shadows." */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  "radial-gradient(ellipse 45% 55% at 60% 35%, rgba(180,130,40,0.09) 0%, transparent 65%)",
-              }}
-            />
-            <div className="absolute inset-0 bg-linear-to-t from-[#060608]/88 via-[#060608]/30 to-[#060608]/25" />
-            <div className="absolute inset-0 bg-linear-to-r from-[#060608]/50 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#060608]/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-r from-[#060608]/40 via-transparent to-transparent" />
 
             {/* Bottle visible in background — slightly out of focus, from doc */}
             <div className="absolute bottom-8 right-8 space-y-1.5 z-10 text-right">
@@ -48,7 +37,7 @@ export default function FounderStory() {
           </div>
 
           {/* Right — text: exact copy from document Page 1 and Page 4 */}
-          <div className="flex items-center px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D] order-1 lg:order-2">
+          <div className="flex items-center px-6 sm:px-8 md:px-14 lg:px-20 py-20 md:py-28 bg-[#0D0D0D] order-1 lg:order-2">
             <div className="space-y-9 max-w-[480px]">
               <span className="section-tag">The Covenant of the House</span>
 
