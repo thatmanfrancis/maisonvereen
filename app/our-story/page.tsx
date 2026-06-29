@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function OurStoryPage() {
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── HERO — split layout ── */}

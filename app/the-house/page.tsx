@@ -39,7 +39,7 @@ export default function TheHousePage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── HERO — Page 2: "A House is not a company. It is a position." ── */}

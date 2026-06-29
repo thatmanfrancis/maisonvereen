@@ -11,7 +11,7 @@ export default function LegacyPage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── OPENING — split layout ── */}

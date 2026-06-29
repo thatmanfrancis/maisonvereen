@@ -21,7 +21,7 @@ export default function FragranceLibraryPage() {
 
   return (
     <>
-      <Header onOpenApply={() => setIsApplyOpen(true)} />
+      <Header  />
       
       <main className="bg-charcoal flex-1">
         <SignatureHero />

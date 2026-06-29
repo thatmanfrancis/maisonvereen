@@ -22,7 +22,7 @@ export default function ArticlePage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
 
       <main className="bg-charcoal">
 

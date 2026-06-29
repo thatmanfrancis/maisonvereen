@@ -129,7 +129,7 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr]">
 
               {/* Left — category selector */}
-              <div className="border-b lg:border-b-0 lg:border-r border-white/5 bg-[#0A0A0A]">
+              <div className="border-b lg:border-b-0 lg:border-r border-white/5 bg-charcoal">
                 <div className="px-6 sm:px-8 py-8 space-y-1">
                   <p className="uppercase tracking-[0.3em] text-[#3A3530] font-medium mb-5" style={{ fontSize: "10px" }}>
                     Select Category
@@ -262,14 +262,14 @@ export default function ContactPage() {
         </section>
 
         {/* ── CONTACT PATHWAYS QUICK REFERENCE ── */}
-        <section className="bg-[#0A0A0A] border-b border-white/5">
+        <section className="bg-charcoal border-b border-white/5">
           <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-14 md:py-18 space-y-8">
             <span className="section-tag">All Contact Pathways</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/4">
               {categories.map((cat, i) => (
                 <div
                   key={i}
-                  className="group bg-[#0A0A0A] px-6 py-8 space-y-3 hover:bg-white/2 transition-colors duration-300 relative cursor-pointer"
+                  className="group bg-charcoal px-6 py-8 space-y-3 hover:bg-white/2 transition-colors duration-300 relative cursor-pointer"
                   onClick={() => { setSelectedCategory(cat); setSent(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                 >
                   <div className="absolute top-0 left-0 w-full h-px bg-gold/30 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

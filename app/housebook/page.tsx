@@ -10,7 +10,7 @@ export default function JournalPage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── PAGE HEADER ── */}

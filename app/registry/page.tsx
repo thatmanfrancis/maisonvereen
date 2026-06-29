@@ -52,7 +52,7 @@ const tiers = [
 export default function RegistryPage() {
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header />
       <main className="bg-charcoal">
 
         {/* ── HERO — split layout ── */}
