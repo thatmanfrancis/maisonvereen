@@ -10,7 +10,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <Header onOpenApply={() => setIsApplyOpen(true)} />
+      <Header  />
       <main className="flex-1 bg-charcoal">{children}</main>
       <Footer />
       <ApplicationForm isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
