@@ -22,7 +22,7 @@ export default function TheFirst250Page() {
 
   return (
     <>
-      <Header onOpenApply={() => setIsApplyOpen(true)} />
+      <Header />
       <main className="bg-charcoal">
 
         {/* ── HERO — split layout ── */}

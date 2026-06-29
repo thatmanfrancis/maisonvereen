@@ -47,7 +47,7 @@ export default function FAQPage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── HERO — split layout ── */}

@@ -49,7 +49,7 @@ export default function FuturePage() {
 
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── HERO — split layout ── */}

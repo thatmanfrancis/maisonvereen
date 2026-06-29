@@ -407,7 +407,7 @@ export default function AccessPage() {
                 You are a careful person. You do not make decisions without enough information. Here is everything you need to verify before applying.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.03]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/3">
               {verifications.map((v, i) => (
                 <div key={i} className="bg-[#0D0D0D] px-6 sm:px-8 py-8 space-y-4 relative group hover:bg-white/2 transition-colors duration-300">
                   <div className="absolute top-0 left-0 w-full h-px bg-gold/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

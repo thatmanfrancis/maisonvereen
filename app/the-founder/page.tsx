@@ -13,7 +13,7 @@ export default function TheFounderPage() {
 
   return (
     <>
-      <Header onOpenApply={() => setIsApplyOpen(true)} />
+      <Header />
       <main className="bg-charcoal">
 
         {/* ── OPENING — split: text + founder image ── */}

@@ -32,7 +32,7 @@ const pillars = [
 export default function PhilosophyPage() {
   return (
     <>
-      <Header onOpenApply={() => {}} />
+      <Header  />
       <main className="bg-charcoal">
 
         {/* ── HERO ── */}
