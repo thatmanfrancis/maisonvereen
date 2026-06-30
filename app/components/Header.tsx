@@ -52,16 +52,16 @@ const NAV_GROUPS = [
 
 // 10 curated mobile nav links — brand identity, products, conversion, contact
 const MOBILE_LINKS = [
-  { label: "Home",                 href: "/"                  },
-  { label: "The House",           href: "/the-house"         },
-  { label: "Philosophy",          href: "/philosophy"        },
-  { label: "The Founder",         href: "/the-founder"       },
-  { label: "Edition I",           href: "/edition-i"         },
-  { label: "Signature Collection",href: "/fragrance-library" },
-  { label: "Access",              href: "/access"            },
-  { label: "Waitlist",            href: "/waitlist"          },
-  { label: "The HouseBook",       href: "/housebook"         },
-  { label: "Contact",             href: "/contact"           },
+  { label: "Home", href: "/" },
+  { label: "The House", href: "/the-house" },
+  { label: "Philosophy", href: "/philosophy" },
+  { label: "The Founder", href: "/the-founder" },
+  { label: "Edition I", href: "/edition-i" },
+  { label: "Signature Collection", href: "/fragrance-library" },
+  { label: "Access", href: "/access" },
+  { label: "Waitlist", href: "/waitlist" },
+  { label: "The HouseBook", href: "/housebook" },
+  { label: "Contact", href: "/contact" },
 ];
 
 // ─────────────────────────────────────────────
@@ -97,29 +97,55 @@ export default function Header() {
 
   return (
     <>
-      {/* ════════════════════════════════════════
-          HEADER BAR
-      ════════════════════════════════════════ */}
+
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${headerBg}`}
       >
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 md:px-14 h-[100px] md:h-[125px] flex items-center justify-between">
+        {/* ── MOBILE HEADER (centered logo) ── */}
+        <div className="relative md:hidden w-full h-full flex items-center justify-between">
+          {/* Spacer — mirrors hamburger width to keep logo truly centered */}
+          <div className="w-6 shrink-0" />
 
-          {/* ── LOGO ── */}
+          {/* Centered logo */}
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 group" aria-label="Maison Vereen — Home">
+            <Image
+              src="/logo.png"
+              alt="Maison Vereen"
+              width={280}
+              height={96}
+              className="h-28 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              priority
+            />
+          </Link>
+
+          {/* Hamburger */}
+          <button
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="text-[#9A9189] hover:text-[#E8E2D9] transition-colors shrink-0"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* ── DESKTOP HEADER ── */}
+        <div className="hidden md:flex items-center justify-between w-full h-full">
+          {/* Logo */}
           <Link href="/" className="shrink-0 group" aria-label="Maison Vereen — Home">
             <Image
               src="/logo.png"
               alt="Maison Vereen"
               width={320}
               height={110}
-              className="h-32 md:h-[110px] w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              className="h-[110px] w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               priority
             />
           </Link>
 
-          {/* ── DESKTOP NAV ── */}
+          {/* Desktop Nav */}
           <nav
-            className="hidden md:flex items-center gap-7 lg:gap-10 h-full"
+            className="flex items-center gap-7 lg:gap-10 h-full"
             aria-label="Main navigation"
           >
             {NAV_GROUPS.map((group) => {
@@ -176,27 +202,16 @@ export default function Header() {
             })}
           </nav>
 
-          {/* ── RIGHT: CTA + MOBILE TOGGLE ── */}
-          <div className="flex items-center gap-5 shrink-0">
-            {/* Desktop CTA */}
-            <Link
-              href="/access"
-              className="hidden md:block border border-gold/50 hover:border-gold hover:bg-gold/10 px-6 py-2.5 text-xs tracking-[0.28em] uppercase font-medium text-[#E8E2D9] transition-all duration-500"
-            >
-              Apply for Access
-            </Link>
-
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setIsOpen((prev) => !prev)}
-              className="md:hidden text-[#9A9189] hover:text-[#E8E2D9] transition-colors"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-
+          {/* Desktop CTA */}
+          <Link
+            href="/access"
+            className="border border-gold/50 hover:border-gold hover:bg-gold/10 px-6 py-2.5 text-xs tracking-[0.28em] uppercase font-medium text-[#E8E2D9] transition-all duration-500 shrink-0"
+          >
+            Apply for Access
+          </Link>
         </div>
+
+      </div>
       </header>
 
       {/* ════════════════════════════════════════
