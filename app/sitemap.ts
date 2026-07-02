@@ -21,6 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/waitlist`,           lastModified: new Date(), changeFrequency: "weekly",  priority: 0.9 },
     { url: `${BASE_URL}/contact`,            lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/legacy`,             lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/social-proof`,       lastModified: new Date(), changeFrequency: "weekly",  priority: 0.7 },
+    { url: `${BASE_URL}/final-invitation`,   lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    // /discover is intentionally excluded from sitemap (standalone shareable page, noindex)
   ];
 
   const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({

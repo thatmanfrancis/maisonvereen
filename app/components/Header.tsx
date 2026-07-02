@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -41,12 +41,16 @@ const NAV_GROUPS = [
     dropdown: [
       { label: "The HouseBook", href: "/housebook" },
       { label: "House Journal", href: "/journal" },
+      { label: "Social Proof", href: "/social-proof" },
       { label: "FAQ", href: "/faq" },
     ],
   },
   {
     label: "Contact",
-    href: "/contact",
+    dropdown: [
+      { label: "Contact & Concierge", href: "/contact" },
+      { label: "Final Invitation", href: "/final-invitation" },
+    ],
   },
 ];
 
@@ -58,10 +62,11 @@ const MOBILE_LINKS = [
   { label: "The Founder", href: "/the-founder" },
   { label: "Edition I", href: "/edition-i" },
   { label: "Signature Collection", href: "/fragrance-library" },
+  { label: "Founding Registry", href: "/registry" },
   { label: "Access", href: "/access" },
-  { label: "Waitlist", href: "/waitlist" },
-  { label: "The HouseBook", href: "/housebook" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
+  { label: "Final Invitation", href: "/final-invitation" },
 ];
 
 // ─────────────────────────────────────────────
@@ -185,20 +190,7 @@ export default function Header() {
                   </div>
                 );
               }
-
-              const active = pathname === group.href;
-              return (
-                <Link
-                  key={group.href}
-                  href={group.href!}
-                  className={`text-xs tracking-[0.28em] uppercase font-medium transition-colors duration-300 ${active
-                    ? "text-gold"
-                    : "text-[#9A9189] hover:text-[#E8E2D9]"
-                    }`}
-                >
-                  {group.label}
-                </Link>
-              );
+              return null;
             })}
           </nav>
 

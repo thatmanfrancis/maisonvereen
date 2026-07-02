@@ -5,45 +5,79 @@ import Link from 'next/link';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-// Page 11 — QUESTIONS & ANSWERS (exact from document)
+// Page 14 — FREQUENTLY ASKED QUESTIONS (aligned to content blueprint)
 
-const faqs = [
+const faqGroups = [
   {
-    q: "Why should I reserve early?",
-    a: "Because Edition I is a finite event. When 250 owners have been confirmed, the allocation is closed — permanently. There is no second production run. There is no 'coming back to it later.' If your name is not in the founding record, it will not be there. Early reservation is not urgency created by marketing. It is urgency created by mathematics.",
+    group: "Edition I & The Founding Registry",
+    items: [
+      {
+        q: "What is Edition I and why only 250 bottles?",
+        a: "Edition I is the founding chapter of Maison Vereen — two hundred and fifty individually numbered bottles, each authenticated and documented, produced once and never repeated. Two hundred and fifty is not a marketing number. It is the number the House's master perfumer determined could be produced without compromising a single element of the formulation, the vessel, or the ceremony of ownership.",
+      },
+      {
+        q: "How does bottle numbering work?",
+        a: "Numbers are assigned in the order applicants are formally accepted into the Founding Registry — meaning a bottle's number reflects not when it was purchased, but when its owner was recognised by the House. Bottle 001 belongs to the first person the House accepted. Early conviction is rewarded with early numbering.",
+      },
+      {
+        q: "What is the Founding Registry and how do applications work?",
+        a: "The Maison Vereen Founding Registry is the House's official record of qualified applicants — the foundation from which Edition I's two hundred and fifty owners will ultimately be invited. Applying carries no financial obligation. Applications are read individually by a member of the House and typically receive a decision within 24 to 48 hours.",
+      },
+      {
+        q: "What happens once the Registry reaches 350 accepted members?",
+        a: "Once 350 applicants have been accepted, the Founding Registry closes permanently. No further applications will be reviewed. This ceiling exists for the same reason Edition I is limited to 250 bottles — the House does not assemble itself beyond the scale it can honour.",
+      },
+      {
+        q: "Not every Registry member gets a bottle — why?",
+        a: "The Registry accepts a maximum of 350 members. Because only 250 bottles exist, not every accepted member will ultimately receive an invitation to acquire — a fact the House states plainly, rather than obscures, out of respect for those who apply. Invitations to acquire are issued privately and individually as the House determines, in the order reflected by each member's assigned number.",
+      },
+      {
+        q: "Will Edition I ever be reissued or restocked?",
+        a: "No. Maison Vereen will not reissue, extend, or reproduce Edition I under any future circumstance, regardless of demand. This is not a marketing position. It is the same discipline that makes any founding edition, in any serious collectible category, worth holding in the first place.",
+      },
+    ],
   },
   {
-    q: "Why is the fragrance priced at ₦400,000?",
-    a: "Because ₦400,000 is not the price of a fragrance. It is the price of a numbered ownership position in the founding chapter of a luxury house. The fragrance is extraordinary — built by a master perfumer with African raw materials at a concentration that produces a quality of scent that most of the luxury market does not reach. But the price also reflects: the bottle as a crafted object, the authentication architecture, the collector position, the Gold Card system, the private portal, and the permanent documentation of your ownership in the house's founding record.",
-  },
-  {
-    q: "Why only 250 bottles?",
-    a: "Because the founding chapter of a house should be owned by a defined number of people — enough to matter culturally, few enough to remain genuinely rare. 250 is not a marketing number. It is an architectural decision about what kind of object Edition I should be. A numbered, permanent, irreproducible founding artifact.",
-  },
-  {
-    q: "Will more fragrances be released?",
-    a: "Yes. Maison Vereen is a fragrance house, not a single edition. Edition II is already in development. Each future edition will be its own numbered, limited chapter — drawing from a different African region, carrying a different story, with a different bottle architecture. Edition I owners receive priority access to all future editions before any public announcement.",
-  },
-  {
-    q: "How does the Registry work?",
-    a: "The Registry is the permanent membership record of Maison Vereen. Joining the Registry places your name in the house's founding documentation, grants access to the private portal and HouseBook content, and ensures you receive all future announcements — including edition openings — before the public. Registry membership is free. Ownership positions require allocation through the application process.",
-  },
-  {
-    q: "Who is Maison Vereen for?",
-    a: "The honest answer: you will know. The house was built for people who build things, lead without permission, and carry a presence that rooms feel before they enter. If that language resonates immediately, Maison Vereen was built for you. If you are still deciding whether you qualify, it probably was not.",
-  },
-  {
-    q: "What if I miss Collection One?",
-    a: "Edition I will not be reproduced. If the 250 allocation positions are filled before your application is processed, your name will be placed on the Edition II priority register — automatically, without reapplication. You will receive first access to Edition II before any public announcement. Missing Edition I is not the end. But it is, permanently, a missed beginning.",
-  },
-  {
-    q: "How are members prioritized?",
-    a: "Registry tier, then application date. Founding Fifty members receive first access to all allocations. Collector Circle members receive access before House Circle members. Within each tier, allocation is processed in order of confirmed commitment payments. The queue is real. Movement within it is not possible.",
+    group: "Membership, Signature Collection & Practical Matters",
+    items: [
+      {
+        q: "What does membership in Maison Vereen include?",
+        a: "Founding Registry members are afforded a continuing place within the House: priority access to future editions before they are announced publicly, private experiences extended only to members, and a direct line of communication with the House that does not exist for the general public. Membership does not entitle anyone to a future bottle, and the House makes no promises it cannot keep.",
+      },
+      {
+        q: "How does the Signature Collection differ from Edition I?",
+        a: "Where Edition I is finite by design, the Signature Collection is the House's enduring body of work — fragrances intended to remain part of Maison Vereen's offering for years, refined and revisited as the House's craft evolves. Unlike Edition I, Signature Collection fragrances are not limited to a numbered run. Both are developed to the same uncompromising standard.",
+      },
+      {
+        q: "How does concierge purchasing work for the Signature Collection?",
+        a: "There is no 'Add to Cart' anywhere within Maison Vereen. Acquiring a Signature Collection fragrance is always a personal exchange — visitors are invited to speak with a concierge, request details, or continue the conversation by WhatsApp or email. This is by design, not by limitation.",
+      },
+      {
+        q: "Is international shipping available?",
+        a: "Yes. The House ships internationally. Specific shipping arrangements, timelines, and applicable logistics are confirmed during the acquisition conversation — either through the Founding Registry invitation process or through a Signature Collection concierge inquiry.",
+      },
+      {
+        q: "How is authenticity verified?",
+        a: "Every Edition I bottle is accompanied by a signed certificate of authenticity — security-printed, UV-reactive, and holographic — permanently tied to its specific bottle number. The certificate records the collector's name, edition number, bottle number, and date of acquisition. It cannot be reproduced or transferred independently of the bottle.",
+      },
+      {
+        q: "Are future editions beyond Edition I planned?",
+        a: "Yes. Maison Vereen is a fragrance house, not a single edition. Future editions are planned, each its own numbered, limited chapter — drawing from a different African region, carrying a different story. Edition I owners receive priority access to all future editions before any public announcement is made.",
+      },
+      {
+        q: "What is the House's pricing philosophy?",
+        a: "The price of Edition I reflects not merely the fragrance, but the numbered ownership position, the bottle as a crafted object, the authentication architecture, the certificate of authenticity, the founder's personal letter, and the permanent documentation of ownership in the House's founding record. Pricing for the Signature Collection is communicated through the concierge process.",
+      },
+      {
+        q: "How do I know this is legitimate?",
+        a: "Write to us directly at hello@maisonvereen.com. We respond personally, usually within a few hours. We can provide documentation, arrange a verification call, or — for Lagos-based applicants — an in-person appointment where you can see and smell the fragrance before deciding. All official communications, including payment instructions, come only from hello@maisonvereen.com.",
+      },
+    ],
   },
 ];
 
 export default function FAQPage() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openKey, setOpenKey] = useState<string | null>(null);
 
   return (
     <>
@@ -56,13 +90,13 @@ export default function FAQPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
               <div className="flex items-center px-6 sm:px-8 md:px-14 py-20 md:py-24">
                 <div className="max-w-[540px] space-y-6">
-                  <span className="section-tag">Questions &amp; Answers</span>
+                  <span className="section-tag">Frequently Asked Questions</span>
                   <h1 className="font-serif font-light text-[#E8E2D9] leading-[1.06]" style={{ fontSize: "clamp(2.4rem, 5vw, 4rem)" }}>
-                    Every hesitation deserves{" "}
-                    <em className="not-italic" style={{ color: "#C9A84C" }}>a direct answer.</em>
+                    Everything you would ask,{" "}
+                    <em className="not-italic" style={{ color: "#C9A84C" }}>answered directly.</em>
                   </h1>
                   <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
-                    We answer objections with confidence, not defensiveness. If your question is not here, write to us.
+                    Clarity, in the House&apos;s own voice. No question here is too practical.
                   </p>
                 </div>
               </div>
@@ -77,39 +111,49 @@ export default function FAQPage() {
           </div>
         </section>
 
-        {/* ── FAQ ACCORDION ── */}
+        {/* ── FAQ GROUPED ACCORDION ── */}
         <section className="border-b border-white/5">
-          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-12 md:py-20">
-            <div className="max-w-[880px] space-y-0 border-t border-white/6">
-              {faqs.map((faq, i) => (
-                <div key={i} className="border-b border-white/6">
-                  <button
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="w-full flex items-start justify-between py-7 text-left gap-6 group"
-                  >
-                    <span
-                      className="font-serif font-light leading-[1.4] text-[#C8C0B4] group-hover:text-[#E8E2D9] transition-colors duration-300"
-                      style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)" }}
-                    >
-                      {faq.q}
-                    </span>
-                    <span
-                      className={`shrink-0 text-gold/50 transition-transform duration-300 mt-1 ${openIndex === i ? "rotate-45" : ""}`}
-                      style={{ fontSize: "22px", lineHeight: 1 }}
-                    >
-                      +
-                    </span>
-                  </button>
-                  {openIndex === i && (
-                    <div className="pb-7 max-w-[720px]">
-                      <p className="text-[#6A6258] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
-                        {faq.a}
-                      </p>
-                    </div>
-                  )}
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-12 md:py-20 space-y-14">
+            {faqGroups.map((group, gi) => (
+              <div key={gi} className="max-w-[880px] space-y-0">
+                <div className="mb-6">
+                  <span className="section-tag">{group.group}</span>
                 </div>
-              ))}
-            </div>
+                <div className="border-t border-white/6">
+                  {group.items.map((faq, i) => {
+                    const key = `${gi}-${i}`;
+                    return (
+                      <div key={i} className="border-b border-white/6">
+                        <button
+                          onClick={() => setOpenKey(openKey === key ? null : key)}
+                          className="w-full flex items-start justify-between py-7 text-left gap-6 group"
+                        >
+                          <span
+                            className="font-serif font-light leading-[1.4] text-[#C8C0B4] group-hover:text-[#E8E2D9] transition-colors duration-300"
+                            style={{ fontSize: "clamp(1rem, 1.6vw, 1.25rem)" }}
+                          >
+                            {faq.q}
+                          </span>
+                          <span
+                            className={`shrink-0 text-gold/50 transition-transform duration-300 mt-1 ${openKey === key ? "rotate-45" : ""}`}
+                            style={{ fontSize: "22px", lineHeight: 1 }}
+                          >
+                            +
+                          </span>
+                        </button>
+                        {openKey === key && (
+                          <div className="pb-7 max-w-[720px]">
+                            <p className="text-[#6A6258] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                              {faq.a}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -140,6 +184,18 @@ export default function FAQPage() {
                 <span className="uppercase font-medium">Begin Your Application</span>
               </Link>
             </div>
+          </div>
+        </section>
+
+        {/* PAGE 14 → PAGE 15 transition */}
+        <section className="bg-[#060608] border-t border-white/5">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-10 text-center">
+            <p className="font-serif font-light italic text-[#3A3530]" style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)" }}>
+              Some questions are better asked directly. The House is always reachable.
+            </p>
+            <a href="/contact" className="inline-block mt-4 text-gold/40 hover:text-gold transition-colors uppercase tracking-[0.25em] font-medium" style={{ fontSize: "10px" }}>
+              Speak with the House Directly →
+            </a>
           </div>
         </section>
 

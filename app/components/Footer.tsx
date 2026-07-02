@@ -8,13 +8,15 @@ import Link from "next/link";
 //  CONSTANTS
 // ─────────────────────────────────────────────
 const NAV_LINKS = [
-  { label: "The House",     href: "/the-house"  },
-  { label: "Philosophy",    href: "/philosophy" },
-  { label: "Edition I",     href: "/edition-i"  },
-  { label: "The HouseBook", href: "/housebook"  },
-  { label: "Access",        href: "/access"     },
-  { label: "Waitlist",      href: "/waitlist"   },
-  { label: "Contact",       href: "/contact"    },
+  { label: "The House",          href: "/the-house"        },
+  { label: "Philosophy",         href: "/philosophy"       },
+  { label: "Edition I",          href: "/edition-i"        },
+  { label: "Founding Registry",  href: "/registry"         },
+  { label: "Signature Collection", href: "/fragrance-library" },
+  { label: "Social Proof",       href: "/social-proof"     },
+  { label: "FAQ",                href: "/faq"              },
+  { label: "Contact",            href: "/contact"          },
+  { label: "Final Invitation",   href: "/final-invitation" },
 ];
 
 const SOCIAL_LINKS = [

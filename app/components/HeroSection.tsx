@@ -50,23 +50,23 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
       {/* Content */}
       <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 pt-[72px] flex flex-col items-center md:items-start text-center md:text-left">
         <div className="max-w-[700px] py-28 md:py-36 space-y-8 flex flex-col items-center md:items-start">
-          {/* Headline — exact from document */}
+          {/* Headline — exact from document PAGE 1 blueprint */}
           <h1
             className="font-serif font-light text-[#EDE7DC] leading-[1.05] anim-fade-up"
             style={{ fontSize: "clamp(2.4rem, 6vw, 5rem)" }}
           >
-            Some people change every room they enter.{" "}
+            The room knows{" "}
             <em className="not-italic" style={{ color: "#C9A84C" }}>
-              Not by speaking first. By simply arriving.
+              before you speak.
             </em>
           </h1>
 
-          {/* Subheadline — clearly smaller than h1, clearly larger than body */}
+          {/* Supporting statement */}
           <p
             className="font-serif font-light text-[#C8BFB2] italic tracking-wide anim-fade-up-d1"
             style={{ fontSize: "clamp(1.2rem, 2.2vw, 1.6rem)" }}
           >
-            Maison Vereen was built for them.
+            Edition I. Two hundred and fifty individually numbered bottles. Africa&apos;s first serious luxury fragrance house.
           </p>
 
           {/* Supporting copy — body scale, muted */}
@@ -80,23 +80,31 @@ export default function HeroSection({ onOpenApply }: HeroSectionProps) {
             rare. Something permanent. Something worthy of their presence.
           </p>
 
-          {/* CTA — appears after 3 seconds, subtle fade-in, never urgent */}
+          {/* CTAs — appear after 3 seconds, subtle fade-in */}
           <div
-            className="pt-2 flex justify-center md:block transition-all duration-1000 ease-out"
+            className="pt-2 flex flex-col sm:flex-row gap-4 justify-center md:justify-start transition-all duration-1000 ease-out"
             style={{
               opacity: showCTA ? 1 : 0,
               transform: showCTA ? "translateY(0)" : "translateY(8px)",
             }}
           >
+            {/* Primary CTA: "Apply for a Position" */}
             <Link
               href="/access"
-              className="inline-block border border-[#E8E2D9]/40 hover:border-gold hover:text-gold px-7 py-3 text-[#E8E2D9] transition-all duration-500"
+              className="inline-block bg-gold/90 hover:bg-gold px-7 py-3.5 text-charcoal transition-all duration-500"
               style={{ fontSize: "10px", letterSpacing: "0.3em" }}
-              aria-label="Apply for Access"
+              aria-label="Apply for a Position"
             >
-              <span className="uppercase font-medium">
-                Join the Ownership Registry
-              </span>
+              <span className="uppercase font-semibold">Apply for a Position</span>
+            </Link>
+            {/* Secondary CTA: "Enter the House" */}
+            <Link
+              href="/the-house"
+              className="inline-block border border-[#E8E2D9]/30 hover:border-gold hover:text-gold px-7 py-3.5 text-[#8A8070] transition-all duration-500"
+              style={{ fontSize: "10px", letterSpacing: "0.3em" }}
+              aria-label="Enter the House"
+            >
+              <span className="uppercase font-medium">Enter the House</span>
             </Link>
           </div>
         </div>

@@ -62,6 +62,15 @@ export default function HomePage() {
             The final choice. */}
         <DualPathway />
 
+        {/* PAGE 1 → PAGE 2 transition line (blueprint: "Before you apply, you should understand what you are applying to.") */}
+        <section className="bg-[#060506] border-t border-white/5">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-10 text-center">
+            <p className="font-serif font-light italic text-[#3A3530]" style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)" }}>
+              Before you apply, you should understand what you are applying to.
+            </p>
+          </div>
+        </section>
+
       </main>
 
       <Footer />

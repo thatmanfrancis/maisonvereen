@@ -80,16 +80,16 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[55vh]">
               <div className="flex items-center justify-center lg:justify-start px-6 sm:px-8 md:px-14 py-16 md:py-24 w-full">
                 <div className="space-y-7 max-w-[520px] text-center lg:text-left flex flex-col items-center lg:items-start">
-                  <span className="section-tag">Contact</span>
+                  <span className="section-tag">Contact &amp; Concierge</span>
                   <h1
                     className="font-serif font-light text-[#E8E2D9] leading-[1.06]"
                     style={{ fontSize: "clamp(2.2rem, 4.8vw, 4rem)" }}
                   >
-                    Every conversation with the house{" "}
-                    <em className="not-italic" style={{ color: "#C9A84C" }}>matters.</em>
+                    Speak with the House{" "}
+                    <em className="not-italic" style={{ color: "#C9A84C" }}>directly.</em>
                   </h1>
                   <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
-                    Maison Vereen does not use automated responses. Every inquiry is read by a person and responded to by a person. We may not respond immediately — but we will respond thoughtfully.
+                    Not a support ticket. A conversation. Every enquiry to Maison Vereen — whether from a collector, a journalist, or a future partner — is read and answered personally by the House.
                   </p>
                   <p className="text-[#5A5449] font-light" style={{ fontSize: "14px" }}>
                     For direct correspondence:{" "}
@@ -118,6 +118,50 @@ export default function ContactPage() {
                   <div className="w-5 h-px bg-gold/25" />
                   <span className="block uppercase tracking-widest text-[#3A3028] font-light" style={{ fontSize: "9px" }}>Maison Vereen · Lagos</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── TWO CLEAR PATHS — blueprint: "For Collectors" + "For Press, Partners & Gifting" ── */}
+        <section className="border-b border-white/5 bg-[#0D0D0D]">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/4">
+              {/* For Collectors */}
+              <div className="bg-[#0D0D0D] px-8 sm:px-12 py-10 space-y-5 group relative">
+                <div className="absolute top-0 left-0 w-full h-px bg-gold/30" />
+                <span className="section-tag">For Collectors</span>
+                <p className="font-serif font-light text-[#C8C0B4]" style={{ fontSize: "20px" }}>
+                  Fragrance advice, Edition I, Registry guidance.
+                </p>
+                <p className="text-[#5A5449] font-light leading-[1.75]" style={{ fontSize: "15px" }}>
+                  Speak with a concierge for fragrance advice, questions about Edition I, or guidance on the Founding Registry application — available by direct message, WhatsApp, or email.
+                </p>
+                <a
+                  href="mailto:hello@maisonvereen.com"
+                  className="inline-flex items-center gap-2 text-gold/60 hover:text-gold transition-colors font-light"
+                  style={{ fontSize: "13px" }}
+                >
+                  hello@maisonvereen.com
+                </a>
+              </div>
+              {/* For Press, Partners & Gifting */}
+              <div className="bg-[#0D0D0D] px-8 sm:px-12 py-10 space-y-5 group relative">
+                <div className="absolute top-0 left-0 w-full h-px bg-gold/30" />
+                <span className="section-tag">For Press, Partners &amp; Gifting</span>
+                <p className="font-serif font-light text-[#C8C0B4]" style={{ fontSize: "20px" }}>
+                  Media, partnerships, wholesale, and gifting.
+                </p>
+                <p className="text-[#5A5449] font-light leading-[1.75]" style={{ fontSize: "15px" }}>
+                  Media enquiries, partnership proposals, wholesale discussions, and gifting arrangements are each directed to a dedicated contact within the House, ensuring every enquiry reaches the right person without delay.
+                </p>
+                <a
+                  href="mailto:press@maisonvereen.com"
+                  className="inline-flex items-center gap-2 text-gold/60 hover:text-gold transition-colors font-light"
+                  style={{ fontSize: "13px" }}
+                >
+                  press@maisonvereen.com
+                </a>
               </div>
             </div>
           </div>
@@ -290,6 +334,22 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* PAGE 15 → PAGE 16 transition line */}
+        <section className="bg-[#060608] border-t border-white/5">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-10 text-center">
+            <p className="font-serif font-light italic text-[#3A3530]" style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)" }}>
+              You now know the House completely. What remains is a final invitation.
+            </p>
+            <a
+              href="/final-invitation"
+              className="inline-block mt-5 text-gold/40 hover:text-gold transition-colors uppercase tracking-[0.25em] font-medium"
+              style={{ fontSize: "10px" }}
+            >
+              The Final Invitation →
+            </a>
           </div>
         </section>
 

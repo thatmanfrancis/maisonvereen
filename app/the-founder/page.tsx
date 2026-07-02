@@ -196,6 +196,18 @@ export default function TheFounderPage() {
       </main>
       <Footer />
       <ApplicationForm isOpen={isApplyOpen} onClose={() => setIsApplyOpen(false)} />
+
+      {/* PAGE 4 → PAGE 5 transition */}
+      <section className="bg-[#060506] border-t border-white/5">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-10 text-center">
+          <p className="font-serif font-light italic text-[#3A3530]" style={{ fontSize: "clamp(0.9rem, 1.4vw, 1.1rem)" }}>
+            Conviction explains why the House exists. What follows explains why it could only ever look like this.
+          </p>
+          <a href="/the-house" className="inline-block mt-4 text-gold/40 hover:text-gold transition-colors uppercase tracking-[0.25em] font-medium" style={{ fontSize: "10px" }}>
+            See What Makes the House Different →
+          </a>
+        </div>
+      </section>
     </>
   );
 }

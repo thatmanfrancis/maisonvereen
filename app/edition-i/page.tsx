@@ -233,6 +233,111 @@ export default function EditionIPage() {
           </div>
         </section>
 
+        {/* ── CERTIFICATE OF AUTHENTICITY — from client blueprint ── */}
+        <section className="border-b border-white/5 bg-[#0D0D0D]">
+          <div className="max-w-[1400px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[60vh]">
+              {/* Certificate image — displayed as museum artefact */}
+              <div className="relative min-h-[480px] lg:min-h-0 overflow-hidden bg-[#080808] flex items-center justify-center p-8 md:p-12">
+                {/* Subtle marble texture overlay */}
+                <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 70% at 50% 50%, rgba(201,168,76,0.03) 0%, transparent 70%)" }} />
+                {/* Certificate image */}
+                <div className="relative w-full max-w-[420px] mx-auto">
+                  <div className="relative aspect-3/4 shadow-2xl" style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(201,168,76,0.12)" }}>
+                    <Image
+                      src="/images/certificate.png"
+                      alt="Maison Vereen Edition I — Certificate of Authenticity & Ownership"
+                      fill
+                      sizes="(max-width: 1024px) 90vw, 45vw"
+                      className="object-contain"
+                      style={{ opacity: 0.97 }}
+                    />
+                  </div>
+                  {/* Museum caption */}
+                  <p className="text-center uppercase tracking-[0.25em] text-[#4A4438] font-light mt-4" style={{ fontSize: "9px" }}>
+                    Certificate of Authenticity &amp; Ownership — Edition I
+                  </p>
+                </div>
+              </div>
+              {/* Text — certificate details */}
+              <div className="flex items-center px-6 sm:px-8 md:px-14 lg:px-20 py-20 md:py-28">
+                <div className="space-y-8 max-w-[480px]">
+                  <span className="section-tag">Certificate of Authenticity</span>
+                  <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(2rem, 3vw, 2.6rem)" }}>
+                    Numbered by hand.{" "}
+                    <em className="not-italic" style={{ color: "#C9A84C" }}>Authenticated for life.</em>
+                  </h2>
+                  <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                    Every Edition I bottle is accompanied by a signed certificate of authenticity — security-printed, UV-reactive, holographic. It records the collector&apos;s name, the edition number, the bottle number, and the date of acquisition. A document designed to be kept for a century.
+                  </p>
+                  <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                    The certificate is permanently tied to its specific bottle number. It cannot be reproduced, replaced, or transferred independently of the bottle it was issued with. Ownership is documented, irreversible, and permanent.
+                  </p>
+                  {/* Certificate detail items */}
+                  <div className="grid grid-cols-1 gap-4 border-t border-white/5 pt-8">
+                    {[
+                      { label: "Collector Name", value: "Engraved permanently" },
+                      { label: "Edition Number", value: "01 / 250" },
+                      { label: "Bottle Number", value: "Individual — 000001 to 000250" },
+                      { label: "Authorized Signature", value: "Founder & Creative Director" },
+                      { label: "Authentication", value: "UV-reactive · Holographic · Unique" },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start justify-between gap-4 py-2.5 border-b border-white/5">
+                        <span className="uppercase tracking-[0.2em] text-[#5A5449] font-medium shrink-0" style={{ fontSize: "10px" }}>{item.label}</span>
+                        <span className="text-[#8A8178] font-light text-right" style={{ fontSize: "13px" }}>{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pt-2">
+                    <span className="uppercase tracking-[0.25em] text-[#3A3530] font-medium" style={{ fontSize: "9px" }}>
+                      Est. 2025 · The Beginning of a Legacy
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── NUMBERING PHILOSOPHY ── */}
+        <section className="border-b border-white/5">
+          <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-28 items-start">
+              <div className="space-y-6">
+                <span className="section-tag">Numbering Philosophy</span>
+                <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(2rem, 3vw, 2.6rem)" }}>
+                  Your number reflects{" "}
+                  <em className="not-italic" style={{ color: "#C9A84C" }}>when you were recognised.</em>
+                </h2>
+                <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                  Numbers are assigned in the order applicants are formally accepted into the Founding Registry — meaning a bottle&apos;s number reflects not when it was purchased, but when its owner was recognised by the House. Early conviction is rewarded with early numbering.
+                </p>
+                <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                  Bottle 001 belongs to the first person the House accepted. Bottle 250 belongs to the last. Every number between them is equally permanent, equally authentic, and equally part of the founding record. But the lower the number, the earlier the belief.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <span className="section-tag">Why Edition I Will Never Return</span>
+                <h2 className="font-serif font-light text-[#E8E2D9] leading-[1.1]" style={{ fontSize: "clamp(2rem, 3vw, 2.6rem)" }}>
+                  The founding chapter does{" "}
+                  <em className="not-italic" style={{ color: "#C9A84C" }}>not have a sequel.</em>
+                </h2>
+                <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                  Maison Vereen will not reissue, extend, or reproduce Edition I under any future circumstance, regardless of demand. This is not a marketing position. It is the same discipline that makes any founding edition, in any serious collectible category, worth holding in the first place.
+                </p>
+                <p className="text-[#7A7068] font-light leading-[1.85]" style={{ fontSize: "17px" }}>
+                  When the two hundred and fiftieth bottle is placed into a collector&apos;s hands, the edition closes permanently — not paused, not revisited in a future &ldquo;anniversary&rdquo; release, but closed, in the way a first edition of any serious work closes the moment its print run ends.
+                </p>
+                {/* Gravity number */}
+                <div className="border border-white/6 bg-[#080808] px-6 py-6 text-center">
+                  <p className="font-mono text-gold" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", letterSpacing: "0.1em" }}>250</p>
+                  <p className="uppercase tracking-[0.3em] text-[#4A4438] font-medium mt-2" style={{ fontSize: "9px" }}>No More. Ever.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ── WHO IT WAS CREATED FOR + PRICE + CTA — Page 5 ── */}
         <section className="border-b border-white/5 bg-[#0D0D0D]">
           <div className="max-w-[1400px] mx-auto px-6 sm:px-8 md:px-14 py-20 md:py-28">
