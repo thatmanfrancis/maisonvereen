@@ -5,6 +5,7 @@ import { SendZeptomail } from "@/lib/zeptomail";
 import {
   applicationApprovedEmail,
   applicationDeclinedEmail,
+  applicationReviewingEmail,
 } from "@/lib/emailTemplates";
 
 type Ctx = { params: Promise<{ id: string }> };
@@ -44,43 +45,71 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
     return NextResponse.json({ error: "Not found." }, { status: 404 });
   }
 
-  const updated = await prisma.application.update({
-    where: { id },
-    data: {
-      ...(status !== undefined ? { status } : {}),
-      ...(notes !== undefined ? { notes } : {}),
-    },
-  });
-
-  // Batch 2 — applicant outcome email (only on first transition into that status)
+  const becameReviewing =
+    status === "REVIEWING" && existing.status !== "REVIEWING";
   const becameApproved =
     status === "APPROVED" && existing.status !== "APPROVED";
   const becameRejected =
     status === "REJECTED" && existing.status !== "REJECTED";
 
-  if (becameApproved || becameRejected) {
-    try {
-      if (becameApproved) {
-        await SendZeptomail({
-          toEmail: updated.email,
-          toName: updated.name,
-          subject: "Application Approved — Maison Vereen Edition I",
-          htmlBody: applicationApprovedEmail(updated.name),
-        });
-      } else {
-        await SendZeptomail({
-          toEmail: updated.email,
-          toName: updated.name,
-          subject: "Application Update — Maison Vereen Edition I",
-          htmlBody: applicationDeclinedEmail(updated.name),
-        });
-      }
-    } catch (mailErr) {
-      console.error(
-        `[PATCH /api/applications/${id}] Failed to send applicant outcome email:`,
-        mailErr
-      );
+  const updated = await prisma.application.update({
+    where: { id },
+    data: {
+      ...(status !== undefined ? { status } : {}),
+      ...(notes !== undefined ? { notes } : {}),
+      ...(becameApproved ? { approvedAt: new Date() } : {}),
+      ...(status && status !== "APPROVED" && existing.approvedAt
+        ? { approvedAt: null }
+        : {}),
+    },
+  });
+
+  // Applicant status emails — only on first transition into that status
+  try {
+    if (becameReviewing) {
+      const settings = await prisma.siteSetting.upsert({
+        where: { id: "default" },
+        update: {},
+        create: {
+          id: "default",
+          bankName: "",
+          accountName: "",
+          accountNumber: "",
+          paymentNote: null,
+        },
+      });
+
+      await SendZeptomail({
+        toEmail: updated.email,
+        toName: updated.name,
+        subject: "Payment Instructions — Maison Vereen Edition I",
+        htmlBody: applicationReviewingEmail(updated.name, {
+          bankName: settings.bankName,
+          accountName: settings.accountName,
+          accountNumber: settings.accountNumber,
+          paymentNote: settings.paymentNote,
+        }),
+      });
+    } else if (becameApproved) {
+      await SendZeptomail({
+        toEmail: updated.email,
+        toName: updated.name,
+        subject: "Application Approved — Maison Vereen Edition I",
+        htmlBody: applicationApprovedEmail(updated.name),
+      });
+    } else if (becameRejected) {
+      await SendZeptomail({
+        toEmail: updated.email,
+        toName: updated.name,
+        subject: "Application Update — Maison Vereen Edition I",
+        htmlBody: applicationDeclinedEmail(updated.name),
+      });
     }
+  } catch (mailErr) {
+    console.error(
+      `[PATCH /api/applications/${id}] Failed to send applicant status email:`,
+      mailErr
+    );
   }
 
   return NextResponse.json(updated);

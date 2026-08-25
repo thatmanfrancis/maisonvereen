@@ -190,7 +190,7 @@ export function applicationReceivedEmail(name: string): string {
       ${para(`Dear ${firstName},`)}
       ${para(`We have received your application for <span style="color:${T.cream};letter-spacing:0.08em;">Maison Vereen Edition I</span>. The House reviews each submission with care — this is not a process we rush.`)}
       ${para(`You applied not for a product, but for a position within a founding chapter. That distinction is not lost on us.`)}
-      ${para(`Our curatorial team will review your application and you will hear from us within <span style="color:${T.cream};">48 hours</span>.`)}
+      ${para(`Our curatorial team will review your application. You will hear from us with next steps shortly.`)}
 
       <!-- Gold rule separator -->
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0;">
@@ -207,7 +207,7 @@ export function applicationReceivedEmail(name: string): string {
                 <td style="padding:10px 0;border-bottom:1px solid ${T.border};">
                   <p style="margin:0;font-family:${T.fontSans};font-size:11px;color:${T.muted};line-height:1.6;">
                     <span style="font-family:${T.fontSans};font-size:9px;color:${T.gold};letter-spacing:0.15em;margin-right:10px;">01</span>
-                    Your responses are reviewed by our curatorial team.
+                    Your application is pending review by the House.
                   </p>
                 </td>
               </tr>
@@ -215,7 +215,7 @@ export function applicationReceivedEmail(name: string): string {
                 <td style="padding:10px 0;border-bottom:1px solid ${T.border};">
                   <p style="margin:0;font-family:${T.fontSans};font-size:11px;color:${T.muted};line-height:1.6;">
                     <span style="font-family:${T.fontSans};font-size:9px;color:${T.gold};letter-spacing:0.15em;margin-right:10px;">02</span>
-                    A decision is made within 48 hours of submission.
+                    If selected for reviewing, you will receive payment instructions by email.
                   </p>
                 </td>
               </tr>
@@ -223,7 +223,7 @@ export function applicationReceivedEmail(name: string): string {
                 <td style="padding:10px 0;">
                   <p style="margin:0;font-family:${T.fontSans};font-size:11px;color:${T.muted};line-height:1.6;">
                     <span style="font-family:${T.fontSans};font-size:9px;color:${T.gold};letter-spacing:0.15em;margin-right:10px;">03</span>
-                    You will receive an email with the outcome either way.
+                    Once payment is confirmed, your place in the Founding Registry is secured.
                   </p>
                 </td>
               </tr>
@@ -253,7 +253,116 @@ export function applicationReceivedEmail(name: string): string {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TEMPLATE 2 — Application Approved
+// TEMPLATE 2 — Application Reviewing (payment instructions)
+// ─────────────────────────────────────────────────────────────────────────────
+export type PaymentDetails = {
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+  paymentNote?: string | null;
+};
+
+export function applicationReviewingEmail(
+  name: string,
+  payment: PaymentDetails
+): string {
+  const firstName = name.split(" ")[0];
+  const hasDetails =
+    payment.bankName.trim() ||
+    payment.accountName.trim() ||
+    payment.accountNumber.trim();
+
+  const accountRows = [
+    payment.bankName.trim()
+      ? `<tr>
+          <td style="padding:10px 0;border-bottom:1px solid ${T.border};">
+            <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Bank</p>
+            <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${payment.bankName.trim()}</p>
+          </td>
+        </tr>`
+      : "",
+    payment.accountName.trim()
+      ? `<tr>
+          <td style="padding:10px 0;border-bottom:1px solid ${T.border};">
+            <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Account Name</p>
+            <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${payment.accountName.trim()}</p>
+          </td>
+        </tr>`
+      : "",
+    payment.accountNumber.trim()
+      ? `<tr>
+          <td style="padding:10px 0;">
+            <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">Account Number</p>
+            <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};letter-spacing:0.08em;">${payment.accountNumber.trim()}</p>
+          </td>
+        </tr>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
+  const content = `
+  ${header()}
+
+  <tr>
+    <td style="background-color:#080808;padding:40px 48px;border-left:2px solid ${T.gold};">
+      ${sectionTag("Under Review")}
+      ${headline("Next step:", "payment.")}
+      ${para(`Your application has been selected for reviewing.`)}
+    </td>
+  </tr>
+
+  <tr>
+    <td style="padding:40px 48px;">
+      ${para(`Dear ${firstName},`)}
+      ${para(`Thank you for your patience. The House has reviewed your application for <span style="color:${T.cream};">Edition I</span> and would like you to proceed with payment to secure your place.`)}
+      ${para(`Please make payment using the account details below. Once confirmed by our team, your application will be marked approved and your name will join the Founding Registry.`)}
+
+      ${
+        hasDetails
+          ? `
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0;border:1px solid ${T.borderGold};background-color:#0D0D0D;">
+        <tr>
+          <td style="padding:24px 28px;">
+            <p style="margin:0 0 14px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.mutedDark};font-weight:500;">Account details</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              ${accountRows}
+            </table>
+          </td>
+        </tr>
+      </table>
+      `
+          : `
+      ${para(`Our team will share the payment account details with you shortly.`)}
+      `
+      }
+
+      ${
+        payment.paymentNote?.trim()
+          ? `${para(payment.paymentNote.trim())}`
+          : ""
+      }
+
+      ${para(`If you have already paid, please reply to this email with your transfer confirmation so we can complete your approval.`)}
+      <p style="margin:0;font-family:${T.fontSerif};font-size:13px;line-height:1.7;color:${T.mutedDark};font-style:italic;">The House of Maison Vereen</p>
+    </td>
+  </tr>
+
+  ${divider()}
+
+  <tr>
+    <td style="padding:20px 48px;">
+      <p style="margin:0;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.dim};">
+        Edition I &nbsp;·&nbsp; 250 Bottles &nbsp;·&nbsp; The Founding Expression
+      </p>
+    </td>
+  </tr>`;
+
+  return shell(content);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TEMPLATE 3 — Application Approved
 // ─────────────────────────────────────────────────────────────────────────────
 export function applicationApprovedEmail(name: string, bottleNumber?: number): string {
   const firstName = name.split(" ")[0];
@@ -318,7 +427,7 @@ export function applicationApprovedEmail(name: string, bottleNumber?: number): s
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TEMPLATE 3 — Application Declined (graceful, brand-aligned)
+// TEMPLATE 4 — Application Declined (graceful, brand-aligned)
 // ─────────────────────────────────────────────────────────────────────────────
 export function applicationDeclinedEmail(name: string): string {
   const firstName = name.split(" ")[0];
@@ -367,7 +476,7 @@ export function applicationDeclinedEmail(name: string): string {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TEMPLATE 4 — Admin Notification (sent to admins when a new form is submitted)
+// TEMPLATE 5 — Admin Notification (sent to admins when a new form is submitted)
 // ─────────────────────────────────────────────────────────────────────────────
 export function adminNotificationEmail(app: {
   name: string;

@@ -25,12 +25,14 @@ model Application {
   consent       Boolean           @default(true)
   status        ApplicationStatus @default(PENDING)
   notes         String?           @db.Text
+  approvedAt    DateTime?
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
 
   @@index([email])
   @@index([status])
   @@index([createdAt])
+  @@index([approvedAt])
 }
 
 // ── Waitlist — email + name + country entry from Waitlist page ───────────────
@@ -107,4 +109,14 @@ model SignatureFragrance {
 
   @@index([sortOrder])
   @@index([published])
+}
+
+// ── Site settings — singleton for payment / bank details used in emails ──────
+model SiteSetting {
+  id             String   @id @default("default")
+  bankName       String   @default("")
+  accountName    String   @default("")
+  accountNumber  String   @default("")
+  paymentNote    String?  @db.Text
+  updatedAt      DateTime @updatedAt
 }

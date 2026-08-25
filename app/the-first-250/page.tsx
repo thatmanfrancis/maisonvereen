@@ -124,7 +124,7 @@ export default function LiveFoundingRegistryPage() {
   useEffect(() => {
     let cancelled = false;
 
-    fetch("/api/applications/approved?limit=50")
+    fetch("/api/applications/approved?limit=350")
       .then((r) => r.json())
       .then((data: { records?: ApprovedRecord[]; total?: number }) => {
         if (cancelled) return;
@@ -132,14 +132,8 @@ export default function LiveFoundingRegistryPage() {
         const total =
           typeof data.total === "number" ? data.total : records.length;
         setAcceptedCount(total);
-        const newest = [...records]
-          .sort(
-            (a, b) =>
-              new Date(b.approvedAt).getTime() -
-              new Date(a.approvedAt).getTime()
-          )
-          .slice(0, 4);
-        setRecent(newest);
+        // Show the full founding record in order — never drop earlier members
+        setRecent(records);
         setLoaded(true);
       })
       .catch(() => {
@@ -284,7 +278,7 @@ export default function LiveFoundingRegistryPage() {
         <section className="relative bg-[#060506] py-16 md:py-24 border-b border-white/5">
           <div className="w-[90%] md:w-full max-w-4xl mx-auto space-y-10">
             <h2 className="text-center font-serif text-xs sm:text-sm uppercase tracking-[0.32em] text-gold font-light">
-              Recently Welcomed
+              Founding Members
             </h2>
 
             <div className="border border-[#EDE8DE]/12 bg-[#0C0B0A] overflow-x-auto">
@@ -342,9 +336,9 @@ export default function LiveFoundingRegistryPage() {
             </div>
 
             <p className="font-sans text-[13px] sm:text-sm font-normal leading-relaxed text-body-muted text-center max-w-2xl mx-auto">
-              Recently accepted members are shown by first name, last initial,
-              and country only. The House will never display a member&apos;s
-              full identity without explicit permission.
+              Accepted members are shown by first name, last initial, and country
+              only, in the order they were welcomed. The House will never display
+              a member&apos;s full identity without explicit permission.
             </p>
           </div>
         </section>

@@ -3,6 +3,7 @@ import { getAdminSession } from "@/lib/auth";
 import AdminShell from "../components/AdminShell";
 import ChangePasswordForm from "./ChangePasswordForm";
 import NotificationEmailsManager from "./NotificationEmailsManager";
+import PaymentDetailsManager from "./PaymentDetailsManager";
 
 export default async function SettingsPage() {
   const session = await getAdminSession();
@@ -18,7 +19,8 @@ export default async function SettingsPage() {
             Security & Preferences
           </h1>
           <p className="text-[#EDE8DE] text-xs">
-            Manage your administration portal access credentials and notification recipients.
+            Manage credentials, notification recipients, and payment details for
+            reviewing emails.
           </p>
         </div>
 
@@ -26,6 +28,9 @@ export default async function SettingsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start pt-2">
           <ChangePasswordForm />
           <NotificationEmailsManager />
+          <div className="lg:col-span-2">
+            <PaymentDetailsManager />
+          </div>
         </div>
       </div>
     </AdminShell>
