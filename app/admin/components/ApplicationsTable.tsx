@@ -20,6 +20,11 @@ interface Application {
   consent: boolean;
   status: string;
   notes: string | null;
+  membershipCircle?: string;
+  houseId?: string | null;
+  receiptNo?: string | null;
+  amountPaid?: number | null;
+  paymentDeadline?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -106,12 +111,15 @@ export default function ApplicationsTable({
   }
 
   async function updateStatus(id: string, status: string) {
-    await fetch(`/api/applications/${id}`, {
+    const res = await fetch(`/api/applications/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     });
-    if (drawer?.id === id) setDrawer((d) => (d ? { ...d, status } : d));
+    if (res.ok) {
+      const updated = await res.json();
+      if (drawer?.id === id) setDrawer((d) => (d ? { ...d, ...updated } : d));
+    }
     router.refresh();
   }
 

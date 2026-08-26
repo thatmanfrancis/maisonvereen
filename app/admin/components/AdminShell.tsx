@@ -22,7 +22,7 @@ const NAV = [
   { href: "/admin/waitlist", icon: ListChecks, label: "Waitlist" },
   { href: "/admin/fragrance-enquiries", icon: ShoppingBag, label: "Enquiries" },
   { href: "/admin/signature-collection", icon: Layers, label: "Collection" },
-  { href: "/admin/settings", icon: Key, label: "Security" },
+  { href: "/admin/settings", icon: Key, label: "Settings" },
 ];
 
 export default function AdminShell({

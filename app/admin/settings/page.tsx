@@ -16,11 +16,12 @@ export default async function SettingsPage() {
         <div className="space-y-1">
           <span className="section-tag block">Settings</span>
           <h1 className="font-serif font-light text-[#E8E2D9] text-2xl md:text-3xl">
-            Security & Preferences
+            Settings
           </h1>
           <p className="text-[#EDE8DE] text-xs">
-            Manage credentials, notification recipients, and payment details for
-            reviewing emails.
+            Manage credentials, notification recipients, release label, and
+            shared bank details for applicant emails. Amount and payment deadline
+            are set per applicant.
           </p>
         </div>
 

@@ -11,28 +11,35 @@ datasource db {
 
 // ── Application — full form from DOC-20260617-WA0002 ─────────────────────────
 model Application {
-  id            String            @id @default(cuid())
-  name          String
-  email         String
-  phone         String?
-  country       String
-  whatYouDo     String
-  howHeard      String            @default("Not specified")
-  referredBy    String?
-  whatMadeApply String            @db.Text
-  earlyThing    String?           @db.Text
-  anythingElse  String?           @db.Text
-  consent       Boolean           @default(true)
-  status        ApplicationStatus @default(PENDING)
-  notes         String?           @db.Text
-  approvedAt    DateTime?
-  createdAt     DateTime          @default(now())
-  updatedAt     DateTime          @updatedAt
+  id                String            @id @default(cuid())
+  name              String
+  email             String
+  phone             String?
+  country           String
+  whatYouDo         String
+  howHeard          String            @default("Not specified")
+  referredBy        String?
+  whatMadeApply     String            @db.Text
+  earlyThing        String?           @db.Text
+  anythingElse      String?           @db.Text
+  consent           Boolean           @default(true)
+  status            ApplicationStatus @default(PENDING)
+  notes             String?           @db.Text
+  membershipCircle  MembershipCircle  @default(FOUNDING)
+  houseId           String?
+  receiptNo         String?
+  amountPaid        Int?
+  paymentDeadline   String?
+  approvedAt        DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
 
   @@index([email])
   @@index([status])
   @@index([createdAt])
   @@index([approvedAt])
+  @@unique([houseId])
+  @@unique([receiptNo])
 }
 
 // ── Waitlist — email + name + country entry from Waitlist page ───────────────
@@ -68,6 +75,12 @@ enum ApplicationStatus {
   REVIEWING
   APPROVED
   REJECTED
+}
+
+enum MembershipCircle {
+  FOUNDING
+  COLLECTORS
+  HOUSE
 }
 
 // ── Fragrance Enquiry — Signature Collection acquire flow ─────────────────────
@@ -113,10 +126,12 @@ model SignatureFragrance {
 
 // ── Site settings — singleton for payment / bank details used in emails ──────
 model SiteSetting {
-  id             String   @id @default("default")
-  bankName       String   @default("")
-  accountName    String   @default("")
-  accountNumber  String   @default("")
-  paymentNote    String?  @db.Text
-  updatedAt      DateTime @updatedAt
+  id                 String   @id @default("default")
+  bankName           String   @default("")
+  accountName        String   @default("")
+  accountNumber      String   @default("")
+  paymentNote        String?  @db.Text
+  releaseLabel       String   @default("Edition One — 2027")
+  releaseDate        String   @default("29 May 2027")
+  updatedAt          DateTime @updatedAt
 }

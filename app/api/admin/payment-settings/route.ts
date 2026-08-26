@@ -14,8 +14,20 @@ async function getOrCreateSettings() {
       accountName: "",
       accountNumber: "",
       paymentNote: null,
+      releaseLabel: "Edition One — 2027",
+      releaseDate: "29 May 2027",
     },
   });
+}
+
+function optionalString(value: unknown): string | undefined {
+  return typeof value === "string" ? value.trim() : undefined;
+}
+
+function optionalNullableString(value: unknown): string | null | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim();
+  return trimmed || null;
 }
 
 export async function GET(req: NextRequest) {
@@ -35,18 +47,12 @@ export async function PATCH(req: NextRequest) {
   }
 
   const body = await req.json();
-  const bankName =
-    typeof body.bankName === "string" ? body.bankName.trim() : undefined;
-  const accountName =
-    typeof body.accountName === "string" ? body.accountName.trim() : undefined;
-  const accountNumber =
-    typeof body.accountNumber === "string"
-      ? body.accountNumber.trim()
-      : undefined;
-  const paymentNote =
-    typeof body.paymentNote === "string"
-      ? body.paymentNote.trim() || null
-      : undefined;
+  const bankName = optionalString(body.bankName);
+  const accountName = optionalString(body.accountName);
+  const accountNumber = optionalString(body.accountNumber);
+  const paymentNote = optionalNullableString(body.paymentNote);
+  const releaseLabel = optionalString(body.releaseLabel);
+  const releaseDate = optionalString(body.releaseDate);
 
   await getOrCreateSettings();
 
@@ -57,6 +63,8 @@ export async function PATCH(req: NextRequest) {
       ...(accountName !== undefined ? { accountName } : {}),
       ...(accountNumber !== undefined ? { accountNumber } : {}),
       ...(paymentNote !== undefined ? { paymentNote } : {}),
+      ...(releaseLabel !== undefined ? { releaseLabel } : {}),
+      ...(releaseDate !== undefined ? { releaseDate } : {}),
     },
   });
 

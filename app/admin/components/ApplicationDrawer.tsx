@@ -19,6 +19,11 @@ interface Application {
   anythingElse?: string | null;
   status: string;
   notes: string | null;
+  membershipCircle?: string;
+  houseId?: string | null;
+  receiptNo?: string | null;
+  amountPaid?: number | null;
+  paymentDeadline?: string | null;
   createdAt: string;
 }
 
@@ -27,6 +32,12 @@ const STATUS_ACTIONS = [
   { value: "REVIEWING", label: "Reviewing", icon: Eye, color: "#60A5FA" },
   { value: "APPROVED", label: "Approve", icon: CheckCircle, color: "#34D399" },
   { value: "REJECTED", label: "Reject", icon: XCircle, color: "#F87171" },
+];
+
+const CIRCLES = [
+  { value: "FOUNDING", label: "Founders Circle" },
+  { value: "COLLECTORS", label: "Collectors Circle" },
+  { value: "HOUSE", label: "House Circle" },
 ];
 
 function Field({ label, value }: { label: string; value: string }) {
@@ -64,24 +75,41 @@ export default function ApplicationDrawer({
 }) {
   const router = useRouter();
   const [notes, setNotes] = useState(application.notes ?? "");
+  const [circle, setCircle] = useState(application.membershipCircle ?? "FOUNDING");
+  const [houseId, setHouseId] = useState(application.houseId ?? "");
+  const [receiptNo, setReceiptNo] = useState(application.receiptNo ?? "");
+  const [amountPaid, setAmountPaid] = useState(
+    application.amountPaid != null ? String(application.amountPaid) : ""
+  );
+  const [paymentDeadline, setPaymentDeadline] = useState(
+    application.paymentDeadline ?? ""
+  );
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
 
-  // Animate in
   useEffect(() => {
     requestAnimationFrame(() => setVisible(true));
   }, []);
 
-  // Close with animation
+  useEffect(() => {
+    setNotes(application.notes ?? "");
+    setCircle(application.membershipCircle ?? "FOUNDING");
+    setHouseId(application.houseId ?? "");
+    setReceiptNo(application.receiptNo ?? "");
+    setAmountPaid(
+      application.amountPaid != null ? String(application.amountPaid) : ""
+    );
+    setPaymentDeadline(application.paymentDeadline ?? "");
+  }, [application]);
+
   function handleClose() {
     setVisible(false);
     setTimeout(onClose, 280);
   }
 
-  // Escape key
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
@@ -92,16 +120,39 @@ export default function ApplicationDrawer({
 
   async function handleStatusChange(status: string) {
     setUpdating(status);
+    // Persist circle (and any edited IDs) before status change so Reviewing/Approved emails use them
+    await fetch(`/api/applications/${application.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        membershipCircle: circle,
+        houseId,
+        receiptNo,
+        amountPaid: amountPaid.trim()
+          ? Number(amountPaid.replace(/,/g, ""))
+          : null,
+        paymentDeadline: paymentDeadline.trim() || null,
+      }),
+    });
     await onStatusChange(application.id, status);
     setUpdating(null);
   }
 
-  async function saveNotes() {
+  async function saveMembershipFields() {
     setSaving(true);
     await fetch(`/api/applications/${application.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ notes }),
+      body: JSON.stringify({
+        notes,
+        membershipCircle: circle,
+        houseId,
+        receiptNo,
+        amountPaid: amountPaid.trim()
+          ? Number(amountPaid.replace(/,/g, ""))
+          : null,
+        paymentDeadline: paymentDeadline.trim() || null,
+      }),
     });
     setSaving(false);
     setSaved(true);
@@ -125,21 +176,21 @@ export default function ApplicationDrawer({
     cls: "",
   };
 
+  const inputClass =
+    "w-full bg-[#0D0D0D] border border-white/7 px-3 py-2.5 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/40 transition-colors";
+
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px] transition-opacity duration-300"
         style={{ opacity: visible ? 1 : 0 }}
         onClick={handleClose}
       />
 
-      {/* Drawer */}
       <div
         className="fixed inset-y-0 right-0 z-50 w-full max-w-[520px] bg-charcoal border-l border-white/7 flex flex-col shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
         style={{ transform: visible ? "translateX(0)" : "translateX(100%)" }}
       >
-        {/* Header */}
         <div className="flex items-start justify-between px-6 py-5 border-b border-white/6 shrink-0">
           <div className="flex items-center gap-3.5 min-w-0">
             <div
@@ -177,9 +228,7 @@ export default function ApplicationDrawer({
           </button>
         </div>
 
-        {/* Body � scrollable */}
         <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
-          {/* Current status */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.22em] text-[#3A3530]">
               Current Status
@@ -191,7 +240,6 @@ export default function ApplicationDrawer({
             </span>
           </div>
 
-          {/* Change status */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.22em] text-[#3A3530]">
               Update Status
@@ -232,7 +280,72 @@ export default function ApplicationDrawer({
             </div>
           </div>
 
-          {/* Details grid */}
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.22em] text-[#3A3530]">
+              Membership &amp; Payment Record
+            </p>
+            <label className="block space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                Membership Circle
+              </span>
+              <select
+                className={inputClass}
+                value={circle}
+                onChange={(e) => setCircle(e.target.value)}
+              >
+                {CIRCLES.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="block space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                House ID
+              </span>
+              <input
+                className={inputClass}
+                value={houseId}
+                onChange={(e) => setHouseId(e.target.value)}
+                placeholder="Auto on approve — or edit"
+              />
+            </label>
+            <label className="block space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                Receipt No.
+              </span>
+              <input
+                className={inputClass}
+                value={receiptNo}
+                onChange={(e) => setReceiptNo(e.target.value)}
+                placeholder="Auto on approve — or edit"
+              />
+            </label>
+            <label className="block space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                Amount (naira)
+              </span>
+              <input
+                className={inputClass}
+                value={amountPaid}
+                onChange={(e) => setAmountPaid(e.target.value)}
+                placeholder="e.g. 430000 — used in payment and approved emails"
+              />
+            </label>
+            <label className="block space-y-1.5">
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                Payment deadline
+              </span>
+              <input
+                className={inputClass}
+                value={paymentDeadline}
+                onChange={(e) => setPaymentDeadline(e.target.value)}
+                placeholder="e.g. 2 weeks — shown in Reviewing email"
+              />
+            </label>
+          </div>
+
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.22em] text-[#3A3530]">
               Details
@@ -241,8 +354,12 @@ export default function ApplicationDrawer({
               <Field label="City & Country" value={application.country} />
               <Field label="What They Do" value={application.whatYouDo} />
               <Field label="How they found MV" value={application.howHeard} />
-              {application.referredBy && <Field label="Referred By" value={application.referredBy} />}
-              {application.phone && <Field label="Phone" value={application.phone} />}
+              {application.referredBy && (
+                <Field label="Referred By" value={application.referredBy} />
+              )}
+              {application.phone && (
+                <Field label="Phone" value={application.phone} />
+              )}
               <Field
                 label="Applied"
                 value={new Date(application.createdAt).toLocaleDateString(
@@ -253,12 +370,20 @@ export default function ApplicationDrawer({
             </div>
           </div>
 
-          {/* Long text fields */}
-          <LongField label="What made you apply?" value={application.whatMadeApply} />
-          {application.earlyThing && <LongField label="A time they were early to something" value={application.earlyThing} />}
-          {application.anythingElse && <LongField label="Anything else" value={application.anythingElse} />}
+          <LongField
+            label="What made you apply?"
+            value={application.whatMadeApply}
+          />
+          {application.earlyThing && (
+            <LongField
+              label="A time they were early to something"
+              value={application.earlyThing}
+            />
+          )}
+          {application.anythingElse && (
+            <LongField label="Anything else" value={application.anythingElse} />
+          )}
 
-          {/* Admin notes */}
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.22em] text-[#3A3530]">
               Internal Notes
@@ -267,22 +392,21 @@ export default function ApplicationDrawer({
               rows={4}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Private notes about this applicant�"
+              placeholder="Private notes about this applicant…"
               className="w-full bg-[#0D0D0D] border border-white/7 px-4 py-3 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/40 transition-colors duration-200 resize-none leading-[1.7]"
             />
             <button
-              onClick={saveNotes}
+              onClick={saveMembershipFields}
               disabled={saving}
               className="flex items-center gap-2 text-xs uppercase tracking-[0.18em] transition-colors duration-200 disabled:opacity-50"
               style={{ color: saved ? "#34D399" : "#C9A84C" }}
             >
               {saving && <span className="spinner spinner-sm" />}
-              {saved ? "? Saved" : saving ? "Saving�" : "Save notes"}
+              {saved ? "Saved" : saving ? "Saving…" : "Save record & notes"}
             </button>
           </div>
         </div>
 
-        {/* Footer */}
         <div className="px-6 py-4 border-t border-white/6 shrink-0 flex items-center justify-between">
           <button
             onClick={handleDelete}
@@ -295,7 +419,7 @@ export default function ApplicationDrawer({
                 style={{ borderTopColor: "#f87171" }}
               />
             )}
-            {deleting ? "Deleting�" : "Delete application"}
+            {deleting ? "Deleting…" : "Delete application"}
           </button>
           <button
             onClick={handleClose}

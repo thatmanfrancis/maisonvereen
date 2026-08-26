@@ -260,6 +260,9 @@ export type PaymentDetails = {
   accountName: string;
   accountNumber: string;
   paymentNote?: string | null;
+  paymentDeadline?: string;
+  amountLabel?: string;
+  releaseLabel?: string;
 };
 
 export function applicationReviewingEmail(
@@ -271,6 +274,8 @@ export function applicationReviewingEmail(
     payment.bankName.trim() ||
     payment.accountName.trim() ||
     payment.accountNumber.trim();
+  const deadline = payment.paymentDeadline?.trim() || "1–2 weeks";
+  const release = payment.releaseLabel?.trim() || "Edition One";
 
   const accountRows = [
     payment.bankName.trim()
@@ -301,22 +306,30 @@ export function applicationReviewingEmail(
     .filter(Boolean)
     .join("");
 
+  const bankForNotice = payment.bankName.trim() || "the official Maison Vereen bank";
+
   const content = `
   ${header()}
 
   <tr>
     <td style="background-color:#080808;padding:40px 48px;border-left:2px solid ${T.gold};">
-      ${sectionTag("Under Review")}
-      ${headline("Next step:", "payment.")}
-      ${para(`Your application has been selected for reviewing.`)}
+      ${sectionTag("Next Step")}
+      ${headline("Payment", "instructions.")}
+      ${para(`Your application has been selected to proceed.`)}
     </td>
   </tr>
 
   <tr>
     <td style="padding:40px 48px;">
       ${para(`Dear ${firstName},`)}
-      ${para(`Thank you for your patience. The House has reviewed your application for <span style="color:${T.cream};">Edition I</span> and would like you to proceed with payment to secure your place.`)}
-      ${para(`Please make payment using the account details below. Once confirmed by our team, your application will be marked approved and your name will join the Founding Registry.`)}
+      ${para(`Thank you for your patience.`)}
+      ${para(`The House has carefully reviewed your application for <span style="color:${T.cream};">${release}</span>, and we are pleased to inform you that your application has been selected to proceed to the next stage.`)}
+      ${para(`<span style="color:${T.cream};">Next Step: Payment</span><br/>To secure your place in ${release}, please make payment using the official Maison Vereen bank details provided below.`)}
+      ${
+        payment.amountLabel?.trim()
+          ? `${para(`Amount due: <span style="color:${T.cream};">${payment.amountLabel.trim()}</span>`)}`
+          : ""
+      }
 
       ${
         hasDetails
@@ -324,7 +337,7 @@ export function applicationReviewingEmail(
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0;border:1px solid ${T.borderGold};background-color:#0D0D0D;">
         <tr>
           <td style="padding:24px 28px;">
-            <p style="margin:0 0 14px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.mutedDark};font-weight:500;">Account details</p>
+            <p style="margin:0 0 14px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.mutedDark};font-weight:500;">Official bank details</p>
             <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
               ${accountRows}
             </table>
@@ -332,9 +345,7 @@ export function applicationReviewingEmail(
         </tr>
       </table>
       `
-          : `
-      ${para(`Our team will share the payment account details with you shortly.`)}
-      `
+          : `${para(`Our team will share the payment account details with you shortly.`)}`
       }
 
       ${
@@ -343,8 +354,30 @@ export function applicationReviewingEmail(
           : ""
       }
 
-      ${para(`If you have already paid, please reply to this email with your transfer confirmation so we can complete your approval.`)}
-      <p style="margin:0;font-family:${T.fontSerif};font-size:13px;line-height:1.7;color:${T.mutedDark};font-style:italic;">The House of Maison Vereen</p>
+      ${para(`Once your payment has been confirmed by our team, your application will be marked Approved, and your name will be formally entered into the Founders Registry.`)}
+      ${para(`To ensure your place is secured within this release, we kindly ask that payment be completed within the next <span style="color:${T.cream};">${deadline}</span>.`)}
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0;border:1px solid ${T.border};background-color:#0D0D0D;">
+        <tr>
+          <td style="padding:24px 28px;">
+            <p style="margin:0 0 14px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.gold};font-weight:500;">Important Payment &amp; Security Notice</p>
+            ${para(`For your protection, please note the following:`)}
+            ${para(`All official payment requests from Maison Vereen will come exclusively through our official, branded email channels.`)}
+            ${para(`Maison Vereen will never request payment through an unbranded or unfamiliar email address.`)}
+            ${para(`All bank details provided for Maison Vereen payments will be registered in the official Maison Vereen name. For this payment, the official bank is <span style="color:${T.cream};">${bankForNotice}</span>.`)}
+            ${para(`Please do not make any payment to a personal account, third-party account, or account bearing a name other than the official Maison Vereen name.`)}
+            ${para(`If you receive an email requesting payment that does not carry the official Maison Vereen branding or does not come from our official email channel, do not make payment.`)}
+            ${para(`Maison Vereen will never ask you to make a payment solely through an unsolicited phone call.`)}
+            ${para(`If a call is required in relation to payment verification or any sensitive financial matter, it will be arranged through an official Maison Vereen communication channel, and where necessary, a video call may be used to verify the request.`)}
+            ${para(`If you are ever uncertain about a payment request or the authenticity of an invoice or bank detail, please contact Maison Vereen through our official website before making payment.`)}
+            ${para(`Your security is important to us, and we encourage you to verify all payment details carefully before transferring funds.`)}
+          </td>
+        </tr>
+      </table>
+
+      ${para(`We look forward to welcoming you into the House.`)}
+      ${para(`Warm regards,`)}
+      <p style="margin:0;font-family:${T.fontSerif};font-size:13px;line-height:1.7;color:${T.mutedDark};font-style:italic;">Maison Vereen<br/>The House of Presence &amp; Imprint. A New Chapter In African Luxury.</p>
     </td>
   </tr>
 
@@ -353,7 +386,7 @@ export function applicationReviewingEmail(
   <tr>
     <td style="padding:20px 48px;">
       <p style="margin:0;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.dim};">
-        Edition I &nbsp;·&nbsp; 250 Bottles &nbsp;·&nbsp; The Founding Expression
+        Edition One &nbsp;·&nbsp; 250 Bottles &nbsp;·&nbsp; The Founding Expression
       </p>
     </td>
   </tr>`;
@@ -364,50 +397,80 @@ export function applicationReviewingEmail(
 // ─────────────────────────────────────────────────────────────────────────────
 // TEMPLATE 3 — Application Approved
 // ─────────────────────────────────────────────────────────────────────────────
-export function applicationApprovedEmail(name: string, bottleNumber?: number): string {
+export type ApprovedEmailRecord = {
+  releaseLabel: string;
+  membershipCircle: string;
+  houseId: string;
+  amountPaidLabel: string;
+  receiptNo: string;
+};
+
+export function applicationApprovedEmail(
+  name: string,
+  record: ApprovedEmailRecord
+): string {
   const firstName = name.split(" ")[0];
-  const bottleLine = bottleNumber
-    ? `<p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.gold};">Your Bottle</p><p style="margin:0;font-family:${T.fontSerif};font-size:36px;color:${T.cream};font-weight:300;letter-spacing:0.1em;">#${String(bottleNumber).padStart(3, "0")}</p><p style="margin:4px 0 0;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.mutedDark};">of 250</p>`
-    : "";
+
+  const recordRows = [
+    ["Edition", record.releaseLabel],
+    ["Membership Circle", record.membershipCircle],
+    ["House ID", record.houseId],
+    ["Payment Status", "PAID IN FULL"],
+    ["Amount Paid", record.amountPaidLabel],
+    ["Receipt No.", record.receiptNo],
+  ]
+    .map(
+      ([label, value], i, arr) => `<tr>
+      <td style="padding:10px 0;${i < arr.length - 1 ? `border-bottom:1px solid ${T.border};` : ""}">
+        <p style="margin:0 0 4px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:${T.gold};">${label}</p>
+        <p style="margin:0;font-family:${T.fontSans};font-size:13px;color:${T.cream};">${value}</p>
+      </td>
+    </tr>`
+    )
+    .join("");
 
   const content = `
   ${header()}
 
-  <!-- Hero — gold left border, approval feel -->
   <tr>
     <td style="background-color:#080808;padding:40px 48px;border-left:2px solid ${T.gold};">
       ${sectionTag("Access Granted")}
-      ${headline("You have been", "recognised.")}
-      ${para(`The House has reviewed your application and found what it was looking for.`)}
+      ${headline("You Have Been", "Recognized.")}
     </td>
   </tr>
 
-  <!-- Body -->
   <tr>
     <td style="padding:40px 48px;">
       ${para(`Dear ${firstName},`)}
-      ${para(`On behalf of Maison Vereen, we are pleased to confirm that your application for <span style="color:${T.cream};">Edition I</span> has been approved.`)}
-      ${para(`You are not a customer. You are a founding member — one of <span style="color:${T.cream};">250 individuals</span> who carry the first chapter of this house. That is a permanent record.`)}
+      ${para(`On behalf of Maison Vereen, we are pleased to formally inform you that your application for <span style="color:${T.cream};">Edition One</span> has been approved.`)}
+      ${para(`The House has received your payment, reviewed your application, and found what it was looking for.`)}
+      ${para(`You are not a customer.`)}
+      ${para(`You are a Founding Member.`)}
+      ${para(`You are now one of <span style="color:${T.cream};">250 individuals</span> who will carry the first chapter of this House.`)}
+      ${para(`Your place is not simply a purchase. It is a permanent record within the history of Maison Vereen.`)}
 
-      ${bottleNumber ? `
-      <!-- Bottle number block -->
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0;background-color:#0D0D0D;border:1px solid ${T.borderGold};">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:28px 0;border:1px solid ${T.borderGold};background-color:#0D0D0D;">
         <tr>
-          <td style="padding:28px;text-align:center;">
-            ${bottleLine}
+          <td style="padding:24px 28px;">
+            <p style="margin:0 0 14px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.gold};font-weight:500;">Your House Record</p>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              ${recordRows}
+            </table>
           </td>
         </tr>
       </table>
-      ` : `
-      <!-- Spacer -->
-      <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:12px 0 28px;">
-        <tr><td width="32" height="1" style="background-color:${T.gold};font-size:0;line-height:0;">&nbsp;</td></tr>
-      </table>
-      `}
 
-      ${para(`The next step is completing your acquisition. Our team will reach out with the specifics of fulfilment.`)}
-      ${para(`Welcome to the House.`)}
-      <p style="margin:0;font-family:${T.fontSerif};font-size:13px;line-height:1.7;color:${T.mutedDark};font-style:italic;">The House of Maison Vereen</p>
+      ${para(`Your payment has been received and successfully recorded by the House.`)}
+      ${para(`Your House ID is unique to you and forms part of your permanent membership record. Please retain this number for future correspondence, verification, and access relating to your Founding Membership.`)}
+
+      <p style="margin:28px 0 16px;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.gold};font-weight:500;">Welcome to the House</p>
+      ${para(`There are only 250 places in Edition One.`)}
+      ${para(`You are one of them.`)}
+      ${para(`From this point forward, you are recognized not merely as someone who acquired a fragrance, but as one of the individuals who saw the future and got establish in the first chapter of Maison Vereen.`)}
+      ${para(`Welcome to the Founders Circle.`)}
+      ${para(`We are pleased to have you with us.`)}
+      ${para(`Warm regards,`)}
+      <p style="margin:0;font-family:${T.fontSerif};font-size:13px;line-height:1.7;color:${T.mutedDark};font-style:italic;">Maison Vereen<br/>The House of Presence &amp; Legacy</p>
 
       ${ctaButton("Visit the House", "https://maisonvereen.com")}
     </td>
@@ -418,7 +481,7 @@ export function applicationApprovedEmail(name: string, bottleNumber?: number): s
   <tr>
     <td style="padding:20px 48px;">
       <p style="margin:0;font-family:${T.fontSans};font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:${T.dim};">
-        Edition I &nbsp;·&nbsp; 250 Bottles &nbsp;·&nbsp; The Founding Expression
+        Edition One &nbsp;·&nbsp; 250 Bottles &nbsp;·&nbsp; The Founding Expression
       </p>
     </td>
   </tr>`;
