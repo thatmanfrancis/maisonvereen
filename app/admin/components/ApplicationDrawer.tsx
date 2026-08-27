@@ -4,6 +4,11 @@ import React, { useState, useEffect } from "react";
 import { X, CheckCircle, XCircle, Eye, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { STATUS_META } from "./ApplicationsTable";
+import {
+  deadlineForCircle,
+  formatNaira,
+  type MembershipCircle,
+} from "@/lib/membership";
 
 interface Application {
   id: string;
@@ -26,6 +31,20 @@ interface Application {
   paymentDeadline?: string | null;
   createdAt: string;
 }
+
+type PaymentMode = "defaults" | "custom";
+
+type PaymentDefaults = {
+  amountNaira: number;
+  foundingDeadline: string;
+  collectorsDeadline: string;
+  houseDeadline: string;
+  bankName: string;
+  accountName: string;
+  accountNumber: string;
+  paymentNote: string;
+  releaseLabel: string;
+};
 
 const STATUS_ACTIONS = [
   { value: "PENDING", label: "Pending", icon: Clock, color: "#F59E0B" },
@@ -64,6 +83,22 @@ function LongField({ label, value }: { label: string; value: string }) {
   );
 }
 
+function paymentPayload(
+  mode: PaymentMode,
+  amountPaid: string,
+  paymentDeadline: string
+) {
+  if (mode === "defaults") {
+    return { amountPaid: null, paymentDeadline: null };
+  }
+  return {
+    amountPaid: amountPaid.trim()
+      ? Number(amountPaid.replace(/,/g, ""))
+      : null,
+    paymentDeadline: paymentDeadline.trim() || null,
+  };
+}
+
 export default function ApplicationDrawer({
   application,
   onClose,
@@ -75,19 +110,28 @@ export default function ApplicationDrawer({
 }) {
   const router = useRouter();
   const [notes, setNotes] = useState(application.notes ?? "");
-  const [circle, setCircle] = useState(application.membershipCircle ?? "FOUNDING");
+  const [circle, setCircle] = useState(
+    application.membershipCircle ?? "FOUNDING"
+  );
   const [houseId, setHouseId] = useState(application.houseId ?? "");
   const [receiptNo, setReceiptNo] = useState(application.receiptNo ?? "");
+  const [paymentMode, setPaymentMode] = useState<PaymentMode>(
+    application.amountPaid != null || application.paymentDeadline
+      ? "custom"
+      : "defaults"
+  );
   const [amountPaid, setAmountPaid] = useState(
     application.amountPaid != null ? String(application.amountPaid) : ""
   );
   const [paymentDeadline, setPaymentDeadline] = useState(
     application.paymentDeadline ?? ""
   );
+  const [defaults, setDefaults] = useState<PaymentDefaults | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
+  const [reviewConfirmOpen, setReviewConfirmOpen] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -95,10 +139,36 @@ export default function ApplicationDrawer({
   }, []);
 
   useEffect(() => {
+    fetch("/api/admin/payment-settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.settings) {
+          setDefaults({
+            amountNaira: data.settings.amountNaira ?? 430000,
+            foundingDeadline: data.settings.foundingDeadline ?? "2 weeks",
+            collectorsDeadline: data.settings.collectorsDeadline ?? "1 month",
+            houseDeadline: data.settings.houseDeadline ?? "1 month 2 weeks",
+            bankName: data.settings.bankName ?? "",
+            accountName: data.settings.accountName ?? "",
+            accountNumber: data.settings.accountNumber ?? "",
+            paymentNote: data.settings.paymentNote ?? "",
+            releaseLabel: data.settings.releaseLabel ?? "Edition One — 2027",
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
     setNotes(application.notes ?? "");
     setCircle(application.membershipCircle ?? "FOUNDING");
     setHouseId(application.houseId ?? "");
     setReceiptNo(application.receiptNo ?? "");
+    setPaymentMode(
+      application.amountPaid != null || application.paymentDeadline
+        ? "custom"
+        : "defaults"
+    );
     setAmountPaid(
       application.amountPaid != null ? String(application.amountPaid) : ""
     );
@@ -112,15 +182,17 @@ export default function ApplicationDrawer({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleClose();
+      if (e.key === "Escape") {
+        if (reviewConfirmOpen) setReviewConfirmOpen(false);
+        else handleClose();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [reviewConfirmOpen]);
 
-  async function handleStatusChange(status: string) {
-    setUpdating(status);
-    // Persist circle (and any edited IDs) before status change so Reviewing/Approved emails use them
+  async function persistRecord(extra: Record<string, unknown> = {}) {
+    const payment = paymentPayload(paymentMode, amountPaid, paymentDeadline);
     await fetch(`/api/applications/${application.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -128,32 +200,34 @@ export default function ApplicationDrawer({
         membershipCircle: circle,
         houseId,
         receiptNo,
-        amountPaid: amountPaid.trim()
-          ? Number(amountPaid.replace(/,/g, ""))
-          : null,
-        paymentDeadline: paymentDeadline.trim() || null,
+        ...payment,
+        ...extra,
       }),
     });
+  }
+
+  async function handleStatusChange(status: string) {
+    if (status === "REVIEWING") {
+      setReviewConfirmOpen(true);
+      return;
+    }
+    setUpdating(status);
+    await persistRecord();
     await onStatusChange(application.id, status);
+    setUpdating(null);
+  }
+
+  async function confirmReviewing() {
+    setUpdating("REVIEWING");
+    setReviewConfirmOpen(false);
+    await persistRecord();
+    await onStatusChange(application.id, "REVIEWING");
     setUpdating(null);
   }
 
   async function saveMembershipFields() {
     setSaving(true);
-    await fetch(`/api/applications/${application.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        notes,
-        membershipCircle: circle,
-        houseId,
-        receiptNo,
-        amountPaid: amountPaid.trim()
-          ? Number(amountPaid.replace(/,/g, ""))
-          : null,
-        paymentDeadline: paymentDeadline.trim() || null,
-      }),
-    });
+    await persistRecord({ notes });
     setSaving(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 2500);
@@ -178,6 +252,21 @@ export default function ApplicationDrawer({
 
   const inputClass =
     "w-full bg-[#0D0D0D] border border-white/7 px-3 py-2.5 text-xs text-[#E8E2D9] placeholder-[#2A2420] focus:outline-none focus:border-gold/40 transition-colors";
+
+  const effectiveDeadline =
+    paymentMode === "custom" && paymentDeadline.trim()
+      ? paymentDeadline.trim()
+      : defaults
+        ? deadlineForCircle(circle as MembershipCircle, defaults)
+        : "…";
+  const effectiveAmountLabel =
+    paymentMode === "custom" && amountPaid.trim()
+      ? formatNaira(Number(amountPaid.replace(/,/g, "")) || 0)
+      : defaults
+        ? formatNaira(defaults.amountNaira)
+        : "…";
+  const circleLabel =
+    CIRCLES.find((c) => c.value === circle)?.label ?? circle;
 
   return (
     <>
@@ -275,7 +364,7 @@ export default function ApplicationDrawer({
                       </span>
                     </button>
                   );
-                },
+                }
               )}
             </div>
           </div>
@@ -300,50 +389,93 @@ export default function ApplicationDrawer({
                 ))}
               </select>
             </label>
+
+            <div className="grid grid-cols-2 gap-3">
+              <label className="block space-y-1.5 min-w-0">
+                <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                  House ID
+                </span>
+                <input
+                  className={inputClass}
+                  value={houseId}
+                  onChange={(e) => setHouseId(e.target.value)}
+                  placeholder="Auto on approve"
+                />
+              </label>
+              <label className="block space-y-1.5 min-w-0">
+                <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                  Receipt No.
+                </span>
+                <input
+                  className={inputClass}
+                  value={receiptNo}
+                  onChange={(e) => setReceiptNo(e.target.value)}
+                  placeholder="Auto on approve"
+                />
+              </label>
+            </div>
+
             <label className="block space-y-1.5">
               <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
-                House ID
+                Amount &amp; deadline
               </span>
-              <input
+              <select
                 className={inputClass}
-                value={houseId}
-                onChange={(e) => setHouseId(e.target.value)}
-                placeholder="Auto on approve — or edit"
-              />
+                value={paymentMode}
+                onChange={(e) =>
+                  setPaymentMode(e.target.value as PaymentMode)
+                }
+              >
+                <option value="defaults">Use Settings defaults</option>
+                <option value="custom">Custom for this applicant</option>
+              </select>
             </label>
-            <label className="block space-y-1.5">
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
-                Receipt No.
-              </span>
-              <input
-                className={inputClass}
-                value={receiptNo}
-                onChange={(e) => setReceiptNo(e.target.value)}
-                placeholder="Auto on approve — or edit"
-              />
-            </label>
-            <label className="block space-y-1.5">
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
-                Amount (naira)
-              </span>
-              <input
-                className={inputClass}
-                value={amountPaid}
-                onChange={(e) => setAmountPaid(e.target.value)}
-                placeholder="e.g. 430000 — used in payment and approved emails"
-              />
-            </label>
-            <label className="block space-y-1.5">
-              <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
-                Payment deadline
-              </span>
-              <input
-                className={inputClass}
-                value={paymentDeadline}
-                onChange={(e) => setPaymentDeadline(e.target.value)}
-                placeholder="e.g. 2 weeks — shown in Reviewing email"
-              />
-            </label>
+
+            {paymentMode === "defaults" ? (
+              <div className="bg-[#0D0D0D] border border-white/7 px-3 py-3 space-y-1.5">
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                  From Settings
+                </p>
+                <p className="text-xs text-[#E8E2D9]">
+                  Amount {effectiveAmountLabel}
+                </p>
+                <p className="text-xs text-[#E8E2D9]">
+                  Deadline {effectiveDeadline}{" "}
+                  <span className="text-[#6A6258]">
+                    (for selected circle)
+                  </span>
+                </p>
+              </div>
+            ) : (
+              <>
+                <label className="block space-y-1.5">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                    Amount (naira)
+                  </span>
+                  <input
+                    className={inputClass}
+                    value={amountPaid}
+                    onChange={(e) => setAmountPaid(e.target.value)}
+                    placeholder={
+                      defaults
+                        ? `e.g. ${defaults.amountNaira}`
+                        : "e.g. 430000"
+                    }
+                  />
+                </label>
+                <label className="block space-y-1.5">
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-[#6A6258]">
+                    Payment deadline
+                  </span>
+                  <input
+                    className={inputClass}
+                    value={paymentDeadline}
+                    onChange={(e) => setPaymentDeadline(e.target.value)}
+                    placeholder="e.g. 2 weeks"
+                  />
+                </label>
+              </>
+            )}
           </div>
 
           <div className="space-y-3">
@@ -364,7 +496,7 @@ export default function ApplicationDrawer({
                 label="Applied"
                 value={new Date(application.createdAt).toLocaleDateString(
                   "en-GB",
-                  { day: "2-digit", month: "short", year: "numeric" },
+                  { day: "2-digit", month: "short", year: "numeric" }
                 )}
               />
             </div>
@@ -429,6 +561,92 @@ export default function ApplicationDrawer({
           </button>
         </div>
       </div>
+
+      {reviewConfirmOpen && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-[2px]"
+            onClick={() => setReviewConfirmOpen(false)}
+          />
+          <div className="relative w-full max-w-md bg-charcoal border border-white/10 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div className="px-5 py-4 border-b border-white/8 flex items-start justify-between gap-3">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-gold">
+                  Confirm Reviewing
+                </p>
+                <h3 className="font-serif text-lg text-[#E8E2D9] font-light mt-1">
+                  Send payment email?
+                </h3>
+                <p className="text-xs text-[#6A6258] mt-1.5 leading-relaxed">
+                  Moving {application.name} to Reviewing will email these
+                  details. Check them before continuing.
+                </p>
+              </div>
+              <button
+                onClick={() => setReviewConfirmOpen(false)}
+                className="text-[#3A3530] hover:text-[#E8E2D9] transition-colors p-1 shrink-0"
+                aria-label="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="px-5 py-4 space-y-3">
+              {(
+                [
+                  ["To", `${application.name} <${application.email}>`],
+                  ["Release", defaults?.releaseLabel ?? "—"],
+                  ["Membership Circle", circleLabel],
+                  ["Amount", effectiveAmountLabel],
+                  [
+                    "Payment deadline",
+                    `within the next ${effectiveDeadline}`,
+                  ],
+                  ["Bank", defaults?.bankName || "—"],
+                  ["Account name", defaults?.accountName || "—"],
+                  ["Account number", defaults?.accountNumber || "—"],
+                  ...(defaults?.paymentNote
+                    ? ([["Note", defaults.paymentNote]] as [string, string][])
+                    : []),
+                ] as [string, string][]
+              ).map(([label, value]) => (
+                <div
+                  key={label}
+                  className="flex gap-3 justify-between border-b border-white/5 pb-2.5 last:border-0 last:pb-0"
+                >
+                  <span className="text-[10px] uppercase tracking-[0.16em] text-[#6A6258] shrink-0 pt-0.5">
+                    {label}
+                  </span>
+                  <span className="text-xs text-[#E8E2D9] text-right leading-relaxed">
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="px-5 py-4 border-t border-white/8 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setReviewConfirmOpen(false)}
+                disabled={!!updating}
+                className="flex-1 py-2.5 border border-white/10 text-[10px] uppercase tracking-[0.18em] text-[#6A6258] hover:text-[#E8E2D9] transition-colors disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={confirmReviewing}
+                disabled={!!updating}
+                className="flex-1 py-2.5 border border-blue-400/40 text-[10px] uppercase tracking-[0.18em] text-blue-400 hover:bg-blue-400/10 transition-colors disabled:opacity-50"
+              >
+                {updating === "REVIEWING"
+                  ? "Sending…"
+                  : "Confirm & send email"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

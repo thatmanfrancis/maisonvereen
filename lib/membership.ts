@@ -24,3 +24,16 @@ export function buildHouseId(seq: number, yearSuffix: string): string {
 export function buildReceiptNo(seq: number, yearSuffix: string): string {
   return `MV-RCPT-${yearSuffix}-${String(seq).padStart(4, "0")}`;
 }
+
+export function deadlineForCircle(
+  circle: MembershipCircle,
+  settings: {
+    foundingDeadline: string;
+    collectorsDeadline: string;
+    houseDeadline: string;
+  }
+): string {
+  if (circle === "COLLECTORS") return settings.collectorsDeadline;
+  if (circle === "HOUSE") return settings.houseDeadline;
+  return settings.foundingDeadline;
+}

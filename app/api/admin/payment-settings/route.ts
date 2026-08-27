@@ -16,6 +16,10 @@ async function getOrCreateSettings() {
       paymentNote: null,
       releaseLabel: "Edition One — 2027",
       releaseDate: "29 May 2027",
+      amountNaira: 430000,
+      foundingDeadline: "2 weeks",
+      collectorsDeadline: "1 month",
+      houseDeadline: "1 month 2 weeks",
     },
   });
 }
@@ -28,6 +32,15 @@ function optionalNullableString(value: unknown): string | null | undefined {
   if (typeof value !== "string") return undefined;
   const trimmed = value.trim();
   return trimmed || null;
+}
+
+function optionalInt(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) return Math.round(value);
+  if (typeof value === "string" && value.trim()) {
+    const n = Number(value.replace(/,/g, ""));
+    if (Number.isFinite(n)) return Math.round(n);
+  }
+  return undefined;
 }
 
 export async function GET(req: NextRequest) {
@@ -53,6 +66,10 @@ export async function PATCH(req: NextRequest) {
   const paymentNote = optionalNullableString(body.paymentNote);
   const releaseLabel = optionalString(body.releaseLabel);
   const releaseDate = optionalString(body.releaseDate);
+  const amountNaira = optionalInt(body.amountNaira);
+  const foundingDeadline = optionalString(body.foundingDeadline);
+  const collectorsDeadline = optionalString(body.collectorsDeadline);
+  const houseDeadline = optionalString(body.houseDeadline);
 
   await getOrCreateSettings();
 
@@ -65,6 +82,10 @@ export async function PATCH(req: NextRequest) {
       ...(paymentNote !== undefined ? { paymentNote } : {}),
       ...(releaseLabel !== undefined ? { releaseLabel } : {}),
       ...(releaseDate !== undefined ? { releaseDate } : {}),
+      ...(amountNaira !== undefined ? { amountNaira } : {}),
+      ...(foundingDeadline !== undefined ? { foundingDeadline } : {}),
+      ...(collectorsDeadline !== undefined ? { collectorsDeadline } : {}),
+      ...(houseDeadline !== undefined ? { houseDeadline } : {}),
     },
   });
 

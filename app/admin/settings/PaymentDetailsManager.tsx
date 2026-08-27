@@ -10,6 +10,10 @@ type PaymentSettings = {
   paymentNote: string;
   releaseLabel: string;
   releaseDate: string;
+  amountNaira: string;
+  foundingDeadline: string;
+  collectorsDeadline: string;
+  houseDeadline: string;
 };
 
 const EMPTY: PaymentSettings = {
@@ -19,6 +23,10 @@ const EMPTY: PaymentSettings = {
   paymentNote: "",
   releaseLabel: "Edition One — 2027",
   releaseDate: "29 May 2027",
+  amountNaira: "430000",
+  foundingDeadline: "2 weeks",
+  collectorsDeadline: "1 month",
+  houseDeadline: "1 month 2 weeks",
 };
 
 export default function PaymentDetailsManager() {
@@ -43,6 +51,12 @@ export default function PaymentDetailsManager() {
             paymentNote: data.settings.paymentNote ?? "",
             releaseLabel: data.settings.releaseLabel ?? EMPTY.releaseLabel,
             releaseDate: data.settings.releaseDate ?? EMPTY.releaseDate,
+            amountNaira: String(data.settings.amountNaira ?? 430000),
+            foundingDeadline:
+              data.settings.foundingDeadline ?? EMPTY.foundingDeadline,
+            collectorsDeadline:
+              data.settings.collectorsDeadline ?? EMPTY.collectorsDeadline,
+            houseDeadline: data.settings.houseDeadline ?? EMPTY.houseDeadline,
           });
         }
       })
@@ -59,7 +73,10 @@ export default function PaymentDetailsManager() {
       const res = await fetch("/api/admin/payment-settings", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          amountNaira: Number(form.amountNaira.replace(/,/g, "")) || 0,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -73,6 +90,12 @@ export default function PaymentDetailsManager() {
         paymentNote: data.settings.paymentNote ?? "",
         releaseLabel: data.settings.releaseLabel ?? EMPTY.releaseLabel,
         releaseDate: data.settings.releaseDate ?? EMPTY.releaseDate,
+        amountNaira: String(data.settings.amountNaira ?? 430000),
+        foundingDeadline:
+          data.settings.foundingDeadline ?? EMPTY.foundingDeadline,
+        collectorsDeadline:
+          data.settings.collectorsDeadline ?? EMPTY.collectorsDeadline,
+        houseDeadline: data.settings.houseDeadline ?? EMPTY.houseDeadline,
       });
       setSuccess(true);
     } catch {
@@ -92,11 +115,11 @@ export default function PaymentDetailsManager() {
         <CreditCard className="w-4 h-4 text-gold mt-0.5 shrink-0" />
         <div className="space-y-1">
           <h2 className="font-serif text-lg text-[#E8E2D9] font-light">
-            Release &amp; Bank Details
+            Release &amp; Payment Defaults
           </h2>
           <p className="text-xs text-[#6A6258] leading-relaxed">
-            Shared bank account and release label for emails. Amount and payment
-            deadline are set per applicant in their application drawer.
+            Bank details and default amount / deadlines used in emails. On each
+            application you can keep these defaults or enter custom values.
           </p>
         </div>
       </div>
@@ -129,6 +152,56 @@ export default function PaymentDetailsManager() {
                 value={form.releaseDate}
                 onChange={(e) => setField("releaseDate", e.target.value)}
                 placeholder="29 May 2027"
+              />
+            </label>
+            <label className="block space-y-1">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[#6A6258]">
+                Default amount (naira)
+              </span>
+              <input
+                className={inputClass}
+                value={form.amountNaira}
+                onChange={(e) => setField("amountNaira", e.target.value)}
+                placeholder="430000"
+              />
+            </label>
+          </div>
+
+          <div className="space-y-5">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-gold">
+              Default payment deadlines by circle
+            </p>
+            <label className="block space-y-1">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[#6A6258]">
+                Founding Circle
+              </span>
+              <input
+                className={inputClass}
+                value={form.foundingDeadline}
+                onChange={(e) => setField("foundingDeadline", e.target.value)}
+                placeholder="2 weeks"
+              />
+            </label>
+            <label className="block space-y-1">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[#6A6258]">
+                Collectors Circle
+              </span>
+              <input
+                className={inputClass}
+                value={form.collectorsDeadline}
+                onChange={(e) => setField("collectorsDeadline", e.target.value)}
+                placeholder="1 month"
+              />
+            </label>
+            <label className="block space-y-1">
+              <span className="text-[10px] uppercase tracking-[0.22em] text-[#6A6258]">
+                House Circle
+              </span>
+              <input
+                className={inputClass}
+                value={form.houseDeadline}
+                onChange={(e) => setField("houseDeadline", e.target.value)}
+                placeholder="1 month 2 weeks"
               />
             </label>
           </div>

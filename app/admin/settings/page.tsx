@@ -11,7 +11,7 @@ export default async function SettingsPage() {
 
   return (
     <AdminShell adminName={session.name}>
-      <div className="space-y-6 max-w-[1200px]">
+      <div className="space-y-6 max-w-300">
         {/* Page Header */}
         <div className="space-y-1">
           <span className="section-tag block">Settings</span>
@@ -19,9 +19,8 @@ export default async function SettingsPage() {
             Settings
           </h1>
           <p className="text-[#EDE8DE] text-xs">
-            Manage credentials, notification recipients, release label, and
-            shared bank details for applicant emails. Amount and payment deadline
-            are set per applicant.
+            Manage credentials, notification recipients, and shared payment
+            defaults (bank, amount, deadlines) used in applicant emails.
           </p>
         </div>
 

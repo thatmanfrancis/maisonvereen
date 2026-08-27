@@ -11,6 +11,7 @@ import {
   buildHouseId,
   buildReceiptNo,
   CIRCLE_LABELS,
+  deadlineForCircle,
   formatNaira,
   releaseYearSuffix,
   type MembershipCircle,
@@ -38,11 +39,16 @@ async function getOrCreateSettings() {
       paymentNote: null,
       releaseLabel: "Edition One — 2027",
       releaseDate: "29 May 2027",
+      amountNaira: 430000,
+      foundingDeadline: "2 weeks",
+      collectorsDeadline: "1 month",
+      houseDeadline: "1 month 2 weeks",
     },
   });
 }
 
-function parseOptionalAmount(value: unknown, fallback: number | null): number | null {
+function parseOptionalAmount(value: unknown): number | null | undefined {
+  if (value === undefined) return undefined;
   if (value === null) return null;
   if (typeof value === "number" && Number.isFinite(value)) return Math.round(value);
   if (typeof value === "string") {
@@ -51,17 +57,14 @@ function parseOptionalAmount(value: unknown, fallback: number | null): number | 
     const n = Number(trimmed.replace(/,/g, ""));
     if (Number.isFinite(n)) return Math.round(n);
   }
-  if (value === undefined) return fallback;
-  return fallback;
+  return undefined;
 }
 
-function parseOptionalNullableString(
-  value: unknown,
-  fallback: string | null
-): string | null {
-  if (typeof value === "string") return value.trim() || null;
+function parseOptionalNullableString(value: unknown): string | null | undefined {
+  if (value === undefined) return undefined;
   if (value === null) return null;
-  return fallback;
+  if (typeof value === "string") return value.trim() || null;
+  return undefined;
 }
 
 // ── GET /api/applications/:id ─────────────────────────────────────────────────
@@ -130,16 +133,13 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
     typeof receiptNo === "string"
       ? receiptNo.trim() || null
       : existing.receiptNo;
-  let nextAmountPaid = parseOptionalAmount(amountPaid, existing.amountPaid);
-  let nextPaymentDeadline = parseOptionalNullableString(
-    paymentDeadline,
-    existing.paymentDeadline
-  );
 
-  // When amountPaid/paymentDeadline keys are omitted, keep existing
-  if (amountPaid === undefined) nextAmountPaid = existing.amountPaid;
-  if (paymentDeadline === undefined)
-    nextPaymentDeadline = existing.paymentDeadline;
+  const parsedAmount = parseOptionalAmount(amountPaid);
+  const parsedDeadline = parseOptionalNullableString(paymentDeadline);
+  const nextAmountPaid =
+    parsedAmount !== undefined ? parsedAmount : existing.amountPaid;
+  const nextPaymentDeadline =
+    parsedDeadline !== undefined ? parsedDeadline : existing.paymentDeadline;
 
   if (becameApproved) {
     const approvedCount = await prisma.application.count({
@@ -165,8 +165,8 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
       ...(receiptNo !== undefined || becameApproved
         ? { receiptNo: nextReceiptNo }
         : {}),
-      ...(amountPaid !== undefined ? { amountPaid: nextAmountPaid } : {}),
-      ...(paymentDeadline !== undefined
+      ...(parsedAmount !== undefined ? { amountPaid: nextAmountPaid } : {}),
+      ...(parsedDeadline !== undefined
         ? { paymentDeadline: nextPaymentDeadline }
         : {}),
       ...(becameApproved ? { approvedAt: new Date() } : {}),
@@ -177,6 +177,10 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
   });
 
   const circle = updated.membershipCircle as MembershipCircle;
+  const effectiveAmount = updated.amountPaid ?? settings.amountNaira;
+  const effectiveDeadline =
+    updated.paymentDeadline?.trim() ||
+    deadlineForCircle(circle, settings);
 
   try {
     if (becameReviewing) {
@@ -189,11 +193,8 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
           accountName: settings.accountName,
           accountNumber: settings.accountNumber,
           paymentNote: settings.paymentNote,
-          paymentDeadline: updated.paymentDeadline ?? undefined,
-          amountLabel:
-            updated.amountPaid != null
-              ? formatNaira(updated.amountPaid)
-              : undefined,
+          paymentDeadline: effectiveDeadline,
+          amountLabel: formatNaira(effectiveAmount),
           releaseLabel: settings.releaseLabel,
         }),
       });
@@ -206,10 +207,7 @@ export async function PATCH(req: NextRequest, { params }: Ctx) {
           releaseLabel: settings.releaseLabel,
           membershipCircle: CIRCLE_LABELS[circle],
           houseId: updated.houseId ?? "",
-          amountPaidLabel:
-            updated.amountPaid != null
-              ? formatNaira(updated.amountPaid)
-              : "—",
+          amountPaidLabel: formatNaira(effectiveAmount),
           receiptNo: updated.receiptNo ?? "",
         }),
       });
